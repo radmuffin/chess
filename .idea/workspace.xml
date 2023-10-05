@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="chess board test pass w/o wack stuff">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="rook moves">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessMoveImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessMoveImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessPositionImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessPositionImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Queen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +59,22 @@
       <recent name="C:\Users\spezd\IdeaProjects\ajedrez\src\starter" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RookMoveTests">
+  <component name="RunManager" selected="JUnit.QueenMoveTests">
+    <configuration name="BishopMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.BishopMoveTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ChessBoardTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
@@ -91,18 +106,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChessBoardTests.getAddPiece" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="QueenMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessBoardTests" />
-      <option name="METHOD_NAME" value="getAddPiece" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.QueenMoveTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -122,29 +136,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RookMoveTests.rookStuck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.RookMoveTests" />
-      <option name="METHOD_NAME" value="rookStuck" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.QueenMoveTests" />
+        <item itemvalue="JUnit.BishopMoveTests" />
         <item itemvalue="JUnit.RookMoveTests" />
         <item itemvalue="JUnit.ChessBoardTests.defaultGameBoard" />
         <item itemvalue="JUnit.ChessBoardTests" />
-        <item itemvalue="JUnit.RookMoveTests.rookStuck" />
-        <item itemvalue="JUnit.ChessBoardTests.getAddPiece" />
       </list>
     </recent_temporary>
   </component>
@@ -181,14 +179,23 @@
       <option name="project" value="LOCAL" />
       <updated>1696474166526</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="rook moves">
+      <option name="closed" value="true" />
+      <created>1696476501147</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696476501147</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial" />
     <MESSAGE value="chess board test pass" />
     <MESSAGE value="chess board test pass w/o wack stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="chess board test pass w/o wack stuff" />
+    <MESSAGE value="rook moves" />
+    <option name="LAST_COMMIT_MESSAGE" value="rook moves" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
