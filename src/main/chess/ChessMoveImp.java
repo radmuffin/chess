@@ -43,4 +43,13 @@ public class ChessMoveImp implements ChessMove{
     public int hashCode() {
         return Objects.hash(start, end, promoPiece);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        out.append(start.toString());
+        out.append(">>");
+        out.append(end.toString());
+        return out.toString();
+    }
 }

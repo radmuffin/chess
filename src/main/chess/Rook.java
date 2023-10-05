@@ -35,6 +35,7 @@ public class Rook extends ChessPieceAb{
                 }
                 break;
             }
+            look = look.copy();
             look.adjust(h, v);
         }
     }
