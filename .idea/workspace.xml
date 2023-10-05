@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="all but pawn moves">
-      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessPositionImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessPositionImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessPieceAb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessPieceAb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/chess/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Queen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +58,7 @@
       <recent name="C:\Users\spezd\IdeaProjects\ajedrez\src\starter" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BishopMoveTests">
+  <component name="RunManager" selected="JUnit.passoffTests.chessTests.chessPieceTests in ajedrez">
     <configuration name="BishopMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
@@ -105,7 +104,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="QueenMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PawnMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
@@ -114,13 +113,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.QueenMoveTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.PawnMoveTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RookMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="passoffTests.chessTests.chessPieceTests in ajedrez" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
@@ -129,19 +128,18 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.RookMoveTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.passoffTests.chessTests.chessPieceTests in ajedrez" />
+        <item itemvalue="JUnit.PawnMoveTests" />
         <item itemvalue="JUnit.BishopMoveTests" />
         <item itemvalue="JUnit.KingMoveTests" />
         <item itemvalue="JUnit.KnightMoveTests" />
-        <item itemvalue="JUnit.RookMoveTests" />
-        <item itemvalue="JUnit.QueenMoveTests" />
       </list>
     </recent_temporary>
   </component>
@@ -202,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696478516970</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="all but pawn moves">
+      <option name="closed" value="true" />
+      <created>1696479260824</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1696479260824</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

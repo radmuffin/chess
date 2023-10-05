@@ -5,8 +5,8 @@ import java.util.Collection;
 public abstract class ChessPieceAb implements ChessPiece{
 
     protected ChessGame.TeamColor team;
+
     protected PieceType type;
-    protected ChessPosition spot;
 
     @Override
     public ChessGame.TeamColor getTeamColor() {
