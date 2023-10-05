@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="rook moves">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="bishop and queen moves">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Knight.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +59,7 @@
       <recent name="C:\Users\spezd\IdeaProjects\ajedrez\src\starter" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.QueenMoveTests">
+  <component name="RunManager" selected="JUnit.KnightMoveTests">
     <configuration name="BishopMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
@@ -75,33 +75,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChessBoardTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="KingMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessBoardTests" />
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.KingMoveTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChessBoardTests.defaultGameBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="KnightMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessBoardTests" />
-      <option name="METHOD_NAME" value="defaultGameBoard" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.KnightMoveTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -138,11 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.KnightMoveTests" />
+        <item itemvalue="JUnit.KingMoveTests" />
         <item itemvalue="JUnit.QueenMoveTests" />
         <item itemvalue="JUnit.BishopMoveTests" />
         <item itemvalue="JUnit.RookMoveTests" />
-        <item itemvalue="JUnit.ChessBoardTests.defaultGameBoard" />
-        <item itemvalue="JUnit.ChessBoardTests" />
       </list>
     </recent_temporary>
   </component>
@@ -187,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696476501147</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="bishop and queen moves">
+      <option name="closed" value="true" />
+      <created>1696477488048</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696477488048</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -195,7 +202,8 @@
     <MESSAGE value="chess board test pass" />
     <MESSAGE value="chess board test pass w/o wack stuff" />
     <MESSAGE value="rook moves" />
-    <option name="LAST_COMMIT_MESSAGE" value="rook moves" />
+    <MESSAGE value="bishop and queen moves" />
+    <option name="LAST_COMMIT_MESSAGE" value="bishop and queen moves" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
