@@ -31,9 +31,9 @@ public class ChessPositionImp implements ChessPosition{
     }
 
     @Override
-    public void adjust(int horizontal, int vertical) {
-        row += horizontal;
-        column += vertical;
+    public void adjust(int vertical, int horizontal) {
+        row += vertical;
+        column += horizontal;
     }
 
     @Override

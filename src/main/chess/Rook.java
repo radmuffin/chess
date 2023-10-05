@@ -21,9 +21,9 @@ public class Rook extends ChessPieceAb{
     }
 
     //adds moves going in direction per adjust h, v
-    private void probe(int h, int v, ChessPosition start, Collection<ChessMove> stuff, ChessBoard board) {
+    private void probe(int v, int h, ChessPosition start, Collection<ChessMove> stuff, ChessBoard board) {
         ChessPosition look = start.copy();
-        look.adjust(h, v);
+        look.adjust(v, h);
         while (look.onBoard()) {
             ChessPiece inSpot = board.getPiece(look);
             if (inSpot == null) {
@@ -36,7 +36,7 @@ public class Rook extends ChessPieceAb{
                 break;
             }
             look = look.copy();
-            look.adjust(h, v);
+            look.adjust(v, h);
         }
     }
 
