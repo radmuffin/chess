@@ -13,4 +13,10 @@ public class Bishop extends ChessPieceAb{
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
         return super.pieceMoves(board, myPosition);
     }
+
+    @Override
+    public String toString() {
+        if (team == ChessGame.TeamColor.WHITE) return "B";
+        else return "b";
+    }
 }

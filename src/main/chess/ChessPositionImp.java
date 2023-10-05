@@ -1,12 +1,26 @@
 package chess;
 
+import java.util.Objects;
+
 public class ChessPositionImp implements ChessPosition{
 
     private int row;
     private int column;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessPositionImp that = (ChessPositionImp) o;
+        return row == that.row && column == that.column;
+    }
 
-    public ChessPositionImp(int r, int c) {
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, column);
+    }
+
+    public ChessPositionImp(int r, int c) { //counting from one?
         row = r - 1;
         column = c - 1;
     }
@@ -17,12 +31,28 @@ public class ChessPositionImp implements ChessPosition{
     }
 
     @Override
+    public void adjust(int horizontal, int vertical) {
+        row += horizontal;
+        column += vertical;
+    }
+
+    @Override
+    public boolean onBoard() {
+        return (row >= 0 && row <= 7 && column >= 0 && column <= 7);
+    }
+
+    @Override
+    public ChessPosition copy() {
+        return new ChessPositionImp(row + 1, column + 1);
+    }
+
+    @Override
     public int getRow() {
-        return row + 1;
+        return row;
     }
 
     @Override
     public int getColumn() {
-        return column + 1;
+        return column;
     }
 }

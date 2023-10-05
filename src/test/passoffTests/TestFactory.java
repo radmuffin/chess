@@ -15,8 +15,7 @@ public class TestFactory {
     }
 
     public static ChessGame getNewGame(){
-        // FIXME
-		return null;
+        return new ChessGameImp();
     }
 
     public static ChessPiece getNewPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type){
@@ -48,12 +47,11 @@ public class TestFactory {
     }
 
     public static ChessPosition getNewPosition(Integer row, Integer col){   //who would ever start counting at 1?
-		return new ChessPositionImp(row - 1, col - 1);
+		return new ChessPositionImp(row , col );
     }
 
     public static ChessMove getNewMove(ChessPosition startPosition, ChessPosition endPosition, ChessPiece.PieceType promotionPiece){
-        // FIXME
-		return null;
+        return new ChessMoveImp(startPosition, endPosition, promotionPiece);
     }
     //------------------------------------------------------------------------------------------------------------------
 

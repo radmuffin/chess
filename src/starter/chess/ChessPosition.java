@@ -10,6 +10,12 @@ public interface ChessPosition {
      */
     int getRow();
 
+    void adjust(int horizontal, int vertical);
+
+    boolean onBoard();
+
+    ChessPosition copy();
+
     /**
      * @return which column this position is in
      * 1 codes for the left row

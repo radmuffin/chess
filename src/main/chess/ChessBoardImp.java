@@ -51,9 +51,21 @@ public class ChessBoardImp implements ChessBoard{
 
         board[0][4] = new King(ChessGame.TeamColor.WHITE);
         board[7][4] = new King(ChessGame.TeamColor.BLACK);
+    }
 
 
-
-
+    @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        for (int i = 7; i >= 0; --i) {
+            out.append("|");
+            for (int k = 0; k <= 7; ++k) {
+                if (board[i][k] != null) out.append(board[i][k].toString());
+                else out.append(" ");
+                out.append("|");
+            }
+            out.append('\n');
+        }
+        return out.toString();
     }
 }

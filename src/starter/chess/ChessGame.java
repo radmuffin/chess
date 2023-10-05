@@ -29,7 +29,7 @@ public interface ChessGame {
     /**
      * Gets a valid moves for a piece at the given location
      * @param startPosition the piece to get valid moves for
-     * @return Set of valid moves for requested piece, or null if no piece at startPosition
+     * @return Set of valid moves for requested piece, or null if no piece at startPosition *empty collection
      */
     Collection<ChessMove> validMoves(ChessPosition startPosition);
 
