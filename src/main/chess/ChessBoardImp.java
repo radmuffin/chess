@@ -14,6 +14,22 @@ public class ChessBoardImp implements ChessBoard{
     }
 
     @Override
+    public void movePiece(ChessMove move) {
+        ChessPiece piece = getPiece(move.getStartPosition());
+        board[move.getStartPosition().getRow()][move.getStartPosition().getColumn()] = null;
+        if (move.getPromotionPiece() != null) {
+            switch (move.getPromotionPiece()) {
+                case QUEEN -> piece = new Queen(piece.getTeamColor());
+                case BISHOP -> piece = new Bishop(piece.getTeamColor());
+                case KNIGHT -> piece = new Knight(piece.getTeamColor());
+                case ROOK -> piece = new Rook(piece.getTeamColor());
+            }
+        }
+        board[move.getEndPosition().getRow()][move.getEndPosition().getColumn()] = piece;
+    }
+
+
+    @Override
     public ChessPiece getPiece(ChessPosition position) {
         return board[position.getRow()][position.getColumn()];
     }

@@ -12,6 +12,8 @@ public interface ChessBoard {
      */
     void addPiece(ChessPosition position, ChessPiece piece);
 
+    void movePiece(ChessMove move);
+
     /**
      * Gets a chess piece on the chessboard
      * @param position The position to get the piece from

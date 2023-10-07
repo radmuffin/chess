@@ -24,12 +24,28 @@ public class ChessGameImp implements ChessGame{
 
     @Override
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        return null;
+        ChessPiece piece = board.getPiece(startPosition);
+        if (piece == null || piece.getTeamColor() != turn) return null;
+        Collection<ChessMove> ops = piece.pieceMoves(board, startPosition);
+        //TODO need to take check and stuff into account, remove invalids
+        return ops;
     }
 
     @Override
     public void makeMove(ChessMove move) throws InvalidMoveException {
+        if (!move.getStartPosition().onBoard()) throw new InvalidMoveException("There's no piece there");
+        Collection<ChessMove> options = validMoves(move.getStartPosition());
+        if (options != null && options.contains(move)) {
+            board.movePiece(move);
+            yourTurn();
+        }
+        else throw new InvalidMoveException("Invalid move!");
 
+    }
+
+    private void yourTurn() {
+        if (turn == TeamColor.WHITE) turn = TeamColor.BLACK;
+        else turn = TeamColor.WHITE;
     }
 
     @Override

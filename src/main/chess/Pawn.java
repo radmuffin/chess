@@ -38,29 +38,33 @@ public class Pawn extends ChessPieceAb{
         }
         look = myPosition.copy();
         look.adjust(forward, 1);        //capture right diagonal
-        atSpot = board.getPiece(look);
-        if (atSpot != null && atSpot.getTeamColor() != team) {
-            if ((team == ChessGame.TeamColor.WHITE && look.getRow() == 7) ||        //check for promo
-                    (team == ChessGame.TeamColor.BLACK && look.getRow() == 0)) {
-                options.add(new ChessMoveImp(myPosition, look, PieceType.QUEEN));
-                options.add(new ChessMoveImp(myPosition, look, PieceType.ROOK));
-                options.add(new ChessMoveImp(myPosition, look, PieceType.BISHOP));
-                options.add(new ChessMoveImp(myPosition, look, PieceType.KNIGHT));
+        if (look.onBoard()) {
+            atSpot = board.getPiece(look);
+            if (atSpot != null && atSpot.getTeamColor() != team) {
+                if ((team == ChessGame.TeamColor.WHITE && look.getRow() == 7) ||        //check for promo
+                        (team == ChessGame.TeamColor.BLACK && look.getRow() == 0)) {
+                    options.add(new ChessMoveImp(myPosition, look, PieceType.QUEEN));
+                    options.add(new ChessMoveImp(myPosition, look, PieceType.ROOK));
+                    options.add(new ChessMoveImp(myPosition, look, PieceType.BISHOP));
+                    options.add(new ChessMoveImp(myPosition, look, PieceType.KNIGHT));
+                }
+                else options.add(new ChessMoveImp(myPosition, look, null));
             }
-            else options.add(new ChessMoveImp(myPosition, look, null));
         }
         look = myPosition.copy();
         look.adjust(forward, -1);        //capture left diagonal
-        atSpot = board.getPiece(look);
-        if (atSpot != null && atSpot.getTeamColor() != team) {
-            if ((team == ChessGame.TeamColor.WHITE && look.getRow() == 7) ||        //check for promo
-                    (team == ChessGame.TeamColor.BLACK && look.getRow() == 0)) {
-                options.add(new ChessMoveImp(myPosition, look, PieceType.QUEEN));
-                options.add(new ChessMoveImp(myPosition, look, PieceType.ROOK));
-                options.add(new ChessMoveImp(myPosition, look, PieceType.BISHOP));
-                options.add(new ChessMoveImp(myPosition, look, PieceType.KNIGHT));
+        if (look.onBoard()) {
+            atSpot = board.getPiece(look);
+            if (atSpot != null && atSpot.getTeamColor() != team) {
+                if ((team == ChessGame.TeamColor.WHITE && look.getRow() == 7) ||        //check for promo
+                        (team == ChessGame.TeamColor.BLACK && look.getRow() == 0)) {
+                    options.add(new ChessMoveImp(myPosition, look, PieceType.QUEEN));
+                    options.add(new ChessMoveImp(myPosition, look, PieceType.ROOK));
+                    options.add(new ChessMoveImp(myPosition, look, PieceType.BISHOP));
+                    options.add(new ChessMoveImp(myPosition, look, PieceType.KNIGHT));
+                }
+                else options.add(new ChessMoveImp(myPosition, look, null));
             }
-            else options.add(new ChessMoveImp(myPosition, look, null));
         }
         return options;
     }
