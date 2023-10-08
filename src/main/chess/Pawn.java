@@ -70,6 +70,11 @@ public class Pawn extends ChessPieceAb{
     }
 
     @Override
+    public ChessPiece copy() {
+        return new Pawn(team);
+    }
+
+    @Override
     public String toString() {
         if (team == ChessGame.TeamColor.WHITE) return "P";
         else return "p";

@@ -14,6 +14,8 @@ public interface ChessPosition {
 
     boolean onBoard();
 
+    void setPos(int v, int h);
+
     ChessPosition copy();
 
     /**

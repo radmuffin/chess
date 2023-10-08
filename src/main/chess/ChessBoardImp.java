@@ -84,4 +84,20 @@ public class ChessBoardImp implements ChessBoard{
         }
         return out.toString();
     }
+
+    @Override
+    public ChessBoard copy() {
+        ChessBoard copy = new ChessBoardImp();
+        ChessPosition spot = new ChessPositionImp(1,1);
+        for (int i = 1; i <= 8; ++i) {
+            for (int k = 1; k <= 8; ++k) {
+                spot.setPos(i,k);
+                ChessPiece piece = getPiece(spot);
+                if (piece != null) piece = piece.copy();
+                copy.addPiece(spot, piece);
+            }
+        }
+        return copy;
+    }
+
 }

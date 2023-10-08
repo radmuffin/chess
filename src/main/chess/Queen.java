@@ -24,6 +24,11 @@ public class Queen extends ChessPieceAb{
         return options;
     }
 
+    @Override
+    public ChessPiece copy() {
+        return new Queen(team);
+    }
+
     //adds moves going in direction per adjust h, v
     private void probe(int v, int h, ChessPosition start, Collection<ChessMove> stuff, ChessBoard board) {
         ChessPosition look = start.copy();

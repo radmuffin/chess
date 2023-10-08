@@ -22,4 +22,6 @@ public abstract class ChessPieceAb implements ChessPiece{
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
         return null;
     }
+
+    public abstract ChessPiece copy();
 }

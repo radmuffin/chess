@@ -25,6 +25,7 @@ public class ChessPositionImp implements ChessPosition{
         column = c - 1;
     }
 
+    @Override
     public void setPos(int r, int c) {
         row = r - 1;
         column = c - 1;

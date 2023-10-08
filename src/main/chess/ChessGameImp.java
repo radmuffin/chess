@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 public class ChessGameImp implements ChessGame{
 
@@ -24,16 +25,25 @@ public class ChessGameImp implements ChessGame{
 
     @Override
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
+        HashSet<ChessMove> goodOps = new HashSet<>();
         ChessPiece piece = board.getPiece(startPosition);
-        if (piece == null || piece.getTeamColor() != turn) return null;
+        if (piece == null) return goodOps;
         Collection<ChessMove> ops = piece.pieceMoves(board, startPosition);
-        //TODO need to take check and stuff into account, remove invalids
-        return ops;
+        ChessBoard og = board;
+        for (ChessMove move : ops) {    // need to take check and stuff into account, remove invalids
+            board = og.copy();
+            board.movePiece(move);
+            if (!isInCheck(piece.getTeamColor())) goodOps.add(move);
+        }
+        board = og;
+        return goodOps;
     }
 
     @Override
     public void makeMove(ChessMove move) throws InvalidMoveException {
-        if (!move.getStartPosition().onBoard()) throw new InvalidMoveException("There's no piece there");
+        if (!move.getStartPosition().onBoard()) throw new InvalidMoveException("you're off the map");
+        ChessPiece subject = board.getPiece(move.getStartPosition());
+        if (subject.getTeamColor() != turn) throw new InvalidMoveException("not you");
         Collection<ChessMove> options = validMoves(move.getStartPosition());
         if (options != null && options.contains(move)) {
             board.movePiece(move);
@@ -50,7 +60,34 @@ public class ChessGameImp implements ChessGame{
 
     @Override
     public boolean isInCheck(TeamColor teamColor) {
+        ChessPosition kingAt = findKing(teamColor);
+        ChessPosition spot = new ChessPositionImp(1,1);
+        for (int i = 1; i <= 8; ++i) {
+            for (int k = 1; k <= 8; ++k) {
+                spot.setPos(i,k);
+                ChessPiece kingKiller = board.getPiece(spot);
+                if (kingKiller != null && kingKiller.getTeamColor() != teamColor) {
+                    for (ChessMove attack : kingKiller.pieceMoves(board, spot)) {
+                        if (attack.getEndPosition().equals(kingAt)) return true;
+                    }
+                }
+            }
+        }
         return false;
+    }
+
+    ChessPosition findKing(TeamColor color) {
+        ChessPosition spot = new ChessPositionImp(1, 1);
+        for (int i = 1; i <= 8; ++i) {
+            for (int k = 1; k <= 8; ++k) {
+                spot.setPos(i,k);
+                ChessPiece look = board.getPiece(spot);
+                if (look != null && look.getPieceType() == ChessPiece.PieceType.KING && look.getTeamColor() == color) {
+                    return spot;
+                }
+            }
+        }
+        return null;
     }
 
     @Override

@@ -24,6 +24,11 @@ public class Knight extends ChessPieceAb{
         return options;
     }
 
+    @Override
+    public ChessPiece copy() {
+        return new Knight(team);
+    }
+
     //adds move per adjust h, v if valid
     private void probe(int v, int h, ChessPosition start, Collection<ChessMove> stuff, ChessBoard board) {
         ChessPosition look = start.copy();

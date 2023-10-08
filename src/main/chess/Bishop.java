@@ -20,6 +20,11 @@ public class Bishop extends ChessPieceAb{
         return options;
     }
 
+    @Override
+    public ChessPiece copy() {
+        return new Bishop(team);
+    }
+
     //adds moves going in direction per adjust h, v
     private void probe(int v, int h, ChessPosition start, Collection<ChessMove> stuff, ChessBoard board) {
         ChessPosition look = start.copy();
@@ -46,4 +51,6 @@ public class Bishop extends ChessPieceAb{
         if (team == ChessGame.TeamColor.WHITE) return "B";
         else return "b";
     }
+
+
 }
