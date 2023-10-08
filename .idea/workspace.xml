@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="gameplay -check">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="gameplay -checkmate/stalemate">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessBoardImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessBoardImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/chess/ChessGameImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessGameImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessPieceAb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessPieceAb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessPositionImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessPositionImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Knight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Rook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/starter/chess/ChessBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/starter/chess/ChessPiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/starter/chess/ChessPosition.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,22 +58,7 @@
       <recent name="C:\Users\spezd\IdeaProjects\ajedrez\src\starter" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ChessGameTests">
-    <configuration name="BishopMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.BishopMoveTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.passoffTests.chessTests in ajedrez">
     <configuration name="ChessGameTests$ValidMoveTests.kingInDanger" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
@@ -132,6 +105,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="passoffTests.chessTests in ajedrez" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="passoffTests.chessTests.chessPieceTests in ajedrez" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
@@ -148,11 +135,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.passoffTests.chessTests in ajedrez" />
         <item itemvalue="JUnit.ChessGameTests" />
         <item itemvalue="JUnit.ChessGameTests$ValidMoveTests.kingInDanger" />
         <item itemvalue="JUnit.passoffTests.chessTests.chessPieceTests in ajedrez" />
         <item itemvalue="JUnit.PawnMoveTests" />
-        <item itemvalue="JUnit.BishopMoveTests" />
       </list>
     </recent_temporary>
   </component>
@@ -237,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696711823802</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="gameplay -checkmate/stalemate">
+      <option name="closed" value="true" />
+      <created>1696729710648</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1696729710648</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -249,7 +244,8 @@
     <MESSAGE value="all but pawn moves" />
     <MESSAGE value="all pieces" />
     <MESSAGE value="gameplay -check" />
-    <option name="LAST_COMMIT_MESSAGE" value="gameplay -check" />
+    <MESSAGE value="gameplay -checkmate/stalemate" />
+    <option name="LAST_COMMIT_MESSAGE" value="gameplay -checkmate/stalemate" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

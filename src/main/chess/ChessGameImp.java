@@ -92,12 +92,34 @@ public class ChessGameImp implements ChessGame{
 
     @Override
     public boolean isInCheckmate(TeamColor teamColor) {
-        return false;
+        if (!isInCheck(teamColor)) return false;
+        ChessPosition spot = new ChessPositionImp(1,1);
+        for (int i = 1; i <= 8; ++i) {
+            for (int k = 1; k <= 8; ++k) {
+                spot.setPos(i, k);
+                ChessPiece piece = board.getPiece(spot);
+                if (piece != null && piece.getTeamColor() == teamColor) {
+                    if (!validMoves(spot).isEmpty()) return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
     public boolean isInStalemate(TeamColor teamColor) {
-        return false;
+        if (isInCheck(teamColor)) return false;
+        ChessPosition spot = new ChessPositionImp(1,1);
+        for (int i = 1; i <= 8; ++i) {
+            for (int k = 1; k <= 8; ++k) {
+                spot.setPos(i, k);
+                ChessPiece piece = board.getPiece(spot);
+                if (piece != null && piece.getTeamColor() == teamColor) {
+                    if (!validMoves(spot).isEmpty()) return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
