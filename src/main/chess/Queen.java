@@ -8,6 +8,7 @@ public class Queen extends ChessPieceAb{
     public Queen(ChessGame.TeamColor color) {
         team = color;
         type = PieceType.QUEEN;
+        moves = 0;
     }
 
     @Override

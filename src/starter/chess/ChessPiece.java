@@ -29,6 +29,8 @@ public interface ChessPiece {
      */
     PieceType getPieceType();
 
+    void incMoves();
+
     ChessPiece copy();
 
     /**

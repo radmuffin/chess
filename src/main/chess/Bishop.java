@@ -8,6 +8,7 @@ public class Bishop extends ChessPieceAb{
     public Bishop(ChessGame.TeamColor color) {
         team = color;
         type = PieceType.BISHOP;
+        moves = 0;
     }
 
     @Override

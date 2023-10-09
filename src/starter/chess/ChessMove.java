@@ -9,10 +9,18 @@ public interface ChessMove {
      */
     ChessPosition getStartPosition();
 
+    /** returns absolute value vertical movement of move*/
+    int jump();
     /**
      * @return ChessPosition of ending location
      */
     ChessPosition getEndPosition();
+
+    boolean isEnPassant();
+
+    void setPassant();
+
+    boolean sideways();
 
     /**
      * Gets the type of piece to promote a pawn to if pawn promotion is part of this chess move

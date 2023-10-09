@@ -8,6 +8,13 @@ public abstract class ChessPieceAb implements ChessPiece{
 
     protected PieceType type;
 
+    protected int moves;
+
+    @Override
+    public void incMoves() {
+        ++moves;
+    }
+
     @Override
     public ChessGame.TeamColor getTeamColor() {
         return team;

@@ -2,10 +2,13 @@ package chess;
 
 import java.util.Objects;
 
+import static java.lang.Math.abs;
+
 public class ChessMoveImp implements ChessMove{
 
     private ChessPosition start;
     private ChessPosition end;
+    private Boolean isEnPassant;
 
     private ChessPiece.PieceType promoPiece;
 
@@ -13,6 +16,7 @@ public class ChessMoveImp implements ChessMove{
         start = st;
         end = en;
         promoPiece = promo;
+        isEnPassant = false;
     }
 
 
@@ -22,8 +26,28 @@ public class ChessMoveImp implements ChessMove{
     }
 
     @Override
+    public int jump() {
+        return abs(end.getRow() - start.getRow());
+    }
+
+    @Override
     public ChessPosition getEndPosition() {
         return end;
+    }
+
+    @Override
+    public boolean isEnPassant() {
+        return isEnPassant;
+    }
+
+    @Override
+    public void setPassant() {
+        isEnPassant = true;
+    }
+
+    @Override
+    public boolean sideways() {
+        return (start.getColumn() - end.getColumn() != 0);
     }
 
     @Override

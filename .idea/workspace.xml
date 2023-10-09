@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="gameplay -checkmate/stalemate">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="gameplay no extra">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessBoardImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessBoardImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/chess/ChessGameImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessGameImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessMoveImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessMoveImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessPieceAb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessPieceAb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Knight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/chess/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/starter/chess/ChessBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/starter/chess/ChessMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/starter/chess/ChessPiece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,16 +102,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PawnMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EnPassantTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
+          <option name="PATTERN" value="passoffTests.chessTests.chessExtraCredit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessPieceTests.PawnMoveTests" />
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessExtraCredit" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessExtraCredit.EnPassantTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -136,10 +148,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.passoffTests.chessTests in ajedrez" />
+        <item itemvalue="JUnit.EnPassantTests" />
         <item itemvalue="JUnit.ChessGameTests" />
         <item itemvalue="JUnit.ChessGameTests$ValidMoveTests.kingInDanger" />
         <item itemvalue="JUnit.passoffTests.chessTests.chessPieceTests in ajedrez" />
-        <item itemvalue="JUnit.PawnMoveTests" />
       </list>
     </recent_temporary>
   </component>
@@ -232,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696729710648</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="gameplay no extra">
+      <option name="closed" value="true" />
+      <created>1696736509888</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1696736509888</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -245,7 +265,8 @@
     <MESSAGE value="all pieces" />
     <MESSAGE value="gameplay -check" />
     <MESSAGE value="gameplay -checkmate/stalemate" />
-    <option name="LAST_COMMIT_MESSAGE" value="gameplay -checkmate/stalemate" />
+    <MESSAGE value="gameplay no extra" />
+    <option name="LAST_COMMIT_MESSAGE" value="gameplay no extra" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -259,6 +280,11 @@
           <url>file://$PROJECT_DIR$/src/test/passoffTests/chessTests/ChessGameTests.java</url>
           <line>1003</line>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/passoffTests/chessTests/chessExtraCredit/EnPassantTests.java</url>
+          <line>261</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />

@@ -8,6 +8,7 @@ public class Rook extends ChessPieceAb{
     public Rook(ChessGame.TeamColor color) {
         team = color;
         type = PieceType.ROOK;
+        moves = 0;
     }
 
     @Override

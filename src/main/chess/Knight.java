@@ -8,6 +8,7 @@ public class Knight extends ChessPieceAb{
     public Knight(ChessGame.TeamColor color) {
         team = color;
         type = PieceType.KNIGHT;
+        moves = 0;
     }
 
     @Override

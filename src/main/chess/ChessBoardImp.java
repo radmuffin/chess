@@ -35,6 +35,11 @@ public class ChessBoardImp implements ChessBoard{
     }
 
     @Override
+    public void removePiece(ChessPosition position) {
+        board[position.getRow()][position.getColumn()] = null;
+    }
+
+    @Override
     public void resetBoard() {
         for (int i = 0; i < 8; ++i) { //pawns first
             ChessPiece w = new Pawn(ChessGame.TeamColor.WHITE);
