@@ -33,6 +33,7 @@ public class ChessGameImp implements ChessGame{
         if (piece == null) return goodOps;
         Collection<ChessMove> ops = piece.pieceMoves(board, startPosition);
         enPassantLook(startPosition, ops);
+        castleShallWe(startPosition, ops);
         ChessBoard og = board;
         for (ChessMove move : ops) {    // need to take check and stuff into account, remove invalids
             board = og.copy();
@@ -64,6 +65,44 @@ public class ChessGameImp implements ChessGame{
         }
     }
 
+    private void castleShallWe(ChessPosition start, Collection<ChessMove> moves) {
+        ChessPiece piece = board.getPiece(start);
+        if (isInCheck(piece.getTeamColor())) return;
+        if (piece.getPieceType() != ChessPiece.PieceType.KING || piece.numPastMoves() > 0) return;
+        ChessPosition leftSpot = new ChessPositionImp(start.getRow() + 1, 1);
+        ChessPosition rightSpot = new ChessPositionImp(start.getRow() + 1, 8);
+        ChessPiece left = board.getPiece(leftSpot);
+        ChessPiece right = board.getPiece(rightSpot);
+        if (left != null && left.getPieceType() == ChessPiece.PieceType.ROOK && left.numPastMoves() == 0) {
+            boolean free = true;
+            for (int i = 2; i <= 4; ++i) {
+                ChessPosition blank = new ChessPositionImp(start.getRow() + 1, i);
+                if (board.getPiece(blank) != null) free = false;
+            }
+            if (free) {
+                ChessPosition rookSpot = new ChessPositionImp(start.getRow() + 1, 4);
+                if (!isThreatened(rookSpot, piece.getTeamColor())) {
+                    leftSpot.setPos(start.getRow() + 1, 3);
+                    moves.add(new ChessMoveImp(start, leftSpot, null));
+                }
+            }
+        }
+        if (right != null && right.getPieceType() == ChessPiece.PieceType.ROOK && right.numPastMoves() == 0) {
+            boolean free = true;
+            for (int i = 6; i <= 7; ++i) {
+                ChessPosition blank = new ChessPositionImp(start.getRow() + 1, i);
+                if (board.getPiece(blank) != null) free = false;
+            }
+            if (free) {
+                ChessPosition rookSpot = new ChessPositionImp(start.getRow() + 1, 6);
+                if (!isThreatened(rookSpot, piece.getTeamColor())) {
+                    rightSpot.setPos(start.getRow() + 1, 7);
+                    moves.add(new ChessMoveImp(start, rightSpot, null));
+                }
+            }
+        }
+    }
+
     @Override
     public void makeMove(ChessMove move) throws InvalidMoveException {
         if (!move.getStartPosition().onBoard()) throw new InvalidMoveException("you're off the map");
@@ -73,10 +112,10 @@ public class ChessGameImp implements ChessGame{
         if (options != null && options.contains(move)) {
             if (subject.getPieceType() == ChessPiece.PieceType.PAWN && move.sideways()
                     && board.getPiece(move.getEndPosition()) == null) {         //fricking en passant
-                int forward = 1;
-                if (turn == TeamColor.BLACK) forward = -1;
-                ChessPosition deadPawn = new ChessPositionImp(move.getEndPosition().getRow() + 1 - forward, move.getEndPosition().getColumn() + 1);
-                board.removePiece(deadPawn);
+                shootThePawn(move);
+            }
+            if (subject.getPieceType() == ChessPiece.PieceType.KING && move.leapSideways()) {   //castling
+                castleRook(move);
             }
             board.movePiece(move);
             board.getPiece(move.getEndPosition()).incMoves();
@@ -88,6 +127,26 @@ public class ChessGameImp implements ChessGame{
         }
         else throw new InvalidMoveException("Invalid move!");
 
+    }
+
+    private void castleRook(ChessMove kingsMove) {
+        if (kingsMove.getEndPosition().getColumn() == 2) {   //left castle rook move
+            ChessPosition rookStart = new ChessPositionImp(kingsMove.getEndPosition().getRow() + 1,1);
+            ChessPosition rookEnd = new ChessPositionImp(kingsMove.getEndPosition().getRow() + 1, 4);
+            board.movePiece(new ChessMoveImp(rookStart, rookEnd, null));
+        }
+        else {
+            ChessPosition rookStart = new ChessPositionImp(kingsMove.getEndPosition().getRow() + 1,8);
+            ChessPosition rookEnd = new ChessPositionImp(kingsMove.getEndPosition().getRow() + 1, 6);
+            board.movePiece(new ChessMoveImp(rookStart, rookEnd, null));
+        }
+    }
+
+    private void shootThePawn(ChessMove pawnAttack) {
+        int forward = 1;
+        if (turn == TeamColor.BLACK) forward = -1;
+        ChessPosition deadPawn = new ChessPositionImp(pawnAttack.getEndPosition().getRow() + 1 - forward, pawnAttack.getEndPosition().getColumn() + 1);
+        board.removePiece(deadPawn);
     }
 
     private void yourTurn() {
@@ -106,6 +165,22 @@ public class ChessGameImp implements ChessGame{
                 if (kingKiller != null && kingKiller.getTeamColor() != teamColor) {
                     for (ChessMove attack : kingKiller.pieceMoves(board, spot)) {
                         if (attack.getEndPosition().equals(kingAt)) return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isThreatened(ChessPosition victim, TeamColor color) {
+        ChessPosition spot = new ChessPositionImp(1,1);
+        for (int i = 1; i <= 8; ++i) {
+            for (int k = 1; k <= 8; ++k) {
+                spot.setPos(i,k);
+                ChessPiece kingKiller = board.getPiece(spot);
+                if (kingKiller != null && kingKiller.getTeamColor() != color) {
+                    for (ChessMove attack : kingKiller.pieceMoves(board, spot)) {
+                        if (attack.getEndPosition().equals(victim)) return true;
                     }
                 }
             }

@@ -51,6 +51,11 @@ public class ChessMoveImp implements ChessMove{
     }
 
     @Override
+    public boolean leapSideways() {
+        return (abs(start.getColumn() - end.getColumn()) > 1);
+    }
+
+    @Override
     public ChessPiece.PieceType getPromotionPiece() {
         return promoPiece;
     }

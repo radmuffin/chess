@@ -31,6 +31,8 @@ public interface ChessPiece {
 
     void incMoves();
 
+    int numPastMoves();
+
     ChessPiece copy();
 
     /**

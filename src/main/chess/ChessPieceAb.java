@@ -16,6 +16,9 @@ public abstract class ChessPieceAb implements ChessPiece{
     }
 
     @Override
+    public int numPastMoves() { return moves; }
+
+    @Override
     public ChessGame.TeamColor getTeamColor() {
         return team;
     }
