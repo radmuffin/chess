@@ -4,13 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="en passant">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="basically perfect">
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/models/AuthToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/models/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/models/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/ClearApplicationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/ListGameService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/LoginService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/LogoutService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/RegisterService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/requests/CreateGameRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/requests/JoinGameRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/requests/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/requests/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/responses/CreateGameResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/responses/ListGamesResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/responses/LoginResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/responses/RegisterResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/services/responses/ResponseMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/starter/dataAccess/DataAccessException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessGameImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessGameImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessMoveImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessMoveImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/chess/ChessPieceAb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/chess/ChessPieceAb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/starter/chess/ChessMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/starter/chess/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/starter/chess/ChessPiece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +68,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/spezd/IdeaProjects/chess",
+    "last_opened_file_path": "C:/Users/spezd/IdeaProjects/chess/src/starter",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
@@ -58,8 +76,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\spezd\IdeaProjects\chess\src\starter" />
       <recent name="C:\Users\spezd\IdeaProjects\ajedrez\src\test" />
       <recent name="C:\Users\spezd\IdeaProjects\ajedrez\src\starter" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\spezd\IdeaProjects\chess\src\main\services" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.passoffTests.chessTests in ajedrez">
@@ -252,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696815705966</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="basically perfect">
+      <option name="closed" value="true" />
+      <created>1696823915978</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1696823915978</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -267,7 +297,8 @@
     <MESSAGE value="gameplay -checkmate/stalemate" />
     <MESSAGE value="gameplay no extra" />
     <MESSAGE value="en passant" />
-    <option name="LAST_COMMIT_MESSAGE" value="en passant" />
+    <MESSAGE value="basically perfect" />
+    <option name="LAST_COMMIT_MESSAGE" value="basically perfect" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
