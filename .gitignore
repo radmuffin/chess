@@ -29,3 +29,10 @@ bin/
 .DS_Store
 /JavaDoc/
 /JavaDoc.zip
+/web/favicon.ico
+/.idea/libraries/google_code_gson.xml
+/web/index.css
+/web/index.html
+/web/index.js
+/.idea/libraries/slf4j_simple.xml
+/.idea/libraries/sparkjava_spark_core.xml
