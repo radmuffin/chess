@@ -20,6 +20,10 @@ public class RegisterRequest {
         this.email = email;
     }
 
+    public Boolean isComplete() {
+        return (username != null && password != null && email != null);
+    }
+
     public String getUsername() {
         return username;
     }

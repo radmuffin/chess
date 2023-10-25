@@ -7,17 +7,8 @@ public class RegisterResult {
     private String message;
     private String username;
     private String authToken;
+    private transient int returnCode;
 
-    /**
-     * @param message if failed :)
-     * @param username
-     * @param authToken
-     */
-    public RegisterResult(String message, String username, String authToken) {
-        this.message = message;
-        this.username = username;
-        this.authToken = authToken;
-    }
 
     public String getMessage() {
         return message;
@@ -41,5 +32,13 @@ public class RegisterResult {
 
     public void setAuthToken(String authToken) {
         this.authToken = authToken;
+    }
+
+    public int getReturnCode() {
+        return returnCode;
+    }
+
+    public void setReturnCode(int returnCode) {
+        this.returnCode = returnCode;
     }
 }

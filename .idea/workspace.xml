@@ -4,31 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="basically perfect">
-      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/models/AuthToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/models/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/models/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/ClearApplicationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/ListGameService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/LoginService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/LogoutService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/RegisterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/requests/CreateGameRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/requests/JoinGameRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/requests/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/requests/RegisterRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/responses/CreateGameResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/responses/ListGamesResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/responses/LoginResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/responses/RegisterResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/services/responses/ResponseMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/starter/dataAccess/DataAccessException.java" afterDir="false" />
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="phase 2">
+      <change afterPath="$PROJECT_DIR$/libs/gson-2.10.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/passoff-dependencies.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/tyrus-standalone-client-1.15.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/MemAuthDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/MemGameDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/MemUserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/handlers/ClearHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/handlers/Handler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/handlers/RegisterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/server/Server.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/StandardAPITests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ajedrez.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ajedrez.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/models/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/models/AuthToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/models/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/ClearApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ClearApplicationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/RegisterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/requests/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/requests/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/responses/CreateGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/responses/CreateGameResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/responses/ListGamesResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/responses/ListGamesResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/responses/LoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/responses/LoginResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/responses/RegisterResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/responses/RegisterResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/responses/ResponseMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/responses/ResponseMessage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +41,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -59,23 +63,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/spezd/IdeaProjects/chess/src/starter",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/spezd/IdeaProjects/chess/libs&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\spezd\IdeaProjects\chess" />
+      <recent name="C:\Users\spezd\IdeaProjects\chess\src\test\passoffTests" />
       <recent name="C:\Users\spezd\IdeaProjects\chess\src\starter" />
       <recent name="C:\Users\spezd\IdeaProjects\ajedrez\src\test" />
       <recent name="C:\Users\spezd\IdeaProjects\ajedrez\src\starter" />
@@ -83,8 +89,24 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\spezd\IdeaProjects\chess\src\main\services" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="dataAccess" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.passoffTests.chessTests in ajedrez">
+  <component name="RunManager" selected="Application.Server">
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.Server" />
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ChessGameTests$ValidMoveTests.kingInDanger" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
@@ -145,27 +167,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="passoffTests.chessTests.chessPieceTests in ajedrez" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.passoffTests.chessTests in ajedrez" />
         <item itemvalue="JUnit.EnPassantTests" />
         <item itemvalue="JUnit.ChessGameTests" />
         <item itemvalue="JUnit.ChessGameTests$ValidMoveTests.kingInDanger" />
-        <item itemvalue="JUnit.passoffTests.chessTests.chessPieceTests in ajedrez" />
       </list>
     </recent_temporary>
   </component>
@@ -282,7 +290,23 @@
       <option name="project" value="LOCAL" />
       <updated>1696823915978</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="phase 2">
+      <option name="closed" value="true" />
+      <created>1697735739288</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1697735739288</updated>
+    </task>
+    <task id="LOCAL-00015" summary="phase 2">
+      <option name="closed" value="true" />
+      <created>1697735798260</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1697735798260</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -298,7 +322,8 @@
     <MESSAGE value="gameplay no extra" />
     <MESSAGE value="en passant" />
     <MESSAGE value="basically perfect" />
-    <option name="LAST_COMMIT_MESSAGE" value="basically perfect" />
+    <MESSAGE value="phase 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="phase 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -8,6 +8,7 @@ import models.Game;
 public class ListGamesResult {
     private String message;
     private Game[] games;
+    private transient int returnCode;
 
     /**
      * @param message when fails
@@ -30,5 +31,13 @@ public class ListGamesResult {
 
     public void setGames(Game[] games) {
         this.games = games;
+    }
+
+    public int getReturnCode() {
+        return returnCode;
+    }
+
+    public void setReturnCode(int returnCode) {
+        this.returnCode = returnCode;
     }
 }

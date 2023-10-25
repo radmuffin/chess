@@ -6,6 +6,7 @@ package services.responses;
 public class CreateGameResult {
     private String message;
     private int gameID;
+    private transient int returnCode;
 
     /**
      * @param message for fail
@@ -28,5 +29,13 @@ public class CreateGameResult {
 
     public void setGameID(int gameID) {
         this.gameID = gameID;
+    }
+
+    public int getReturnCode() {
+        return returnCode;
+    }
+
+    public void setReturnCode(int returnCode) {
+        this.returnCode = returnCode;
     }
 }

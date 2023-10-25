@@ -2,18 +2,13 @@ package dataAccess;
 
 import models.AuthToken;
 
-/**
- * AuthDAO class
- */
-public class AuthDAO {
+public interface AuthDAO {
     /**
      * Insert authToken into the database
      * @param authToken to insert
      * @throws DataAccessException if error
      */
-    public void insert(AuthToken authToken) throws DataAccessException {
-
-    }
+    void insert(AuthToken authToken) throws DataAccessException;
 
     /**
      * finds AuthToken for a given username
@@ -21,15 +16,15 @@ public class AuthDAO {
      * @return authToken
      * @throws DataAccessException if error
      */
-    public AuthToken find(String username) throws DataAccessException {
-        return null;
-    }
+    AuthToken find(String username) throws DataAccessException;
+
+    void remove(String username) throws DataAccessException;
+
+    String getUsername(String authToken) throws DataAccessException;
 
     /**
      * clears all authTokens from database
      * @throws DataAccessException if error
      */
-    public void clear() throws DataAccessException {
-
-    }
+    void clear() throws DataAccessException;
 }
