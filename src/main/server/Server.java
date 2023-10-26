@@ -1,6 +1,8 @@
 package server;
 import com.google.gson.Gson;
 import handlers.ClearHandler;
+import handlers.LoginHandler;
+import handlers.LogoutHandler;
 import handlers.RegisterHandler;
 import services.ClearApplicationService;
 import services.responses.ResponseMessage;
@@ -24,6 +26,8 @@ public class Server {
 
         Spark.delete("/db", (req, res) -> new ClearHandler().handleRequest(req, res));
         Spark.post("/user", (req, res) -> new RegisterHandler().handleRequest(req, res));
+        Spark.post("/session", (req, res) -> new LoginHandler().handleRequest(req, res));
+        Spark.delete("/session", (req, res) -> new LogoutHandler().handleRequest(req, res));
     }
 
 

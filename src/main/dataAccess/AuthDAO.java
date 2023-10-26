@@ -12,15 +12,13 @@ public interface AuthDAO {
 
     /**
      * finds AuthToken for a given username
-     * @param username to look for
+     * @param authToken to look for
      * @return authToken
      * @throws DataAccessException if error
      */
-    AuthToken find(String username) throws DataAccessException;
+    String find(String authToken) throws DataAccessException;
 
-    void remove(String username) throws DataAccessException;
-
-    String getUsername(String authToken) throws DataAccessException;
+    void remove(String authToken) throws DataAccessException;
 
     /**
      * clears all authTokens from database

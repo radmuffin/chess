@@ -13,30 +13,22 @@ public class MemAuthDAO implements AuthDAO {
 
     @Override
     public void insert(AuthToken authToken) throws DataAccessException {
-        tokens.put(authToken.getUsername(), authToken);
+        tokens.put(authToken.getAuthToken(), authToken);
     }
 
 
     @Override
-    public AuthToken find(String username) throws DataAccessException {
-        if (!tokens.containsKey(username)) throw new DataAccessException("no authToken for user");
-        return tokens.get(username);
+    public String find(String authToken) throws DataAccessException {
+        if (!tokens.containsKey(authToken)) throw new DataAccessException("token doesn't exist");
+        return tokens.get(authToken).getUsername();
     }
 
 
 
     @Override
-    public void remove(String username) throws DataAccessException {
-        if (!tokens.containsKey(username)) throw new DataAccessException("no authToken for user");
-        tokens.remove(username);
-    }
-
-    @Override
-    public String getUsername(String authToken) throws DataAccessException{
-        for (AuthToken a : tokens.values()) {
-            if (Objects.equals(a.getAuthToken(), authToken)) return a.getUsername();
-        }
-        throw new DataAccessException("no corresponding user");
+    public void remove(String authToken) throws DataAccessException {
+        if (!tokens.containsKey(authToken)) throw new DataAccessException("doesn't exist");
+        tokens.remove(authToken);
     }
 
 

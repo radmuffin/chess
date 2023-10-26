@@ -5,20 +5,12 @@ package services.responses;
  */
 public class LoginResult {
     private String message;
-    private String authToken;
     private String username;
+    private String authToken;
+
     private transient int returnCode;
 
-    /**
-     * @param message if failed login
-     * @param authToken
-     * @param username
-     */
-    public LoginResult(String message, String authToken, String username) {
-        this.message = message;
-        this.authToken = authToken;
-        this.username = username;
-    }
+
 
     public String getMessage() {
         return message;

@@ -7,13 +7,6 @@ public class ResponseMessage {
     private String message;
     private transient int returnCode;
 
-    /**
-     * @param message for success or fail, success is blank
-     */
-    public ResponseMessage(String message) {
-        this.message = message;
-    }
-
 
     public String getMessage() {
         return message;

@@ -26,6 +26,6 @@ public class ClearApplicationService {
         catch (DataAccessException ignored) {
 
         }
-        return new ResponseMessage(null);
+        return new ResponseMessage();
     }
 }
