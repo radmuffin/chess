@@ -22,6 +22,7 @@ public class LoginService {
      */
     public LoginResult login(LoginRequest request) {
         LoginResult result = new LoginResult();
+
         try {   //throws exception if user dne
             if (!Objects.equals(userDAO.find(request.getUsername()).getPassword(), request.getPassword())) {
                 result.setReturnCode(401);

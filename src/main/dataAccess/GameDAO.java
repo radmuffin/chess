@@ -60,6 +60,8 @@ public interface GameDAO {
      */
     void removeGame(int gameID) throws DataAccessException;
 
+    int numGames() throws DataAccessException;
+
     /**
      * A method for clearing all data from the database
      *

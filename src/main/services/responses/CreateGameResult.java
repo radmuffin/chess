@@ -6,14 +6,8 @@ package services.responses;
 public class CreateGameResult {
     private String message;
     private int gameID;
-    private transient int returnCode;
+    private int returnCode;
 
-    /**
-     * @param message for fail
-     */
-    public CreateGameResult(String message) {
-        this.message = message;
-    }
 
     public String getMessage() {
         return message;

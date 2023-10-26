@@ -18,6 +18,7 @@ public class LogoutService {
      */
     public ResponseMessage logout(String authToken) {
         ResponseMessage result = new ResponseMessage();
+
         try {
             authDAO.remove(authToken);
             result.setReturnCode(200);

@@ -35,7 +35,7 @@ public class MemGameDAO implements GameDAO {
         if (Objects.equals(color, "BLACK")) {
             games.get(gameID).setBlackUsername(username);
         }
-        else {
+        else if (Objects.equals(color, "WHITE")) {
             games.get(gameID).setWhiteUsername(username);
         }
     }
@@ -49,6 +49,12 @@ public class MemGameDAO implements GameDAO {
     public void removeGame(int gameID) throws DataAccessException {
         games.remove(gameID);
     }
+
+    @Override
+    public int numGames() throws DataAccessException {
+        return games.size();
+    }
+
 
     @Override
     public void clear() throws DataAccessException {

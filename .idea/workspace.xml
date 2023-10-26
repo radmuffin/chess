@@ -4,19 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="clear and register">
-      <change afterPath="$PROJECT_DIR$/src/main/handlers/LoginHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/handlers/LogoutHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/ServiceTests.java" afterDir="false" />
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="login/out">
+      <change afterPath="$PROJECT_DIR$/src/main/handlers/CreateGameHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/handlers/JoinGameHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/handlers/ListGamesHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/MemAuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/MemAuthDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/MemGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/MemGameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/models/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/services/ClearApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ClearApplicationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/ListGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ListGameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/services/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/LoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/services/LogoutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/LogoutService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/responses/LoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/responses/LoginResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/responses/ResponseMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/responses/ResponseMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/responses/CreateGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/responses/CreateGameResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/responses/ListGamesResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/responses/ListGamesResult.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +82,7 @@
       <recent name="dataAccess" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="JUnit.StandardAPITests">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="ajedrez" />
@@ -88,22 +92,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ChessGameTests$ValidMoveTests.kingInDanger" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests.ChessGameTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests$ValidMoveTests" />
-      <option name="METHOD_NAME" value="kingInDanger" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -138,6 +126,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="passoffTests.chessTests in ajedrez" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
@@ -154,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.passoffTests.chessTests in ajedrez" />
         <item itemvalue="JUnit.EnPassantTests" />
         <item itemvalue="JUnit.ChessGameTests" />
-        <item itemvalue="JUnit.ChessGameTests$ValidMoveTests.kingInDanger" />
       </list>
     </recent_temporary>
   </component>
@@ -307,7 +310,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698211066865</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="login/out">
+      <option name="closed" value="true" />
+      <created>1698278728867</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1698278728867</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -325,7 +336,8 @@
     <MESSAGE value="basically perfect" />
     <MESSAGE value="phase 2" />
     <MESSAGE value="clear and register" />
-    <option name="LAST_COMMIT_MESSAGE" value="clear and register" />
+    <MESSAGE value="login/out" />
+    <option name="LAST_COMMIT_MESSAGE" value="login/out" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

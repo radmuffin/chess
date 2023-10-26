@@ -12,7 +12,11 @@ public class Game {
     private String whiteUsername;
     private String blackUsername;
     private String gameName;
-    private ChessGame game;
+    private transient ChessGame game;
+
+    public Game(String gameName) {
+        this.gameName = gameName;
+    }
 
     /**
      *

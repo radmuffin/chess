@@ -2,20 +2,16 @@ package services.responses;
 
 import models.Game;
 
+import java.util.Collection;
+
 /**
  * ListGamesResult class
  */
 public class ListGamesResult {
     private String message;
-    private Game[] games;
+    private Collection<Game> games;
     private transient int returnCode;
 
-    /**
-     * @param message when fails
-     */
-    public ListGamesResult(String message) {
-        this.message = message;
-    }
 
     public String getMessage() {
         return message;
@@ -25,11 +21,11 @@ public class ListGamesResult {
         this.message = message;
     }
 
-    public Game[] getGames() {
+    public Collection<Game> getGames() {
         return games;
     }
 
-    public void setGames(Game[] games) {
+    public void setGames(Collection<Game> games) {
         this.games = games;
     }
 

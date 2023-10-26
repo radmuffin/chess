@@ -24,7 +24,7 @@ public class ClearApplicationService {
             userDAO.clear();
         }
         catch (DataAccessException ignored) {
-
+            //no possible errors rn :)
         }
         return new ResponseMessage();
     }
