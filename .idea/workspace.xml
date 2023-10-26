@@ -4,23 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="login/out">
-      <change afterPath="$PROJECT_DIR$/src/main/handlers/CreateGameHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/handlers/JoinGameHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/handlers/ListGamesHandler.java" afterDir="false" />
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="api tests pass">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/MemGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/MemGameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/models/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/ClearApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ClearApplicationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/ListGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ListGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/LogoutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/LogoutService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/responses/CreateGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/responses/CreateGameResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/responses/ListGamesResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/responses/ListGamesResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/MemAuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/MemAuthDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/MemUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/MemUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/requests/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/requests/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/passoffTests/serverTests/ServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/ServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,21 +43,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/spezd/IdeaProjects/chess/libs&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/spezd/IdeaProjects/chess/libs",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\spezd\IdeaProjects\chess" />
@@ -82,51 +74,8 @@
       <recent name="dataAccess" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StandardAPITests">
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.Server" />
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ChessGameTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EnPassantTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.chessExtraCredit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessExtraCredit" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.chessExtraCredit.EnPassantTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ServiceTests">
+    <configuration name="ServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
@@ -135,33 +84,83 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="passoffTests.chessTests in ajedrez" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceTests.alreadyTaken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
+      <option name="METHOD_NAME" value="alreadyTaken" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTests.successfulJoinGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
+      <option name="METHOD_NAME" value="successfulJoinGame" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTests.successfulListGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
+      <option name="METHOD_NAME" value="successfulListGames" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTests.unauthorizedListGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
+      <option name="METHOD_NAME" value="unauthorizedListGames" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StandardAPITests" />
-        <item itemvalue="Application.Server" />
-        <item itemvalue="JUnit.passoffTests.chessTests in ajedrez" />
-        <item itemvalue="JUnit.EnPassantTests" />
-        <item itemvalue="JUnit.ChessGameTests" />
+        <item itemvalue="JUnit.ServiceTests" />
+        <item itemvalue="JUnit.ServiceTests.alreadyTaken" />
+        <item itemvalue="JUnit.ServiceTests.successfulJoinGame" />
+        <item itemvalue="JUnit.ServiceTests.unauthorizedListGames" />
+        <item itemvalue="JUnit.ServiceTests.successfulListGames" />
       </list>
     </recent_temporary>
   </component>
@@ -318,7 +317,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698278728867</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="api tests pass">
+      <option name="closed" value="true" />
+      <created>1698291104822</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1698291104822</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -337,7 +344,8 @@
     <MESSAGE value="phase 2" />
     <MESSAGE value="clear and register" />
     <MESSAGE value="login/out" />
-    <option name="LAST_COMMIT_MESSAGE" value="login/out" />
+    <MESSAGE value="api tests pass" />
+    <option name="LAST_COMMIT_MESSAGE" value="api tests pass" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

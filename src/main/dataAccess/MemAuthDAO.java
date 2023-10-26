@@ -31,6 +31,9 @@ public class MemAuthDAO implements AuthDAO {
         tokens.remove(authToken);
     }
 
+    public int size() {
+        return tokens.size();
+    }
 
     @Override
     public void clear() throws DataAccessException {

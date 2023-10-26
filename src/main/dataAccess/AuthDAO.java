@@ -20,6 +20,8 @@ public interface AuthDAO {
 
     void remove(String authToken) throws DataAccessException;
 
+    int size();
+
     /**
      * clears all authTokens from database
      * @throws DataAccessException if error

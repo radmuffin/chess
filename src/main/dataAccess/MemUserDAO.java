@@ -28,5 +28,8 @@ public class MemUserDAO implements UserDAO {
         users.clear();
     }
 
+public int size() {
+        return users.size();
+}
 
 }
