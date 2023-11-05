@@ -12,8 +12,8 @@ import java.util.Objects;
  */
 public class LoginService {
 
-    private AuthDAO authDAO = new MemAuthDAO();
-    private UserDAO userDAO = new MemUserDAO();
+    private AuthDAO authDAO = new DbAuthDAO();
+    private UserDAO userDAO = new DbUserDAO();
 
     /**
      * Logs in an existing user (returns a new authToken).

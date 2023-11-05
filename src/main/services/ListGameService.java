@@ -8,7 +8,7 @@ import services.responses.ListGamesResult;
  */
 public class ListGameService {
 
-    private AuthDAO authDAO = new MemAuthDAO();
+    private AuthDAO authDAO = new DbAuthDAO();
     private GameDAO gameDAO = new MemGameDAO();
 
     /**

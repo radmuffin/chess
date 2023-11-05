@@ -11,7 +11,7 @@ import services.responses.ResponseMessage;
  */
 public class CreateGameService {
 
-    private AuthDAO authDAO = new MemAuthDAO();
+    private AuthDAO authDAO = new DbAuthDAO();
     private GameDAO gameDAO = new MemGameDAO();
 
     /**

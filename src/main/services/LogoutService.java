@@ -2,6 +2,7 @@ package services;
 
 import dataAccess.AuthDAO;
 import dataAccess.DataAccessException;
+import dataAccess.DbAuthDAO;
 import dataAccess.MemAuthDAO;
 import services.responses.ResponseMessage;
 
@@ -10,7 +11,7 @@ import services.responses.ResponseMessage;
  */
 public class LogoutService {
 
-    private AuthDAO authDAO = new MemAuthDAO();
+    private AuthDAO authDAO = new DbAuthDAO();
 
     /**
      * 	Logs out the user represented by the authToken.

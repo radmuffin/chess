@@ -11,8 +11,8 @@ import services.responses.RegisterResult;
  */
 public class RegisterService {
 
-    private UserDAO userDAO = new MemUserDAO();
-    private AuthDAO authDAO = new MemAuthDAO();
+    private UserDAO userDAO = new DbUserDAO();
+    private AuthDAO authDAO = new DbAuthDAO();
 
     /**
      * Register a new user.

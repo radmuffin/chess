@@ -15,8 +15,8 @@ import services.responses.*;
 
 public class ServiceTests {
 
-    private AuthDAO authDAO = new MemAuthDAO();
-    private UserDAO userDAO = new MemUserDAO();
+    private AuthDAO authDAO = new DbAuthDAO();
+    private UserDAO userDAO = new DbUserDAO();
     private GameDAO gameDAO = new MemGameDAO();
     private ClearApplicationService clearApplicationService = new ClearApplicationService();
 
@@ -145,7 +145,6 @@ public class ServiceTests {
         String authToken = registerAndGetAuth();
 
         Game game = new Game("game");
-        game.setGameID(42);
         gameDAO.insert(game);
 
         ListGameService service = new ListGameService();
@@ -176,15 +175,14 @@ public class ServiceTests {
         String authToken = registerAndGetAuth();
 
         Game game = new Game("game");
-        game.setGameID(42);
         gameDAO.insert(game);
 
-        JoinGameRequest req = new JoinGameRequest("WHITE", 42);
+        JoinGameRequest req = new JoinGameRequest("WHITE", game.getGameID());
         JoinGameService service = new JoinGameService();
         ResponseMessage res = service.joinGame(req, authToken);
 
         Assertions.assertEquals(200, res.getReturnCode(), "wrong status");
-        Assertions.assertEquals("username", gameDAO.find(42).getWhiteUsername(), "player wasn't added");
+        Assertions.assertEquals("username", gameDAO.find(game.getGameID()).getWhiteUsername(), "player wasn't added");
     }
 
     @Test
@@ -193,10 +191,10 @@ public class ServiceTests {
         String authToken = registerAndGetAuth();
 
         Game game = new Game("game");
-        game.setGameID(42);
+
         gameDAO.insert(game);
 
-        JoinGameRequest req = new JoinGameRequest("WHITE", 42);
+        JoinGameRequest req = new JoinGameRequest("WHITE", game.getGameID());
         JoinGameService service = new JoinGameService();
         ResponseMessage res = service.joinGame(req, authToken);
 

@@ -52,6 +52,7 @@ public class DbAuthDAO implements AuthDAO {
     @Override
     public void remove(String authToken) throws DataAccessException {
         initialize();
+        find(authToken);                //gotta throw if it aint there
         var conn = db.getConnection();
 
         try (var preparedStatement = conn.prepareStatement("DELETE FROM auth WHERE token=?")) {

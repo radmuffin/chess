@@ -12,8 +12,8 @@ import java.util.Objects;
  */
 public class JoinGameService {
 
-    private AuthDAO authDAO = new MemAuthDAO();
-    private UserDAO userDAO = new MemUserDAO();
+    private AuthDAO authDAO = new DbAuthDAO();
+    private UserDAO userDAO = new DbUserDAO();
     private GameDAO gameDAO = new MemGameDAO();
 
     /**

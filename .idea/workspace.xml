@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="auth db stuff">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="user db stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/dataAccess/DbAuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/DbAuthDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/DbGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/DbGameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/DbUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/DbUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/passoffTests/serverTests/DatabaseTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/DatabaseTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/ClearApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ClearApplicationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/ListGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/ListGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/LogoutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/LogoutService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/RegisterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/passoffTests/serverTests/ServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/ServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,34 +79,16 @@
       <recent name="dataAccess" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DatabaseTests.clearUser">
-    <configuration name="DatabaseTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.StandardAPITests">
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DatabaseTests.badRemove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
-      <option name="METHOD_NAME" value="badRemove" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -124,7 +109,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTests.duplicateUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
@@ -133,14 +118,29 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
-      <option name="METHOD_NAME" value="duplicateUser" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTests.successfulJoinGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
+      <option name="METHOD_NAME" value="successfulJoinGame" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTests.goodUserInsertAndFind" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
@@ -149,20 +149,19 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
-      <option name="METHOD_NAME" value="goodUserInsertAndFind" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StandardAPITests" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.ServiceTests" />
+        <item itemvalue="JUnit.ServiceTests.successfulJoinGame" />
         <item itemvalue="JUnit.DatabaseTests.clearUser" />
-        <item itemvalue="JUnit.DatabaseTests.duplicateUser" />
-        <item itemvalue="JUnit.DatabaseTests.goodUserInsertAndFind" />
-        <item itemvalue="JUnit.DatabaseTests" />
-        <item itemvalue="JUnit.DatabaseTests.badRemove" />
       </list>
     </recent_temporary>
   </component>
@@ -343,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699153666732</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="user db stuff">
+      <option name="closed" value="true" />
+      <created>1699156263697</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1699156263697</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -365,7 +372,8 @@
     <MESSAGE value="api tests pass" />
     <MESSAGE value="server tests" />
     <MESSAGE value="auth db stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="auth db stuff" />
+    <MESSAGE value="user db stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="user db stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

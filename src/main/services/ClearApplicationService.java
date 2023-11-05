@@ -8,9 +8,9 @@ import services.responses.ResponseMessage;
  */
 public class ClearApplicationService {
 
-    private AuthDAO authDAO = new MemAuthDAO();
+    private AuthDAO authDAO = new DbAuthDAO();
     private GameDAO gameDAO = new MemGameDAO();
-    private UserDAO userDAO = new MemUserDAO();
+    private UserDAO userDAO = new DbUserDAO();
 
 
     /**
