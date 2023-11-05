@@ -23,7 +23,7 @@ public class DbAuthDAO implements AuthDAO {
             throw new DataAccessException(ex.getMessage());
         }
         finally {
-            db.returnConnection(conn);
+            db.closeConnection(conn);
         }
     }
 
@@ -44,7 +44,7 @@ public class DbAuthDAO implements AuthDAO {
             throw new DataAccessException(ex.getMessage());
         }
         finally {
-            db.returnConnection(conn);
+            db.closeConnection(conn);
         }
         return username;
     }
@@ -62,7 +62,7 @@ public class DbAuthDAO implements AuthDAO {
             throw new DataAccessException(ex.getMessage());
         }
         finally {
-            db.returnConnection(conn);
+            db.closeConnection(conn);
         }
     }
 
@@ -83,7 +83,7 @@ public class DbAuthDAO implements AuthDAO {
             throw new DataAccessException(ex.getMessage());
         }
         finally {
-            db.returnConnection(conn);
+            db.closeConnection(conn);
         }
         return count;
     }
@@ -100,7 +100,7 @@ public class DbAuthDAO implements AuthDAO {
             throw new DataAccessException(ex.getMessage());
         }
         finally {
-            db.returnConnection(conn);
+            db.closeConnection(conn);
         }
     }
 
@@ -121,7 +121,7 @@ public class DbAuthDAO implements AuthDAO {
                 throw new DataAccessException(ex.getMessage());
             }
             finally {
-                db.returnConnection(conn);
+                db.closeConnection(conn);
             }
         }
     }

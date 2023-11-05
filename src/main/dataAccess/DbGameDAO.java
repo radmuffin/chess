@@ -69,7 +69,7 @@ public class DbGameDAO implements GameDAO{
                 throw new DataAccessException(ex.getMessage());
             }
             finally {
-                db.returnConnection(conn);
+                db.closeConnection(conn);
             }
         }
     }

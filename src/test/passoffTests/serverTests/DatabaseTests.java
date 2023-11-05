@@ -72,4 +72,42 @@ public class DatabaseTests {
 
         Assertions.assertEquals(1, authDAO.size(), "wrong size after impotent remove");
     }
+
+    @Test
+    public void goodUserInsertAndFind() throws DataAccessException {
+        userDAO.clear();
+        User user = new User("joe", "password", "e@mail.com");
+        userDAO.insert(user);
+
+        Assertions.assertEquals(1, userDAO.size(), "nothing there");
+        Assertions.assertEquals(user, userDAO.find(user.getUsername()), "whoopsies not found or inserted");
+    }
+
+
+    @Test
+    public void duplicateUser() throws DataAccessException {
+        userDAO.clear();
+        User user = new User("joe", "password", "e@mail.com");
+        userDAO.insert(user);
+
+        Assertions.assertThrows(DataAccessException.class, () -> userDAO.insert(user), "uh oh");
+    }
+
+    @Test
+    public void badUserFind() throws DataAccessException {
+        userDAO.clear();
+        Assertions.assertThrows(DataAccessException.class, () -> userDAO.find("daveyJones523"), "Where'd he come from?");
+    }
+
+    @Test
+    public void clearUser() throws DataAccessException {
+        userDAO.clear();
+        User user = new User("joe", "password", "e@mail.com");
+        userDAO.insert(user);
+        userDAO.clear();
+
+        Assertions.assertEquals(0, userDAO.size(), "what's this?");
+    }
+
+
 }
