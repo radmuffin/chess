@@ -1,5 +1,6 @@
 package server;
 import com.google.gson.Gson;
+import dataAccess.Database;
 import handlers.*;
 import services.ClearApplicationService;
 import services.responses.ResponseMessage;

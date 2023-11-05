@@ -4,18 +4,14 @@ import dataAccess.*;
 import models.AuthToken;
 import models.Game;
 import models.User;
-import org.junit.jupiter.api.*;
-import passoffTests.TestFactory;
-import passoffTests.obfuscatedTestClasses.TestServerFacade;
-import passoffTests.testClasses.TestModels;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import services.*;
 import services.requests.CreateGameRequest;
 import services.requests.JoinGameRequest;
 import services.requests.LoginRequest;
 import services.requests.RegisterRequest;
 import services.responses.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ServiceTests {
 
@@ -95,7 +91,7 @@ public class ServiceTests {
     }
 
     @Test
-    public void successfulLogout() {
+    public void successfulLogout() throws DataAccessException {
         clearApplicationService.clearApplication();
         String authToken = registerAndGetAuth();
 
@@ -107,7 +103,7 @@ public class ServiceTests {
     }
 
     @Test
-    public void unauthorizedLogout() {
+    public void unauthorizedLogout() throws DataAccessException {
         clearApplicationService.clearApplication();
         registerAndGetAuth();
 

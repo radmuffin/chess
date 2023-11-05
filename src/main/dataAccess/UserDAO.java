@@ -27,5 +27,5 @@ public interface UserDAO {
      */
     void clear() throws DataAccessException;
 
-    int size();
+    int size() throws DataAccessException;
 }

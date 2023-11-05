@@ -15,6 +15,7 @@ public class MemGameDAO implements GameDAO {
 
     @Override
     public void insert(Game game) throws DataAccessException {
+        game.setGameID(games.size() + 1);
         games.put(game.getGameID(), game);
     }
 
@@ -45,10 +46,7 @@ public class MemGameDAO implements GameDAO {
         games.get(gameID).setGameName(chessGame);
     }
 
-    @Override
-    public void removeGame(int gameID) throws DataAccessException {
-        games.remove(gameID);
-    }
+
 
     @Override
     public int numGames() throws DataAccessException {

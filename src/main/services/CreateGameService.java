@@ -32,7 +32,6 @@ public class CreateGameService {
             authDAO.find(authToken);    //validate authentication, throws if dne
 
             Game game = new Game(request.getGameName());
-            game.setGameID(gameDAO.numGames() + 1);
             gameDAO.insert(game);
 
             result.setGameID(game.getGameID());

@@ -4,13 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="api tests pass">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="server tests">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/DbAuthDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/DbGameDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dataAccess/DbUserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/DatabaseTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/PersistenceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ajedrez.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ajedrez.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/AuthDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/MemAuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/MemAuthDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/MemUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/MemUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/GameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/MemGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/MemGameDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/dataAccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/requests/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/requests/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/passoffTests/serverTests/ServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/ServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,8 +60,9 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/spezd/IdeaProjects/chess/libs",
+    "last_opened_file_path": "C:/Users/spezd/IdeaProjects/chess/src/test/passoffTests",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -61,21 +71,22 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\spezd\IdeaProjects\chess" />
       <recent name="C:\Users\spezd\IdeaProjects\chess\src\test\passoffTests" />
+      <recent name="C:\Users\spezd\IdeaProjects\chess\src" />
+      <recent name="C:\Users\spezd\IdeaProjects\chess" />
       <recent name="C:\Users\spezd\IdeaProjects\chess\src\starter" />
       <recent name="C:\Users\spezd\IdeaProjects\ajedrez\src\test" />
-      <recent name="C:\Users\spezd\IdeaProjects\ajedrez\src\starter" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\spezd\IdeaProjects\chess\src\main\dataAccess" />
       <recent name="C:\Users\spezd\IdeaProjects\chess\src\main\services" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="dataAccess" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServiceTests">
-    <configuration name="ServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.DatabaseTests">
+    <configuration name="DatabaseTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
@@ -84,13 +95,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceTests.alreadyTaken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DatabaseTests.authClear" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
@@ -99,14 +110,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
-      <option name="METHOD_NAME" value="alreadyTaken" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
+      <option name="METHOD_NAME" value="authClear" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceTests.successfulJoinGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DatabaseTests.badRemove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
@@ -115,14 +126,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
-      <option name="METHOD_NAME" value="successfulJoinGame" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
+      <option name="METHOD_NAME" value="badRemove" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceTests.successfulListGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DatabaseTests.duplicateAuthInsert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
@@ -131,14 +142,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
-      <option name="METHOD_NAME" value="successfulListGames" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
+      <option name="METHOD_NAME" value="duplicateAuthInsert" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceTests.unauthorizedListGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DatabaseTests.goodRemove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
         <pattern>
@@ -147,8 +158,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.ServiceTests" />
-      <option name="METHOD_NAME" value="unauthorizedListGames" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
+      <option name="METHOD_NAME" value="goodRemove" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -156,11 +167,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ServiceTests" />
-        <item itemvalue="JUnit.ServiceTests.alreadyTaken" />
-        <item itemvalue="JUnit.ServiceTests.successfulJoinGame" />
-        <item itemvalue="JUnit.ServiceTests.unauthorizedListGames" />
-        <item itemvalue="JUnit.ServiceTests.successfulListGames" />
+        <item itemvalue="JUnit.DatabaseTests" />
+        <item itemvalue="JUnit.DatabaseTests.badRemove" />
+        <item itemvalue="JUnit.DatabaseTests.goodRemove" />
+        <item itemvalue="JUnit.DatabaseTests.authClear" />
+        <item itemvalue="JUnit.DatabaseTests.duplicateAuthInsert" />
       </list>
     </recent_temporary>
   </component>
@@ -325,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698291104822</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="server tests">
+      <option name="closed" value="true" />
+      <created>1698338750200</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1698338750200</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -345,7 +364,8 @@
     <MESSAGE value="clear and register" />
     <MESSAGE value="login/out" />
     <MESSAGE value="api tests pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="api tests pass" />
+    <MESSAGE value="server tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="server tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

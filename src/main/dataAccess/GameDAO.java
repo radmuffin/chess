@@ -52,13 +52,6 @@ public interface GameDAO {
      */
     void updateGame(int gameID, String chessGame) throws DataAccessException;
 
-    /**
-     * A method for removing a game from the database
-     *
-     * @param gameID of game to remove
-     * @throws DataAccessException if error
-     */
-    void removeGame(int gameID) throws DataAccessException;
 
     int numGames() throws DataAccessException;
 
