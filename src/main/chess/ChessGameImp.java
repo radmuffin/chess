@@ -2,6 +2,7 @@ package chess;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 
 public class ChessGameImp implements ChessGame{
 
@@ -242,5 +243,18 @@ public class ChessGameImp implements ChessGame{
     @Override
     public ChessBoard getBoard() {
         return board;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessGameImp that = (ChessGameImp) o;
+        return turn == that.turn && board.equals(that.board) && Objects.equals(enPassantAble, that.enPassantAble);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(turn, board, enPassantAble);
     }
 }

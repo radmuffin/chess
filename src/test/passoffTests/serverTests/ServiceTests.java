@@ -1,5 +1,9 @@
 package passoffTests.serverTests;
 
+import chess.ChessBoard;
+import chess.ChessBoardImp;
+import chess.ChessGame;
+import chess.ChessGameImp;
 import dataAccess.*;
 import models.AuthToken;
 import models.Game;
@@ -17,7 +21,7 @@ public class ServiceTests {
 
     private AuthDAO authDAO = new DbAuthDAO();
     private UserDAO userDAO = new DbUserDAO();
-    private GameDAO gameDAO = new MemGameDAO();
+    private GameDAO gameDAO = new DbGameDAO();
     private ClearApplicationService clearApplicationService = new ClearApplicationService();
 
     @Test
@@ -145,6 +149,11 @@ public class ServiceTests {
         String authToken = registerAndGetAuth();
 
         Game game = new Game("game");
+        ChessBoard board = new ChessBoardImp();
+        board.resetBoard();
+        ChessGame chessGame = new ChessGameImp();
+        chessGame.setBoard(board);
+        game.setGame(chessGame);
         gameDAO.insert(game);
 
         ListGameService service = new ListGameService();

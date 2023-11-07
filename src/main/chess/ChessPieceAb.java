@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.Collection;
+import java.util.Objects;
 
 public abstract class ChessPieceAb implements ChessPiece{
 
@@ -34,4 +35,16 @@ public abstract class ChessPieceAb implements ChessPiece{
     }
 
     public abstract ChessPiece copy();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ChessPieceAb that)) return false;
+        return moves == that.moves && team == that.team && type == that.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(team, type, moves);
+    }
 }

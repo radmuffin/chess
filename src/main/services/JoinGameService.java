@@ -13,8 +13,7 @@ import java.util.Objects;
 public class JoinGameService {
 
     private AuthDAO authDAO = new DbAuthDAO();
-    private UserDAO userDAO = new DbUserDAO();
-    private GameDAO gameDAO = new MemGameDAO();
+    private GameDAO gameDAO = new DbGameDAO();
 
     /**
      * Verifies that the specified game exists,

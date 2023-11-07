@@ -12,7 +12,7 @@ import services.responses.ResponseMessage;
 public class CreateGameService {
 
     private AuthDAO authDAO = new DbAuthDAO();
-    private GameDAO gameDAO = new MemGameDAO();
+    private GameDAO gameDAO = new DbGameDAO();
 
     /**
      * Creates a new game.

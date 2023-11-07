@@ -9,7 +9,7 @@ import services.responses.ResponseMessage;
 public class ClearApplicationService {
 
     private AuthDAO authDAO = new DbAuthDAO();
-    private GameDAO gameDAO = new MemGameDAO();
+    private GameDAO gameDAO = new DbGameDAO();
     private UserDAO userDAO = new DbUserDAO();
 
 

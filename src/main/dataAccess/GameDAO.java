@@ -1,5 +1,6 @@
 package dataAccess;
 
+import chess.ChessGame;
 import models.Game;
 
 import java.util.Collection;
@@ -50,7 +51,7 @@ public interface GameDAO {
      * @param chessGame new configuration
      * @throws DataAccessException if error
      */
-    void updateGame(int gameID, String chessGame) throws DataAccessException;
+    void updateGame(int gameID, ChessGame chessGame) throws DataAccessException;
 
 
     int numGames() throws DataAccessException;

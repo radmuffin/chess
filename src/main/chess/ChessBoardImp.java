@@ -1,5 +1,7 @@
 package chess;
 
+import java.util.Arrays;
+
 public class ChessBoardImp implements ChessBoard{
 
     private ChessPiece[][] board;
@@ -105,4 +107,16 @@ public class ChessBoardImp implements ChessBoard{
         return copy;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessBoardImp that = (ChessBoardImp) o;
+        return Arrays.deepEquals(board, that.board);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(board);
+    }
 }

@@ -1,5 +1,9 @@
 package passoffTests.serverTests;
 
+import chess.ChessBoard;
+import chess.ChessBoardImp;
+import chess.ChessGame;
+import chess.ChessGameImp;
 import dataAccess.*;
 import models.AuthToken;
 import models.Game;
@@ -12,6 +16,10 @@ import services.requests.JoinGameRequest;
 import services.requests.LoginRequest;
 import services.requests.RegisterRequest;
 import services.responses.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class DatabaseTests {
 
     private AuthDAO authDAO = new DbAuthDAO();
@@ -53,7 +61,7 @@ public class DatabaseTests {
     }
 
     @Test
-    public void goodRemove() throws DataAccessException {
+    public void goodAuthRemove() throws DataAccessException {
         authDAO.clear();
         AuthToken token = new AuthToken("georgie");
         authDAO.insert(token);
@@ -64,13 +72,12 @@ public class DatabaseTests {
     }
 
     @Test
-    public void badRemove() throws DataAccessException {
+    public void badAuthRemove() throws DataAccessException {
         authDAO.clear();
         AuthToken token = new AuthToken("georgie");
         authDAO.insert(token);
-        authDAO.remove("totally a thing");
 
-        Assertions.assertEquals(1, authDAO.size(), "wrong size after impotent remove");
+        Assertions.assertThrows(DataAccessException.class, () -> authDAO.remove("totally a thing"));
     }
 
     @Test
@@ -109,5 +116,90 @@ public class DatabaseTests {
         Assertions.assertEquals(0, userDAO.size(), "what's this?");
     }
 
+
+    @Test
+    public void goodGameInsertAndFind() throws DataAccessException {
+        gameDAO.clear();
+        Game game = new Game("epicChess");
+        ChessBoard board = new ChessBoardImp();
+        board.resetBoard();
+        ChessGame chessGame = new ChessGameImp();
+        chessGame.setBoard(board);
+        game.setGame(chessGame);
+        gameDAO.insert(game);
+
+        Assertions.assertEquals(game, gameDAO.find(game.getGameID()));
+    }
+
+    @Test
+    public void badGameInsert() throws DataAccessException {
+        gameDAO.clear();
+        Game game = new Game(null);
+
+        Assertions.assertThrows(DataAccessException.class, () -> gameDAO.insert(game), "let the nameless game in");
+    }
+
+    @Test
+    public void badGameFind() throws DataAccessException {
+        gameDAO.clear();
+
+        Assertions.assertThrows(DataAccessException.class, () -> gameDAO.find(47), "found nonexistant game");
+    }
+
+    @Test
+    public void goodGameFindAll() throws DataAccessException {
+        gameDAO.clear();
+
+        Game game = new Game("epicChess");
+        ChessBoard board = new ChessBoardImp();
+        board.resetBoard();
+        ChessGame chessGame = new ChessGameImp();
+        chessGame.setBoard(board);
+        game.setGame(chessGame);
+        gameDAO.insert(game);
+
+        Game game2 = new Game("superEpicChess");
+        game2.setGame(chessGame);
+        gameDAO.insert(game2);
+
+        Game game3 = new Game("superDuperEpicChess");
+        game3.setGame(chessGame);
+        gameDAO.insert(game3);
+
+        ArrayList<Game> games = new ArrayList<>();
+        games.add(game);
+        games.add(game2);
+        games.add(game3);
+
+        Assertions.assertIterableEquals(games, gameDAO.findAll(), "why not same");
+    }
+
+    @Test
+    public void goodClaimSpot() throws DataAccessException {
+        gameDAO.clear();
+
+        Game game = new Game("epicChess");
+        ChessBoard board = new ChessBoardImp();
+        board.resetBoard();
+        ChessGame chessGame = new ChessGameImp();
+        chessGame.setBoard(board);
+        game.setGame(chessGame);
+        gameDAO.insert(game);
+
+        gameDAO.claimSpot("alfred", null, game.getGameID());
+
+        Assertions.assertNull(gameDAO.find(game.getGameID()).getWhiteUsername(), "how'd that get there");
+        Assertions.assertNull(gameDAO.find(game.getGameID()).getBlackUsername(), "bad");
+
+        gameDAO.claimSpot("alfred", "BLACK", game.getGameID());
+
+        Assertions.assertEquals("alfred", gameDAO.find(game.getGameID()).getBlackUsername());
+    }
+
+    @Test
+    public void badClaimSpot() throws DataAccessException{
+        gameDAO.clear();
+        Assertions.assertThrows(DataAccessException.class, () -> gameDAO.claimSpot("bob", "WHITE", 74));
+    }
 
 }

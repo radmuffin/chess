@@ -52,4 +52,5 @@ public class King extends ChessPieceAb{
         if (team == ChessGame.TeamColor.WHITE) return "K";
         else return "k";
     }
+
 }

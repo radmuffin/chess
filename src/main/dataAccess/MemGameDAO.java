@@ -1,5 +1,6 @@
 package dataAccess;
 
+import chess.ChessGame;
 import models.Game;
 
 import java.util.Collection;
@@ -42,8 +43,8 @@ public class MemGameDAO implements GameDAO {
     }
 
     @Override
-    public void updateGame(int gameID, String chessGame) throws DataAccessException {
-        games.get(gameID).setGameName(chessGame);
+    public void updateGame(int gameID, ChessGame chessGame) throws DataAccessException {
+        games.get(gameID).setGame(chessGame);
     }
 
 
