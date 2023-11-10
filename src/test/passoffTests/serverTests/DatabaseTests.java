@@ -10,15 +10,8 @@ import models.Game;
 import models.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import services.*;
-import services.requests.CreateGameRequest;
-import services.requests.JoinGameRequest;
-import services.requests.LoginRequest;
-import services.requests.RegisterRequest;
-import services.responses.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class DatabaseTests {
 
