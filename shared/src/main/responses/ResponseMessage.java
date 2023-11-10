@@ -1,4 +1,4 @@
-package services.responses;
+package responses;
 
 /**
  * ResponseMessage class for clear, logout, join game,

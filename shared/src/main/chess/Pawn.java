@@ -13,7 +13,7 @@ public class Pawn extends ChessPieceAb{
 
     @Override
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        HashSet<ChessMove> options = new HashSet<ChessMove>();
+        HashSet<ChessMove> options = new HashSet<>();
         int forward;
         if (team == ChessGame.TeamColor.WHITE) forward = 1;
         else forward = -1;

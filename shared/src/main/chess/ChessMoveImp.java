@@ -6,11 +6,11 @@ import static java.lang.Math.abs;
 
 public class ChessMoveImp implements ChessMove{
 
-    private ChessPosition start;
-    private ChessPosition end;
+    private final ChessPosition start;
+    private final ChessPosition end;
     private Boolean isEnPassant;
 
-    private ChessPiece.PieceType promoPiece;
+    private final ChessPiece.PieceType promoPiece;
 
     public ChessMoveImp(ChessPosition st, ChessPosition en, ChessPiece.PieceType promo) {
         start = st;
@@ -75,10 +75,8 @@ public class ChessMoveImp implements ChessMove{
 
     @Override
     public String toString() {
-        StringBuilder out = new StringBuilder();
-        out.append(start.toString());
-        out.append(">>");
-        out.append(end.toString());
-        return out.toString();
+        return start.toString() +
+                ">>" +
+                end.toString();
     }
 }

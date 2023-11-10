@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class ChessBoardImp implements ChessBoard{
 
-    private ChessPiece[][] board;
+    private final ChessPiece[][] board;
 
     public ChessBoardImp() {
         board = new ChessPiece[8][8];
@@ -117,6 +117,6 @@ public class ChessBoardImp implements ChessBoard{
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(board);
+        return Arrays.deepHashCode(board);
     }
 }

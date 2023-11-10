@@ -1,16 +1,16 @@
 package services;
 
 import dataAccess.*;
-import services.responses.ResponseMessage;
+import responses.ResponseMessage;
 
 /**
  * ClearApplicationService class
  */
 public class ClearApplicationService {
 
-    private AuthDAO authDAO = new DbAuthDAO();
-    private GameDAO gameDAO = new DbGameDAO();
-    private UserDAO userDAO = new DbUserDAO();
+    private final AuthDAO authDAO = new DbAuthDAO();
+    private final GameDAO gameDAO = new DbGameDAO();
+    private final UserDAO userDAO = new DbUserDAO();
 
 
     /**

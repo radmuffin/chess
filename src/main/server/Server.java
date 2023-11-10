@@ -1,13 +1,6 @@
 package server;
-import com.google.gson.Gson;
-import dataAccess.Database;
 import handlers.*;
-import services.ClearApplicationService;
-import services.responses.ResponseMessage;
 import spark.*;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 
 public class Server {

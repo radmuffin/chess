@@ -3,16 +3,16 @@ package services;
 import dataAccess.*;
 import models.AuthToken;
 import models.User;
-import services.requests.RegisterRequest;
-import services.responses.RegisterResult;
+import requests.RegisterRequest;
+import responses.RegisterResult;
 
 /**
  * RegisterService Class
  */
 public class RegisterService {
 
-    private UserDAO userDAO = new DbUserDAO();
-    private AuthDAO authDAO = new DbAuthDAO();
+    private final UserDAO userDAO = new DbUserDAO();
+    private final AuthDAO authDAO = new DbAuthDAO();
 
     /**
      * Register a new user.

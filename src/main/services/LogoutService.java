@@ -3,15 +3,14 @@ package services;
 import dataAccess.AuthDAO;
 import dataAccess.DataAccessException;
 import dataAccess.DbAuthDAO;
-import dataAccess.MemAuthDAO;
-import services.responses.ResponseMessage;
+import responses.ResponseMessage;
 
 /**
  * LogoutService class
  */
 public class LogoutService {
 
-    private AuthDAO authDAO = new DbAuthDAO();
+    private final AuthDAO authDAO = new DbAuthDAO();
 
     /**
      * 	Logs out the user represented by the authToken.

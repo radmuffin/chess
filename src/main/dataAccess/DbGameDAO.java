@@ -3,14 +3,10 @@ package dataAccess;
 import chess.ChessBoard;
 import chess.ChessGame;
 import chess.ChessGameImp;
-import chess.ChessPiece;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dataAccess.adapters.BoardAdapter;
-import dataAccess.adapters.GameAdapter;
-import dataAccess.adapters.PieceAdapter;
 import models.Game;
-import models.User;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,7 +18,7 @@ public class DbGameDAO implements GameDAO{
 
     private boolean initialized = false;
 
-    private static Database db = new Database();
+    private static final Database db = new Database();
 
     @Override
     public void insert(Game game) throws DataAccessException {

@@ -13,7 +13,7 @@ public class Rook extends ChessPieceAb{
 
     @Override
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        HashSet<ChessMove> options = new HashSet<ChessMove>();
+        HashSet<ChessMove> options = new HashSet<>();
         probe(1,0, myPosition, options, board);     //right
         probe(0,1, myPosition, options, board);     //forward
         probe(-1,0, myPosition, options, board);    //left

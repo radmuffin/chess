@@ -1,13 +1,15 @@
-package services.responses;
+package responses;
 
 /**
- * RegisterResult class
+ * LoginResult class
  */
-public class RegisterResult {
+public class LoginResult {
     private String message;
     private String username;
     private String authToken;
+
     private transient int returnCode;
+
 
 
     public String getMessage() {
@@ -18,20 +20,20 @@ public class RegisterResult {
         this.message = message;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getAuthToken() {
         return authToken;
     }
 
     public void setAuthToken(String authToken) {
         this.authToken = authToken;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getReturnCode() {

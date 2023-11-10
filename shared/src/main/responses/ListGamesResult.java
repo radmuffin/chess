@@ -1,12 +1,16 @@
-package services.responses;
+package responses;
+
+import models.Game;
+
+import java.util.Collection;
 
 /**
- * CreateGame class
+ * ListGamesResult class
  */
-public class CreateGameResult {
+public class ListGamesResult {
     private String message;
-    private int gameID;
-    private int returnCode;
+    private Collection<Game> games;
+    private transient int returnCode;
 
 
     public String getMessage() {
@@ -17,12 +21,12 @@ public class CreateGameResult {
         this.message = message;
     }
 
-    public int getGameID() {
-        return gameID;
+    public Collection<Game> getGames() {
+        return games;
     }
 
-    public void setGameID(int gameID) {
-        this.gameID = gameID;
+    public void setGames(Collection<Game> games) {
+        this.games = games;
     }
 
     public int getReturnCode() {

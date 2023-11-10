@@ -13,7 +13,7 @@ public class Bishop extends ChessPieceAb{
 
     @Override
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        HashSet<ChessMove> options = new HashSet<ChessMove>();
+        HashSet<ChessMove> options = new HashSet<>();
         probe(1,1, myPosition, options, board);     //upper right
         probe(1,-1, myPosition, options, board);    //upper left
         probe(-1,1, myPosition, options, board);    //lower right

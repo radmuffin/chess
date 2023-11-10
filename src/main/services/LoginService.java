@@ -2,8 +2,8 @@ package services;
 
 import dataAccess.*;
 import models.AuthToken;
-import services.requests.LoginRequest;
-import services.responses.LoginResult;
+import requests.LoginRequest;
+import responses.LoginResult;
 
 import java.util.Objects;
 
@@ -12,8 +12,8 @@ import java.util.Objects;
  */
 public class LoginService {
 
-    private AuthDAO authDAO = new DbAuthDAO();
-    private UserDAO userDAO = new DbUserDAO();
+    private final AuthDAO authDAO = new DbAuthDAO();
+    private final UserDAO userDAO = new DbUserDAO();
 
     /**
      * Logs in an existing user (returns a new authToken).
@@ -24,16 +24,16 @@ public class LoginService {
         LoginResult result = new LoginResult();
 
         try {   //throws exception if user dne
-            if (!Objects.equals(userDAO.find(request.getUsername()).getPassword(), request.getPassword())) {
+            if (!Objects.equals(userDAO.find(request.username()).getPassword(), request.password())) {
                 result.setReturnCode(401);
                 result.setMessage("Error: unauthorized");
                 return result;
             }
-            AuthToken authToken = new AuthToken(request.getUsername());
+            AuthToken authToken = new AuthToken(request.username());
             authDAO.insert(authToken);
 
             result.setAuthToken(authToken.getAuthToken());
-            result.setUsername(request.getUsername());
+            result.setUsername(request.username());
             result.setReturnCode(200);
         }
         catch (DataAccessException exception) {

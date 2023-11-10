@@ -2,17 +2,16 @@ package services;
 
 import dataAccess.*;
 import models.Game;
-import services.requests.CreateGameRequest;
-import services.responses.CreateGameResult;
-import services.responses.ResponseMessage;
+import requests.CreateGameRequest;
+import responses.CreateGameResult;
 
 /**
  * CreateGameService class
  */
 public class CreateGameService {
 
-    private AuthDAO authDAO = new DbAuthDAO();
-    private GameDAO gameDAO = new DbGameDAO();
+    private final AuthDAO authDAO = new DbAuthDAO();
+    private final GameDAO gameDAO = new DbGameDAO();
 
     /**
      * Creates a new game.
@@ -22,7 +21,7 @@ public class CreateGameService {
     public CreateGameResult createGame(CreateGameRequest request, String authToken) {
         CreateGameResult result = new CreateGameResult();
 
-        if (request.getGameName() == null || authToken == null) {
+        if (request.gameName() == null || authToken == null) {
             result.setReturnCode(400);
             result.setMessage("Error: bad request");
             return result;
@@ -31,7 +30,7 @@ public class CreateGameService {
         try {
             authDAO.find(authToken);    //validate authentication, throws if dne
 
-            Game game = new Game(request.getGameName());
+            Game game = new Game(request.gameName());
             gameDAO.insert(game);
 
             result.setGameID(game.getGameID());

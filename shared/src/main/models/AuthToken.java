@@ -7,8 +7,8 @@ import java.util.UUID;
  * AuthToken class stores usernames and their respective authorization tokens
  */
 public class AuthToken {
-    private String authToken;
-    private String username;
+    private final String authToken;
+    private final String username;
 
     /**
      * @param username

@@ -1,4 +1,4 @@
-package services.requests;
+package requests;
 
 /**
  * RegisterRequest class

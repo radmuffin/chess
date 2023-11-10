@@ -1,15 +1,15 @@
 package services;
 
 import dataAccess.*;
-import services.responses.ListGamesResult;
+import responses.ListGamesResult;
 
 /**
  * ListGameService class
  */
 public class ListGameService {
 
-    private AuthDAO authDAO = new DbAuthDAO();
-    private GameDAO gameDAO = new DbGameDAO();
+    private final AuthDAO authDAO = new DbAuthDAO();
+    private final GameDAO gameDAO = new DbGameDAO();
 
     /**
      * Gives a list of all games.

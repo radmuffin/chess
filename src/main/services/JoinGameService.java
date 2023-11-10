@@ -2,8 +2,8 @@ package services;
 
 import dataAccess.*;
 import models.Game;
-import services.requests.JoinGameRequest;
-import services.responses.ResponseMessage;
+import requests.JoinGameRequest;
+import responses.ResponseMessage;
 
 import java.util.Objects;
 
@@ -12,8 +12,8 @@ import java.util.Objects;
  */
 public class JoinGameService {
 
-    private AuthDAO authDAO = new DbAuthDAO();
-    private GameDAO gameDAO = new DbGameDAO();
+    private final AuthDAO authDAO = new DbAuthDAO();
+    private final GameDAO gameDAO = new DbGameDAO();
 
     /**
      * Verifies that the specified game exists,

@@ -13,7 +13,7 @@ public class Queen extends ChessPieceAb{
 
     @Override
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        HashSet<ChessMove> options = new HashSet<ChessMove>();
+        HashSet<ChessMove> options = new HashSet<>();
         probe(1,0, myPosition, options, board);     //up
         probe(1,1, myPosition, options, board);     //up right
         probe(0,1, myPosition, options, board);     //right

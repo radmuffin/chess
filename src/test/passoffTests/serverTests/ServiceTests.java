@@ -10,19 +10,19 @@ import models.Game;
 import models.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import requests.CreateGameRequest;
+import requests.JoinGameRequest;
+import requests.LoginRequest;
+import requests.RegisterRequest;
+import responses.*;
 import services.*;
-import services.requests.CreateGameRequest;
-import services.requests.JoinGameRequest;
-import services.requests.LoginRequest;
-import services.requests.RegisterRequest;
-import services.responses.*;
 
 public class ServiceTests {
 
-    private AuthDAO authDAO = new DbAuthDAO();
-    private UserDAO userDAO = new DbUserDAO();
-    private GameDAO gameDAO = new DbGameDAO();
-    private ClearApplicationService clearApplicationService = new ClearApplicationService();
+    private final AuthDAO authDAO = new DbAuthDAO();
+    private final UserDAO userDAO = new DbUserDAO();
+    private final GameDAO gameDAO = new DbGameDAO();
+    private final ClearApplicationService clearApplicationService = new ClearApplicationService();
 
     @Test
     public void successfulClear() throws DataAccessException {
