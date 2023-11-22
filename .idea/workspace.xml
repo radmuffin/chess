@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="phase 5 setup and warning cleanup">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="bare bones ui">
+      <change afterPath="$PROJECT_DIR$/client/src/main/server/ServerFascade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/test/FascadeTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/UI.java" afterDir="false" />
     </list>
@@ -75,7 +77,7 @@
       <recent name="dataAccess" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UI">
+  <component name="RunManager" selected="JUnit.FascadeTests">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="ajedrez" />
@@ -102,57 +104,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PersistenceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.PersistenceTest" />
+    <configuration name="FascadeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FascadeTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="FascadeTests.badExecution" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FascadeTests" />
+      <option name="METHOD_NAME" value="badExecution" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="passoffTests.serverTests in ajedrez" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="TEST_OBJECT" value="package" />
+    <configuration name="FascadeTests.goodExecution" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FascadeTests" />
+      <option name="METHOD_NAME" value="goodExecution" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FascadeTests" />
+        <item itemvalue="JUnit.FascadeTests.badExecution" />
+        <item itemvalue="JUnit.FascadeTests.goodExecution" />
         <item itemvalue="Application.UI" />
-        <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="JUnit.passoffTests.serverTests in ajedrez" />
-        <item itemvalue="JUnit.PersistenceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -373,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699595260441</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="bare bones ui">
+      <option name="closed" value="true" />
+      <created>1699994544127</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1699994544127</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -411,7 +406,8 @@
     <MESSAGE value="phase 4" />
     <MESSAGE value="phase 5 setup" />
     <MESSAGE value="phase 5 setup and warning cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="phase 5 setup and warning cleanup" />
+    <MESSAGE value="bare bones ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="bare bones ui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
