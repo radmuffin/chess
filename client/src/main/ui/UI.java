@@ -1,18 +1,18 @@
 package ui;
 
 import com.google.gson.Gson;
+import models.Game;
 import requests.CreateGameRequest;
 import requests.JoinGameRequest;
 import requests.LoginRequest;
 import requests.RegisterRequest;
-import responses.CreateGameResult;
-import responses.LoginResult;
-import responses.RegisterResult;
-import responses.ResponseMessage;
-import server.ServerFascade;
+import responses.*;
+import server.ServerFacade;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -20,10 +20,14 @@ public class UI {
 
     public static void main(String[] args) {
 
-        ServerFascade fascade = new ServerFascade();
+        ServerFacade facade = new ServerFacade();
         boolean loggedIn = false;
         String user = "";
         String auth = null;
+        ArrayList<Game> games = new ArrayList<>();
+        HashMap<Integer, Integer> gameIDs = new HashMap<>();
+        int observeID;
+
 
         System.out.print("Do you want to play a game? Enter 'help' for options \n\n");
 
@@ -65,7 +69,7 @@ public class UI {
                         RegisterResult res = new RegisterResult();
 
                         try {
-                            res = fascade.sendAndReceive("/user", "POST", new Gson().toJson(req), null, RegisterResult.class);
+                            res = facade.sendAndReceive("/user", "POST", new Gson().toJson(req), null, RegisterResult.class);
                         } catch (URISyntaxException | IOException e) {
                             System.out.print(e.getMessage() + "\n");
                         }
@@ -91,7 +95,7 @@ public class UI {
                         LoginResult res = new LoginResult();
 
                         try {
-                            res = fascade.sendAndReceive("/session", "POST", new Gson().toJson(req), null, LoginResult.class);
+                            res = facade.sendAndReceive("/session", "POST", new Gson().toJson(req), null, LoginResult.class);
                         } catch (URISyntaxException | IOException e) {
                             System.out.print(e.getMessage() + "\n");
                         }
@@ -129,7 +133,7 @@ public class UI {
                     else {
                         CreateGameRequest req = new CreateGameRequest(inputs[1]);
                         try {
-                            fascade.sendAndReceive("/game", "POST", new Gson().toJson(req), auth, CreateGameResult.class);
+                            facade.sendAndReceive("/game", "POST", new Gson().toJson(req), auth, CreateGameResult.class);
                             System.out.print("creation success!\n");
                         } catch (URISyntaxException | IOException e) {
                             System.out.print(e.getMessage() + "\n");
@@ -140,6 +144,14 @@ public class UI {
 
                 else if (Objects.equals(inputs[0], "list")) {
 
+                    try {
+                        ListGamesResult res = facade.sendAndReceive("/game", "GET", "", auth, ListGamesResult.class);
+                        resetClientGamesList(games, gameIDs, res);
+                        printGames(games);
+                    } catch (URISyntaxException | IOException e) {
+                        System.out.print(e.getMessage() + "\n");
+                    }
+
                 }
 
                 else if (Objects.equals(inputs[0], "join")) {
@@ -148,8 +160,22 @@ public class UI {
                         System.out.print("invalid args :/\n");
                     }
                     else {
-                        JoinGameRequest req = new JoinGameRequest(inputs[2], Integer.parseInt(inputs[1]));
-                        // TODO: 11/22/2023 set auth as well
+                        if (Integer.parseInt(inputs[1]) < games.size()) {
+                            int gameID = gameIDs.get(Integer.parseInt(inputs[1]));
+                            JoinGameRequest req = new JoinGameRequest(inputs[2],gameID);
+
+                            try {
+                                facade.sendAndReceive("/game", "PUT", new Gson().toJson(req), auth, ResponseMessage.class);
+                                // TODO: 11/22/2023 fancy board
+                            } catch (URISyntaxException | IOException e) {
+                                System.out.print(e.getMessage() + "\n");
+                            }
+                        }
+                        else {
+                            System.out.print("invalid game number\n");
+                        }
+
+
                     }
                 }
 
@@ -159,8 +185,22 @@ public class UI {
                         System.out.print("invalid args :/\n");
                     }
                     else {
-                        JoinGameRequest req = new JoinGameRequest(null, Integer.parseInt(inputs[1]));
-                        // TODO: 11/22/2023 set auth as well
+                        if (Integer.parseInt(inputs[1]) < games.size()) {
+                            observeID = gameIDs.get(Integer.parseInt(inputs[1]));
+                            JoinGameRequest req = new JoinGameRequest(null, observeID);
+
+                            try {
+                                facade.sendAndReceive("/game", "PUT", new Gson().toJson(req), auth, ResponseMessage.class);
+                                // TODO: 11/22/2023 fancy board
+                                System.out.print("observing...\n");
+                            } catch (URISyntaxException | IOException e) {
+                                System.out.print(e.getMessage() + "\n");
+                            }
+                        }
+                        else {
+                            System.out.print("invalid game number\n");
+                        }
+
                     }
 
                 }
@@ -168,7 +208,7 @@ public class UI {
                 else if (Objects.equals(inputs[0], "logout")) {
 
                     try {
-                        fascade.sendAndReceive("/session", "DELETE", "", auth, ResponseMessage.class);
+                        facade.sendAndReceive("/session", "DELETE", "", auth, ResponseMessage.class);
                         loggedIn = false;
                     } catch (URISyntaxException | IOException e) {
                         System.out.print(e.getMessage() + "\n");
@@ -182,5 +222,23 @@ public class UI {
 
         }
 
+    }
+
+    private static void resetClientGamesList(ArrayList<Game> games, HashMap<Integer, Integer> gameIDs, ListGamesResult res) {
+        games.clear();
+        gameIDs.clear();
+        int i = 0;
+        for (Game g : res.getGames()) {
+            games.add(g);
+            gameIDs.put(i, g.getGameID());
+            ++i;
+        }
+    }
+
+    private static void printGames(ArrayList<Game> games) {
+        for (int i = 0; i < games.size(); ++ i) {
+            System.out.print(i + ": " + games.get(i).getGameName() + "\n\twhite: " + games.get(i).getWhiteUsername() +
+                    ", black: " + games.get(i).getBlackUsername() + "\n");
+        }
     }
 }

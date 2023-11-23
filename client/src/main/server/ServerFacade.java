@@ -9,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class ServerFascade {
+public class ServerFacade {
 
     private static final String url = "http://localhost:8080";
     public <T> T sendAndReceive(String path, String method, String body, String auth, Class<T> responseClass) throws URISyntaxException, IOException {

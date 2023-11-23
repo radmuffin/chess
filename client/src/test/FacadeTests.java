@@ -3,11 +3,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import requests.LoginRequest;
 import responses.ResponseMessage;
-import server.ServerFascade;
+import server.ServerFacade;
 
-public class FascadeTests {
+public class FacadeTests {
 
-    ServerFascade fascade = new ServerFascade();
+    ServerFacade fascade = new ServerFacade();
+
     @Test
     public void goodExecution() {
         Assertions.assertDoesNotThrow(() -> fascade.sendAndReceive("/db", "DELETE", "", null, ResponseMessage.class));
