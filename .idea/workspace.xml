@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="phase 5 w/o fancy chessboard">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/ui/EscapeSequences.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/EscapeSequences.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/UI.java" afterDir="false" />
-    </list>
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="phase 5 code cleaned" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -383,7 +382,39 @@
       <option name="project" value="LOCAL" />
       <updated>1700710054141</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="phase 5">
+      <option name="closed" value="true" />
+      <created>1700950521403</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1700950521403</updated>
+    </task>
+    <task id="LOCAL-00031" summary="phase 5 code cleaned">
+      <option name="closed" value="true" />
+      <created>1700950944756</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1700950944756</updated>
+    </task>
+    <task id="LOCAL-00032" summary="phase 5 code cleaned">
+      <option name="closed" value="true" />
+      <created>1700951019252</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1700951019252</updated>
+    </task>
+    <task id="LOCAL-00033" summary="phase 5 code cleaned">
+      <option name="closed" value="true" />
+      <created>1700951170157</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1700951170157</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -398,8 +429,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="chess board test pass" />
-    <MESSAGE value="chess board test pass w/o wack stuff" />
     <MESSAGE value="rook moves" />
     <MESSAGE value="bishop and queen moves" />
     <MESSAGE value="all but pawn moves" />
@@ -423,7 +452,9 @@
     <MESSAGE value="bare bones ui" />
     <MESSAGE value="register/login/out functionality" />
     <MESSAGE value="phase 5 w/o fancy chessboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="phase 5 w/o fancy chessboard" />
+    <MESSAGE value="phase 5" />
+    <MESSAGE value="phase 5 code cleaned" />
+    <option name="LAST_COMMIT_MESSAGE" value="phase 5 code cleaned" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -220,6 +220,7 @@ public class UI {
                     try {
                         facade.sendAndReceive("/session", "DELETE", "", auth, ResponseMessage.class);
                         loggedIn = false;
+                        role = "";
                     } catch (URISyntaxException | IOException e) {
                         System.out.print(e.getMessage() + "\n");
                     }
