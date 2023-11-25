@@ -1,5 +1,6 @@
 package ui;
 
+import chess.*;
 import com.google.gson.Gson;
 import models.Game;
 import requests.CreateGameRequest;
@@ -26,7 +27,8 @@ public class UI {
         String auth = null;
         ArrayList<Game> games = new ArrayList<>();
         HashMap<Integer, Integer> gameIDs = new HashMap<>();
-        int observeID;
+        int curGameID;
+        String role = "";
 
 
         System.out.print("Do you want to play a game? Enter 'help' for options \n\n");
@@ -35,7 +37,7 @@ public class UI {
 
 
             if (loggedIn) {
-                System.out.print("[" + user + "] >>> ");
+                System.out.print("[" + user + role +"] >>> ");
             }
             else System.out.print("[LOGGED_OUT] >>> ");
 
@@ -78,7 +80,7 @@ public class UI {
                             auth = res.getAuthToken();
                             user = res.getUsername();
                             loggedIn = true;
-                            System.out.print("registration success :))\n");
+                            System.out.print("registration success :))\nwelcome " + user + "\n");
                         }
 
                     }
@@ -104,7 +106,7 @@ public class UI {
                             loggedIn = true;
                             user = res.getUsername();
                             auth = res.getAuthToken();
-                            System.out.print("login success :))\n");
+                            System.out.print("welcome back " + user + " :))\n");
                         }
 
                     }
@@ -161,12 +163,19 @@ public class UI {
                     }
                     else {
                         if (Integer.parseInt(inputs[1]) < games.size()) {
-                            int gameID = gameIDs.get(Integer.parseInt(inputs[1]));
-                            JoinGameRequest req = new JoinGameRequest(inputs[2],gameID);
+                            curGameID = gameIDs.get(Integer.parseInt(inputs[1]));
+                            JoinGameRequest req = new JoinGameRequest(inputs[2],curGameID);
 
                             try {
                                 facade.sendAndReceive("/game", "PUT", new Gson().toJson(req), auth, ResponseMessage.class);
-                                // TODO: 11/22/2023 fancy board
+
+                                switch (req.getPlayerColor()) {
+                                    case "WHITE" -> role = ":WHITE";
+                                    case "BLACK" -> role = ":BLACK";
+                                    default -> role = ": OBSERVER";
+                                }
+
+                                dummyBoards();
                             } catch (URISyntaxException | IOException e) {
                                 System.out.print(e.getMessage() + "\n");
                             }
@@ -186,13 +195,14 @@ public class UI {
                     }
                     else {
                         if (Integer.parseInt(inputs[1]) < games.size()) {
-                            observeID = gameIDs.get(Integer.parseInt(inputs[1]));
-                            JoinGameRequest req = new JoinGameRequest(null, observeID);
+                            curGameID = gameIDs.get(Integer.parseInt(inputs[1]));
+                            JoinGameRequest req = new JoinGameRequest(null, curGameID);
 
                             try {
                                 facade.sendAndReceive("/game", "PUT", new Gson().toJson(req), auth, ResponseMessage.class);
-                                // TODO: 11/22/2023 fancy board
-                                System.out.print("observing...\n");
+                                role = ":OBSERVER";
+                                System.out.print("observing...\n\n");
+                                dummyBoards();
                             } catch (URISyntaxException | IOException e) {
                                 System.out.print(e.getMessage() + "\n");
                             }
@@ -241,4 +251,110 @@ public class UI {
                     ", black: " + games.get(i).getBlackUsername() + "\n");
         }
     }
+
+    private static void dummyBoards() {
+        ChessBoard board = new ChessBoardImp();
+        board.resetBoard();
+        printBoard(board, true);
+        System.out.print("\n\n");
+        printBoard(board, false);
+    }
+
+    private static void printBoard(ChessBoard board, boolean whitePOV) {
+        if (whitePOV) {
+            for (int row = 0; row < 10; ++row) {
+                for (int col = 0; col < 10; ++col) {
+                    printRow(board, row, col);
+                }
+                System.out.print(EscapeSequences.RESET_BG_COLOR + "\n");
+            }
+        }
+        else {
+            for (int row = 9; row >= 0; --row) {
+                for (int col = 0; col < 10; ++col) {
+                    printRow(board, row, col);
+                }
+                System.out.print(EscapeSequences.RESET_BG_COLOR + "\n");
+            }
+        }
+    }
+
+
+    private static void printRow(ChessBoard board, int row, int col) {
+        if (row == 0 || row == 9) {
+            System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREEN);
+
+            if (col == 0 || col == 9) System.out.print(EscapeSequences.EMPTY);
+            else System.out.print(EscapeSequences.SET_TEXT_COLOR_DARK_GREY + " " + (char) (col - 1 + 'a') + "\u2003" + EscapeSequences.RESET_TEXT_COLOR);
+        }
+        else {
+            if (col == 0 || col == 9) System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREEN + EscapeSequences.SET_TEXT_COLOR_DARK_GREY + "\u2003" + row + " " + EscapeSequences.RESET_TEXT_COLOR);
+
+            else {
+                if ((row % 2 == 1 && col % 2 == 1) || (row % 2 == 0 && col % 2 == 0)) System.out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
+                else System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREY);
+
+                ChessPosition pos = new ChessPositionImp(row, col);
+                ChessPiece piece = board.getPiece(pos);
+
+                if (piece == null) System.out.print(EscapeSequences.EMPTY);
+                else {
+                    switch (piece.getTeamColor()) {
+
+                        case WHITE -> {
+                            switch (piece.getPieceType()) {
+
+                                case KING -> {
+                                    System.out.print(EscapeSequences.WHITE_KING);
+                                }
+                                case QUEEN -> {
+                                    System.out.print(EscapeSequences.WHITE_QUEEN);
+                                }
+                                case BISHOP -> {
+                                    System.out.print(EscapeSequences.WHITE_BISHOP);
+                                }
+                                case KNIGHT -> {
+                                    System.out.print(EscapeSequences.WHITE_KNIGHT);
+                                }
+                                case ROOK -> {
+                                    System.out.print(EscapeSequences.WHITE_ROOK);
+                                }
+                                case PAWN -> {
+                                    System.out.print(EscapeSequences.WHITE_PAWN);
+                                }
+                            }
+                        }
+                        case BLACK -> {
+                            switch (piece.getPieceType()) {
+
+                                case KING -> {
+                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_KING + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+                                }
+                                case QUEEN -> {
+                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_QUEEN + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+                                }
+                                case BISHOP -> {
+                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_BISHOP + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+                                }
+                                case KNIGHT -> {
+                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_KNIGHT + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+                                }
+                                case ROOK -> {
+                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_ROOK + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+                                }
+                                case PAWN -> {
+                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_PAWN + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+
+            }
+        }
+    }
+
+
 }

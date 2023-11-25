@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="register/login/out functionality">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="phase 5 w/o fancy chessboard">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/server/ServerFascade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/server/ServerFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/EscapeSequences.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/EscapeSequences.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/FascadeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/FacadeTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -376,7 +375,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700686235802</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="phase 5 w/o fancy chessboard">
+      <option name="closed" value="true" />
+      <created>1700710054141</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1700710054141</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -391,7 +398,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial" />
     <MESSAGE value="chess board test pass" />
     <MESSAGE value="chess board test pass w/o wack stuff" />
     <MESSAGE value="rook moves" />
@@ -416,7 +422,8 @@
     <MESSAGE value="phase 5 setup and warning cleanup" />
     <MESSAGE value="bare bones ui" />
     <MESSAGE value="register/login/out functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="register/login/out functionality" />
+    <MESSAGE value="phase 5 w/o fancy chessboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="phase 5 w/o fancy chessboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
