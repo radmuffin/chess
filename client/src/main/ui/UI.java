@@ -304,47 +304,23 @@ public class UI {
                         case WHITE -> {
                             switch (piece.getPieceType()) {
 
-                                case KING -> {
-                                    System.out.print(EscapeSequences.WHITE_KING);
-                                }
-                                case QUEEN -> {
-                                    System.out.print(EscapeSequences.WHITE_QUEEN);
-                                }
-                                case BISHOP -> {
-                                    System.out.print(EscapeSequences.WHITE_BISHOP);
-                                }
-                                case KNIGHT -> {
-                                    System.out.print(EscapeSequences.WHITE_KNIGHT);
-                                }
-                                case ROOK -> {
-                                    System.out.print(EscapeSequences.WHITE_ROOK);
-                                }
-                                case PAWN -> {
-                                    System.out.print(EscapeSequences.WHITE_PAWN);
-                                }
+                                case KING -> System.out.print(EscapeSequences.WHITE_KING);
+                                case QUEEN -> System.out.print(EscapeSequences.WHITE_QUEEN);
+                                case BISHOP -> System.out.print(EscapeSequences.WHITE_BISHOP);
+                                case KNIGHT -> System.out.print(EscapeSequences.WHITE_KNIGHT);
+                                case ROOK -> System.out.print(EscapeSequences.WHITE_ROOK);
+                                case PAWN -> System.out.print(EscapeSequences.WHITE_PAWN);
                             }
                         }
                         case BLACK -> {
                             switch (piece.getPieceType()) {
 
-                                case KING -> {
-                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_KING + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                                }
-                                case QUEEN -> {
-                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_QUEEN + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                                }
-                                case BISHOP -> {
-                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_BISHOP + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                                }
-                                case KNIGHT -> {
-                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_KNIGHT + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                                }
-                                case ROOK -> {
-                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_ROOK + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                                }
-                                case PAWN -> {
-                                    System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_PAWN + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                                }
+                                case KING -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_KING + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+                                case QUEEN -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_QUEEN + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+                                case BISHOP -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_BISHOP + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+                                case KNIGHT -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_KNIGHT + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+                                case ROOK -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_ROOK + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+                                case PAWN -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_PAWN + EscapeSequences.RESET_TEXT_BOLD_FAINT);
                             }
                         }
                     }

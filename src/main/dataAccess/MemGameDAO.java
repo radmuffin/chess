@@ -12,10 +12,10 @@ import java.util.Objects;
  */
 public class MemGameDAO implements GameDAO {
 
-    private static HashMap<Integer, Game> games = new HashMap<>();
+    private static final HashMap<Integer, Game> games = new HashMap<>();
 
     @Override
-    public void insert(Game game) throws DataAccessException {
+    public void insert(Game game) {
         game.setGameID(games.size() + 1);
         games.put(game.getGameID(), game);
     }
@@ -27,7 +27,7 @@ public class MemGameDAO implements GameDAO {
     }
 
     @Override
-    public Collection<Game> findAll() throws DataAccessException{
+    public Collection<Game> findAll() {
         return games.values();
     }
 
@@ -43,20 +43,20 @@ public class MemGameDAO implements GameDAO {
     }
 
     @Override
-    public void updateGame(int gameID, ChessGame chessGame) throws DataAccessException {
+    public void updateGame(int gameID, ChessGame chessGame) {
         games.get(gameID).setGame(chessGame);
     }
 
 
 
     @Override
-    public int numGames() throws DataAccessException {
+    public int numGames() {
         return games.size();
     }
 
 
     @Override
-    public void clear() throws DataAccessException {
+    public void clear() {
         games.clear();
     }
 }

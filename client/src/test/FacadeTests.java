@@ -7,7 +7,7 @@ import server.ServerFacade;
 
 public class FacadeTests {
 
-    ServerFacade fascade = new ServerFacade();
+    final ServerFacade fascade = new ServerFacade();
 
     @Test
     public void goodExecution() {

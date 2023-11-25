@@ -3,7 +3,6 @@ package dataAccess;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.LinkedList;
 
 /**
  * Database is responsible for creating connections to the database. Connections are
