@@ -17,7 +17,6 @@ public class PieceAdapter implements JsonDeserializer<ChessPiece> {
             case KNIGHT -> new Knight(temp.getTeamColor());
             case ROOK -> new Rook(temp.getTeamColor());
             case PAWN -> temp;
-            default -> null;
         };
     }
 }

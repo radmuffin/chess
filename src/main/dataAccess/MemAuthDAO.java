@@ -11,7 +11,7 @@ public class MemAuthDAO implements AuthDAO {
     private static final HashMap<String, AuthToken> tokens = new HashMap<>();
 
     @Override
-    public void insert(AuthToken authToken) throws DataAccessException {
+    public void insert(AuthToken authToken) {
         tokens.put(authToken.getAuthToken(), authToken);
     }
 
@@ -35,7 +35,7 @@ public class MemAuthDAO implements AuthDAO {
     }
 
     @Override
-    public void clear() throws DataAccessException {
+    public void clear() {
         tokens.clear();
     }
 }

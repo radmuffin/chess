@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 public class DatabaseTests {
 
-    private AuthDAO authDAO = new DbAuthDAO();
-    private UserDAO userDAO = new DbUserDAO();
-    private GameDAO gameDAO = new DbGameDAO();
+    private final AuthDAO authDAO = new DbAuthDAO();
+    private final UserDAO userDAO = new DbUserDAO();
+    private final GameDAO gameDAO = new DbGameDAO();
 
     @Test
     public void goodAuthInsertAndFind() throws DataAccessException {

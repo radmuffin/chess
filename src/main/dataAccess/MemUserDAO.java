@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 public class MemUserDAO implements UserDAO {
 
-    private static HashMap<String, User> users = new HashMap<>();
+    private static final HashMap<String, User> users = new HashMap<>();
 
     @Override
     public void insert(User user) throws DataAccessException {
@@ -24,7 +24,7 @@ public class MemUserDAO implements UserDAO {
     }
 
     @Override
-    public void clear() throws DataAccessException {
+    public void clear() {
         users.clear();
     }
 

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DbAuthDAO implements AuthDAO {
     private boolean initialized = false;
-    private static Database db = new Database();
+    private static final Database db = new Database();
 
     @Override
     public void insert(AuthToken authToken) throws DataAccessException {

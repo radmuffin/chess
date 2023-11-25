@@ -8,7 +8,7 @@ public class DbUserDAO implements UserDAO{
 
 
     private boolean initialized = false;
-    private static Database db = new Database();
+    private static final Database db = new Database();
 
     @Override
     public void insert(User user) throws DataAccessException {
