@@ -80,7 +80,7 @@ public class UI {
                             auth = res.getAuthToken();
                             user = res.getUsername();
                             loggedIn = true;
-                            System.out.print("registration success :))\nwelcome " + user + "\n");
+                            System.out.print("registration success :))\nwelcome " + user + "\nenter 'help' for options\n");
                         }
 
                     }
@@ -106,7 +106,7 @@ public class UI {
                             loggedIn = true;
                             user = res.getUsername();
                             auth = res.getAuthToken();
-                            System.out.print("welcome back " + user + " :))\n");
+                            System.out.print("welcome back " + user + " :))\nenter 'help' for options\n");
                         }
 
                     }
