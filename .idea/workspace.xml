@@ -7,13 +7,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="minor changes">
-      <change afterPath="$PROJECT_DIR$/src/starter/webSocketMessages/serverMessages/ServerMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/starter/webSocketMessages/userCommands/UserGameCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/passoffTests/serverTests/WebSocketTests.java" afterDir="false" />
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="phase 6 bare bones ui">
+      <change afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/ServerMessages/ErrorMess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/ServerMessages/LoadGameMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/ServerMessages/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/userCommands/JoinPlayerCmd.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/DbGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/DbGameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/adapters/BoardAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/adapters/BoardAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/adapters/GameAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/adapters/GameAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/adapters/PieceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/adapters/PieceAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/starter/webSocketMessages/serverMessages/ServerMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/serverMessages/ServerMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/starter/webSocketMessages/userCommands/UserGameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/UserGameCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,10 +61,9 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "openjdk-20",
-    "last_opened_file_path": "C:/Users/spezd/IdeaProjects/chess/src/starter",
+    "last_opened_file_path": "C:/Users/spezd/IdeaProjects/chess/shared/src/main",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -82,7 +87,7 @@
       <recent name="dataAccess" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UI">
+  <component name="RunManager" selected="JUnit.DatabaseTests.goodGameFindAll">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="ajedrez" />
@@ -109,6 +114,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DatabaseTests.goodGameFindAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
+      <option name="METHOD_NAME" value="goodGameFindAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseTests.goodGameInsertAndFind" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
+      <option name="METHOD_NAME" value="goodGameInsertAndFind" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FacadeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <option name="PACKAGE_NAME" value="" />
@@ -118,33 +155,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FacadeTests.badExecution" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FacadeTests" />
-      <option name="METHOD_NAME" value="badExecution" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FacadeTests.goodExecution" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FacadeTests" />
-      <option name="METHOD_NAME" value="goodExecution" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DatabaseTests.goodGameFindAll" />
+        <item itemvalue="JUnit.DatabaseTests.goodGameInsertAndFind" />
         <item itemvalue="Application.UI" />
         <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.FacadeTests" />
-        <item itemvalue="JUnit.FacadeTests.badExecution" />
-        <item itemvalue="JUnit.FacadeTests.goodExecution" />
       </list>
     </recent_temporary>
   </component>
@@ -437,7 +454,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700952255599</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="phase 6 bare bones ui">
+      <option name="closed" value="true" />
+      <created>1701318230818</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1701318230818</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -452,7 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="all but pawn moves" />
     <MESSAGE value="all pieces" />
     <MESSAGE value="gameplay -check" />
     <MESSAGE value="gameplay -checkmate/stalemate" />
@@ -477,7 +501,8 @@
     <MESSAGE value="phase 5 code cleaned" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
     <MESSAGE value="minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes" />
+    <MESSAGE value="phase 6 bare bones ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="phase 6 bare bones ui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -496,11 +521,6 @@
           <url>file://$PROJECT_DIR$/src/test/passoffTests/chessTests/chessExtraCredit/CastlingTests.java</url>
           <line>174</line>
           <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/ui/UI.java</url>
-          <line>274</line>
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />

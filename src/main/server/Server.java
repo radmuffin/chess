@@ -1,8 +1,10 @@
 package server;
 import handlers.*;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
+import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import spark.*;
 
-
+@WebSocket
 public class Server {
 
     public static void main(String[] args) {
@@ -22,8 +24,13 @@ public class Server {
         Spark.post("/game", (req, res) -> new CreateGameHandler().handleRequest(req, res));
         Spark.get("/game", (req, res) -> new ListGamesHandler().handleRequest(req, res));
         Spark.put("/game", (req, res) -> new JoinGameHandler().handleRequest(req, res));
+        Spark.webSocket("/connect", Server.class);
     }
 
+    @OnWebSocketMessage
+    public void onMessage(Session session, String message) {
+        // TODO: 11/29/2023
+    }
 
 }
 

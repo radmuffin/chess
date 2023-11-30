@@ -1,4 +1,4 @@
-package dataAccess.adapters;
+package adapters;
 
 import chess.ChessGame;
 import chess.ChessGameImp;

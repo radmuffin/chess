@@ -1,4 +1,4 @@
-package dataAccess.adapters;
+package adapters;
 
 import chess.ChessBoard;
 import chess.ChessBoardImp;

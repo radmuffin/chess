@@ -5,7 +5,7 @@ import chess.ChessGame;
 import chess.ChessGameImp;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dataAccess.adapters.BoardAdapter;
+import adapters.BoardAdapter;
 import models.Game;
 
 import java.sql.SQLException;

@@ -19,6 +19,7 @@ public class UI {
     static ArrayList<Game> games = new ArrayList<>();
     static HashMap<Integer, Integer> gameIDs = new HashMap<>();        //<listed, actual>
 
+
     public static void main(String[] args) {
 
         boolean loggedIn = false;
