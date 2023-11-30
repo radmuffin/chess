@@ -36,3 +36,4 @@ bin/
 /web/index.js
 /.idea/libraries/slf4j_simple.xml
 /.idea/libraries/sparkjava_spark_core.xml
+/.idea/libraries/glassfish_tyrus_bundles_standalone_client.xml
