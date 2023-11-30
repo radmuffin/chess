@@ -12,33 +12,30 @@ import server.ServerFacade;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class UI {
+    static ServerFacade facade = new ServerFacade();
+    static ArrayList<Game> games = new ArrayList<>();
+    static HashMap<Integer, Integer> gameIDs = new HashMap<>();        //<listed, actual>
 
     public static void main(String[] args) {
 
-        ServerFacade facade = new ServerFacade();
         boolean loggedIn = false;
+        boolean inGame = false;
         String user = "";
         String auth = null;
-        ArrayList<Game> games = new ArrayList<>();
-        HashMap<Integer, Integer> gameIDs = new HashMap<>();        //<listed, actual>
         int curGameID;
         String role = "";
+        ChessGame game = null;
 
 
         System.out.print("Do you want to play a game? Enter 'help' for options \n\n");
 
         while (true) {
 
-
-            if (loggedIn) {
-                System.out.print("[" + user + role +"] >>> ");
-            }
+            if (inGame) System.out.print("[" + user + role + "] >>> "); // TODO: 11/28/2023 add game status
+            else if (loggedIn) System.out.print("[" + user + role + "] >>> ");
             else System.out.print("[LOGGED_OUT] >>> ");
 
             Scanner scanner = new Scanner(System.in);
@@ -114,7 +111,7 @@ public class UI {
                 }
             }
 
-            else {                                              //post login
+            else if (!inGame) {                                              //post login
 
                 if (Objects.equals(inputs[0], "help")) {
                     System.out.print("""
@@ -174,8 +171,12 @@ public class UI {
                                     case "BLACK" -> role = ":BLACK";
                                     default -> role = ": OBSERVER";
                                 }
+                                inGame = true;
 
-                                dummyBoards();
+                                System.out.print("'help' for options\n");
+                                // TODO: 11/28/2023 add websocket fun
+
+
                             } catch (URISyntaxException | IOException e) {
                                 System.out.print(e.getMessage() + "\n");
                             }
@@ -202,7 +203,9 @@ public class UI {
                                 facade.sendAndReceive("/game", "PUT", new Gson().toJson(req), auth, ResponseMessage.class);
                                 role = ":OBSERVER";
                                 System.out.print("observing...\n\n");
-                                dummyBoards();
+
+                                // TODO: 11/28/2023 add websocket stuff
+
                             } catch (URISyntaxException | IOException e) {
                                 System.out.print(e.getMessage() + "\n");
                             }
@@ -224,6 +227,63 @@ public class UI {
                     } catch (URISyntaxException | IOException e) {
                         System.out.print(e.getMessage() + "\n");
                     }
+
+                }
+
+            }
+
+            else {      //game play
+
+                if (Objects.equals(inputs[0], "help")) {
+                    System.out.print("""
+                        'help' displays this again\s
+                        'redraw' the board\s
+                        'highlight <PIECE LOCATION>' legal moves\s
+                        'move <START> <END>' a piece\s
+                        'resign' and surrender\s
+                        'leave' the game\s
+                        """);
+                }
+
+                else if (Objects.equals(inputs[0], "redraw")) {
+
+                }
+
+                else if (Objects.equals(inputs[0], "highlight")) {
+
+                    if (inputs.length < 2) System.out.print("which piece?\n");
+                    else {
+                        int startCol = inputs[1].charAt(0) - 'a' + 1;
+                        int startRow = Character.getNumericValue(inputs[1].charAt(1));
+                        ChessPosition start = new ChessPositionImp(startRow, startCol);
+                        Collection<ChessMove> spots = game.validMoves(start);
+                        // TODO: 11/28/2023 print board with those highlit
+                    }
+
+                }
+
+                else if (Objects.equals(inputs[0], "move")) {
+
+                    if (inputs.length < 3 || inputs[1].length() != 2 || inputs[2].length() != 2) System.out.print("where?\n");
+                    else {
+                        int startCol = inputs[1].charAt(0) - 'a' + 1;
+                        int startRow = Character.getNumericValue(inputs[1].charAt(1));
+                        ChessPosition start = new ChessPositionImp(startRow, startCol);
+                        int endCol = inputs[2].charAt(0) - 'a' + 1;
+                        int endRow = Character.getNumericValue(inputs[2].charAt(1));
+                        ChessPosition end = new ChessPositionImp(endRow, endCol);
+                        ChessMove move = new ChessMoveImp(start, end, null);    // TODO: 11/28/2023 add promotion piece functionality 
+
+                        // TODO: 11/28/2023
+                    }
+
+                }
+
+                else if (Objects.equals(inputs[0], "resign")) {
+
+                }
+
+                else if (Objects.equals(inputs[0], "leave")) {
 
                 }
 
