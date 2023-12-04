@@ -1,5 +1,9 @@
 package services;
 
+import chess.ChessBoard;
+import chess.ChessBoardImp;
+import chess.ChessGame;
+import chess.ChessGameImp;
 import dataAccess.*;
 import models.Game;
 import requests.CreateGameRequest;
@@ -31,6 +35,11 @@ public class CreateGameService {
             authDAO.find(authToken);    //validate authentication, throws if dne
 
             Game game = new Game(request.gameName());
+            ChessBoard board = new ChessBoardImp();
+            board.resetBoard();
+            ChessGame chessGame = new ChessGameImp();
+            chessGame.setBoard(board);
+            game.setGame(chessGame);
             gameDAO.insert(game);
 
             result.setGameID(game.getGameID());
