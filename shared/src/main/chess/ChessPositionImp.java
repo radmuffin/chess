@@ -59,10 +59,6 @@ public class ChessPositionImp implements ChessPosition{
 
     @Override
     public String toString() {
-        return "(" +
-                row +
-                "," +
-                column +
-                ")";
+        return String.valueOf((char) (column + 'a')) + (row + 1);
     }
 }

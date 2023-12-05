@@ -2,7 +2,7 @@ package server;
 
 import org.eclipse.jetty.websocket.api.Session;
 
-import java.util.Collection;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class WSSessions {
@@ -22,6 +22,18 @@ public class WSSessions {
 
     public HashMap<String, Session> getGameMembers(int gameID) {
         return sessions.get(gameID);
+    }
+
+    public void gameWideMessage(int gameID, String message) throws IOException {
+        for (Session s : sessions.get(gameID).values()) {
+            s.getRemote().sendString(message);
+        }
+    }
+
+    public void gameWideMessageExclude(int gameID, String message, Session session) throws IOException {
+        for (Session s : sessions.get(gameID).values()) {
+            if (s != session) s.getRemote().sendString(message);
+        }
     }
 
 }

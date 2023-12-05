@@ -28,8 +28,8 @@ public class LoadGameMessage extends ServerMessage {
         return builder.create().fromJson(game, ChessGameImp.class);
     }
 
-    public void setGame(String game) {
-        this.game = game;
+    public void setGame(ChessGame game) {
+        this.game = new Gson().toJson(game);
     }
 
     @Override

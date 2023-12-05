@@ -82,7 +82,7 @@ public class Repl implements NotificationHandler {
 
     private void redrawBoard() {
         boolean white = state != UI.State.PLAYING_BLACK;
-        printBoard(game.getGame().getBoard(), white);
+        printBoard(game.getGame().getBoard());
     }
 
     private void observingActions(String[] inputs) {
@@ -163,9 +163,9 @@ public class Repl implements NotificationHandler {
     }
 
     private static ChessPosition getChessPosition(String[] inputs, int index) {
-        int Col = inputs[index].charAt(0) - 'a' + 1;
-        int Row = Character.getNumericValue(inputs[index].charAt(1));
-        return new ChessPositionImp(Row, Col);
+        int col = inputs[index].charAt(0) - 'a' + 1;
+        int row = Character.getNumericValue(inputs[index].charAt(1));
+        return new ChessPositionImp(row, col);
     }
 
     private static ChessPiece.PieceType getPromo(String[] inputs, ChessPiece.PieceType promo) {
@@ -184,8 +184,12 @@ public class Repl implements NotificationHandler {
         if (inputs.length < 2) System.out.print("which piece?\n");
         else {
             ChessPosition start = getChessPosition(inputs, 1);
-            Collection<ChessMove> spots = game.getGame().validMoves(start);
-            // TODO: 11/28/2023 print board with those highlit
+            Collection<ChessMove> moves = game.getGame().validMoves(start);
+            HashSet<ChessPosition> ops = new HashSet<>();
+            for (ChessMove m : moves) {
+                ops.add(m.getEndPosition());
+            }
+           // printBoard(game.getGame().getBoard(), start, ops);
         }
     }
 
@@ -214,8 +218,6 @@ public class Repl implements NotificationHandler {
                     facade.sendCmd(cmd);
 
                     state = UI.State.OBSERVING;
-                    System.out.print("observing...\n\n");
-
                 } catch (URISyntaxException | IOException | DeploymentException e) {
                     System.out.print(e.getMessage() + "\n");
                 }
@@ -339,26 +341,26 @@ public class Repl implements NotificationHandler {
             case PLAYING_WHITE -> {
                 System.out.print("[" + user.getUsername() + ":WHITE");
                 if (game.getGame() == null) System.out.print("] >>> ");
-                else if (game.getGame().getTeamTurn() == ChessGame.TeamColor.WHITE) System.out.print(", your turn :)] >>> ");
-                else System.out.print(", waiting for black :/] >>> ");
+                else if (game.getGame().getTeamTurn() == ChessGame.TeamColor.WHITE) System.out.print("|your turn] >>> ");
+                else System.out.print("|waiting for black...] >>> ");
             }
 
             case PLAYING_BLACK -> {
                 System.out.print("[" + user.getUsername() + ":BLACK");
                 if (game.getGame() == null) System.out.print("] >>> ");
-                else if (game.getGame().getTeamTurn() == ChessGame.TeamColor.BLACK) System.out.print(", your turn :)] >>> ");
-                else System.out.print(", waiting for white :/] >>> ");
+                else if (game.getGame().getTeamTurn() == ChessGame.TeamColor.BLACK) System.out.print("|your turn] >>> ");
+                else System.out.print("|waiting for white...] >>> ");
             }
             case OBSERVING -> {
                 System.out.print("[" + user.getUsername() + ":OBSERVING");
                 if (game.getGame() == null) System.out.print("] >>> ");
-                else if (game.getGame().getTeamTurn() == ChessGame.TeamColor.WHITE) System.out.print(", white's turn] >>> ");
-                else System.out.print(", black's turn] >>> ");
+                else if (game.getGame().getTeamTurn() == ChessGame.TeamColor.WHITE) System.out.print("|white's turn] >>> ");
+                else System.out.print("|black's turn] >>> ");
             }
         }
     }
 
-    private static void resetClientGamesList(ListGamesResult res) {
+    private void resetClientGamesList(ListGamesResult res) {
         games.clear();
         gameIDs.clear();
         int i = 0;
@@ -369,15 +371,16 @@ public class Repl implements NotificationHandler {
         }
     }
 
-    private static void printGames() {
+    private void printGames() {
         for (int i = 0; i < games.size(); ++ i) {
             System.out.print(i + ": " + games.get(i).getGameName() + "\n\twhite: " + games.get(i).getWhiteUsername() +
                     ", black: " + games.get(i).getBlackUsername() + "\n");
         }
     }
 
-    static void printBoard(ChessBoard board, boolean whitePOV) {
-        if (whitePOV) {
+     void printBoard(ChessBoard board) {
+        boolean white = state != UI.State.PLAYING_BLACK;
+         if (!white) {
             for (int row = 0; row < 10; ++row) {
                 for (int col = 0; col < 10; ++col) {
                     printRow(board, row, col);
@@ -395,7 +398,7 @@ public class Repl implements NotificationHandler {
         }
     }
 
-    private static void printRow(ChessBoard board, int row, int col) {
+    private void printRow(ChessBoard board, int row, int col) {
         if (row == 0 || row == 9) {
             System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREEN);
 
@@ -416,7 +419,7 @@ public class Repl implements NotificationHandler {
                 else {
                     switch (piece.getTeamColor()) {
 
-                        case WHITE -> {
+                        case BLACK -> {
                             switch (piece.getPieceType()) {
 
                                 case KING -> System.out.print(EscapeSequences.WHITE_KING);
@@ -427,7 +430,7 @@ public class Repl implements NotificationHandler {
                                 case PAWN -> System.out.print(EscapeSequences.WHITE_PAWN);
                             }
                         }
-                        case BLACK -> {
+                        case WHITE -> {          //black pieces are just filled and look more white so I switched them
                             switch (piece.getPieceType()) {
 
                                 case KING -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_KING + EscapeSequences.RESET_TEXT_BOLD_FAINT);
@@ -452,13 +455,21 @@ public class Repl implements NotificationHandler {
 
             case LOAD_GAME -> {
                 LoadGameMessage loadGameMessage = new Gson().fromJson(message, LoadGameMessage.class);
+                this.game.setGame(loadGameMessage.getGame());
+                System.out.print("\n");
+                printBoard(game.getGame().getBoard());
+                System.out.print("\n");
+                outputState();
             }
             case ERROR -> {
                 ErrorMess errorMess = new Gson().fromJson(message, ErrorMess.class);
+                System.out.print(errorMess.getErrorMessage() + "\n");
+                outputState();
             }
             case NOTIFICATION -> {
                 Notification notification = new Gson().fromJson(message, Notification.class);
-                System.out.print(notification.getMessage() + "\n\t\t\t>>> ");
+                System.out.print(notification.getMessage() + "\n");
+                outputState();
             }
         }
     }

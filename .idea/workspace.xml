@@ -7,24 +7,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="ui refactored">
-      <change afterPath="$PROJECT_DIR$/client/src/main/server/NotificationHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/userCommands/JoinObserverCmd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/userCommands/LeaveCmd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/userCommands/MakeMoveCmd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/userCommands/ResignCmd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/server/WSHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/server/WSSessions.java" afterDir="false" />
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="ws ping pong achieved">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/main/adapters/MoveAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/main/adapters/PosAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ajedrez.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ajedrez.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/server/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/server/ServerFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/webSocketMessages/ServerMessages/ErrorMess.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/serverMessages/ErrorMess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/webSocketMessages/ServerMessages/LoadGameMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/serverMessages/LoadGameMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/webSocketMessages/ServerMessages/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/serverMessages/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/webSocketMessages/userCommands/JoinPlayerCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/userCommands/JoinPlayerCmd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/adapters/GameAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/adapters/GameAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chess/ChessMoveImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chess/ChessMoveImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chess/ChessPositionImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chess/ChessPositionImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/webSocketMessages/serverMessages/LoadGameMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/serverMessages/LoadGameMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/DbGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/DbGameDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/CreateGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/WSHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/WSHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/WSSessions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/WSSessions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,12 +61,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Downloaded.Files.Path.Enabled": "false",
     "Repository.Attach.Annotations": "true",
     "Repository.Attach.JavaDocs": "true",
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "openjdk-20",
     "last_directory_selection": "C:/Users/spezd/IdeaProjects/chess/shared/src/main/webSocketMessages/userCommands",
@@ -171,9 +171,9 @@
       <list>
         <item itemvalue="Application.UI" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.FacadeTests" />
         <item itemvalue="JUnit.DatabaseTests.goodGameFindAll" />
         <item itemvalue="JUnit.DatabaseTests.goodGameInsertAndFind" />
-        <item itemvalue="JUnit.FacadeTests" />
       </list>
     </recent_temporary>
   </component>
@@ -490,7 +490,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701377074607</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="ws ping pong achieved">
+      <option name="closed" value="true" />
+      <created>1701727883097</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1701727883097</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -505,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="gameplay -checkmate/stalemate" />
     <MESSAGE value="gameplay no extra" />
     <MESSAGE value="en passant" />
     <MESSAGE value="basically perfect" />
@@ -530,7 +537,8 @@
     <MESSAGE value="phase 6 bare bones ui" />
     <MESSAGE value="pre ui rewrite" />
     <MESSAGE value="ui refactored" />
-    <option name="LAST_COMMIT_MESSAGE" value="ui refactored" />
+    <MESSAGE value="ws ping pong achieved" />
+    <option name="LAST_COMMIT_MESSAGE" value="ws ping pong achieved" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -550,28 +558,15 @@
           <line>174</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/server/WSHandler.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="8" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/server/WSHandler.java</url>
-          <line>33</line>
-          <properties class="server.WSHandler" method="onMessage">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/client/src/main/ui/Repl.java</url>
-          <line>447</line>
-          <properties class="ui.Repl" method="receiveServerMessage">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

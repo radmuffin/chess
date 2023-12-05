@@ -108,7 +108,7 @@ public class ChessGameImp implements ChessGame{
     public void makeMove(ChessMove move) throws InvalidMoveException {
         if (!move.getStartPosition().onBoard()) throw new InvalidMoveException("you're off the map");
         ChessPiece subject = board.getPiece(move.getStartPosition());
-        if (subject.getTeamColor() != turn) throw new InvalidMoveException("not you");
+        if (subject.getTeamColor() != turn) throw new InvalidMoveException("not your piece");
         Collection<ChessMove> options = validMoves(move.getStartPosition());
         if (options != null && options.contains(move)) {
             if (subject.getPieceType() == ChessPiece.PieceType.PAWN && move.sideways()

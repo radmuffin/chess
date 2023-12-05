@@ -12,6 +12,7 @@
     <orderEntry type="library" name="junit.jupiter" level="project" />
     <orderEntry type="library" name="slf4j.simple" level="project" />
     <orderEntry type="library" name="google.code.gson" level="project" />
+    <orderEntry type="module" module-name="shared" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -24,6 +25,5 @@
     </orderEntry>
     <orderEntry type="library" name="sparkjava.spark.core" level="project" />
     <orderEntry type="library" name="mysql.connector.java" level="project" />
-    <orderEntry type="module" module-name="shared" />
   </component>
 </module>

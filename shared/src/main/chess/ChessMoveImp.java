@@ -65,7 +65,7 @@ public class ChessMoveImp implements ChessMove{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ChessMoveImp that = (ChessMoveImp) o;
-        return Objects.equals(start, that.start) && Objects.equals(end, that.end) && promoPiece == that.promoPiece;
+        return start.equals(that.start) && end.equals(that.end) && promoPiece == that.promoPiece;
     }
 
     @Override

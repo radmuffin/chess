@@ -1,8 +1,10 @@
 package dataAccess;
 
+import adapters.PosAdapter;
 import chess.ChessBoard;
 import chess.ChessGame;
 import chess.ChessGameImp;
+import chess.ChessPosition;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import adapters.BoardAdapter;
@@ -64,7 +66,7 @@ public class DbGameDAO implements GameDAO{
                 var json = rs.getString("game");
                 var builder = new GsonBuilder();
                 builder.registerTypeAdapter(ChessBoard.class, new BoardAdapter());
-
+                builder.registerTypeAdapter(ChessPosition.class, new PosAdapter());
                 game.setGame(builder.create().fromJson(json, ChessGameImp.class));
             }
         }
@@ -97,7 +99,7 @@ public class DbGameDAO implements GameDAO{
                     var json = rs.getString("game");
                     var builder = new GsonBuilder();
                     builder.registerTypeAdapter(ChessBoard.class, new BoardAdapter());
-
+                    builder.registerTypeAdapter(ChessPosition.class, new PosAdapter());
                     game.setGame(builder.create().fromJson(json, ChessGameImp.class));
 
                     games.add(game);

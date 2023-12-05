@@ -1,11 +1,7 @@
 package server;
 
 import com.google.gson.Gson;
-
-
-import webSocketMessages.serverMessages.ServerMessage;
 import webSocketMessages.userCommands.UserGameCommand;
-
 
 import javax.websocket.*;
 import java.io.IOException;
