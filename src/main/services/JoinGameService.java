@@ -37,8 +37,8 @@ public class JoinGameService {
             String username = authDAO.find(authToken);        //authenticate :)
             Game game = gameDAO.find(request.getGameID());
 
-            if ((Objects.equals(request.getPlayerColor(), "WHITE") && game.getWhiteUsername() != null)
-                    || (Objects.equals(request.getPlayerColor(), "BLACK") && game.getBlackUsername() != null)) {
+            if ((Objects.equals(request.getPlayerColor(), "WHITE") && !Objects.equals(game.getWhiteUsername(), username) && game.getWhiteUsername() != null)
+                    || (Objects.equals(request.getPlayerColor(), "BLACK") && !Objects.equals(game.getBlackUsername(), username)) && game.getBlackUsername() != null) {
                 result.setReturnCode(403);
                 result.setMessage("Error: already taken");
                 return result;

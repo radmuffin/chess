@@ -81,7 +81,6 @@ public class Repl implements NotificationHandler {
     }
 
     private void redrawBoard() {
-        boolean white = state != UI.State.PLAYING_BLACK;
         printBoard(game.getGame().getBoard());
     }
 
@@ -89,9 +88,11 @@ public class Repl implements NotificationHandler {
         switch (inputs[0]) {
             case "leave" -> leaveGame();
             case "redraw" -> redrawBoard();
+            case "highlight" -> highlight(inputs);
             default -> System.out.print("""
-                    'leave' game when you want to go\s
                     'redraw' the board\s
+                    'highlight <PIECE LOCATION>' legal moves\s
+                    'leave' game when you want to go\s
                     'help' for this again\s
                     """);
         }
@@ -180,7 +181,7 @@ public class Repl implements NotificationHandler {
         return promo;
     }
 
-    private  void highlight(String[] inputs) {
+    private  void highlight(String[] inputs) { // TODO: 12/6/2023
         if (inputs.length < 2) System.out.print("which piece?\n");
         else {
             ChessPosition start = getChessPosition(inputs, 1);
@@ -236,6 +237,8 @@ public class Repl implements NotificationHandler {
         else {
             if (Integer.parseInt(inputs[1]) < games.size()) {
                 game.setGameID(gameIDs.get(Integer.parseInt(inputs[1])));
+                if (Objects.equals(inputs[2], "black")) inputs[2] = "BLACK";
+                else if (Objects.equals(inputs[2], "white")) inputs[2] = "WHITE";
                 JoinGameRequest req = new JoinGameRequest(inputs[2], game.getGameID());
 
                 try {
@@ -338,26 +341,52 @@ public class Repl implements NotificationHandler {
         switch (state) {
             case LOGGED_OUT -> System.out.print("[LOGGED_OUT] >>> ");
             case LOGGED_IN -> System.out.print("[" + user.getUsername() + "] >>> ");
-            case PLAYING_WHITE -> {
-                System.out.print("[" + user.getUsername() + ":WHITE");
-                if (game.getGame() == null) System.out.print("] >>> ");
-                else if (game.getGame().getTeamTurn() == ChessGame.TeamColor.WHITE) System.out.print("|your turn] >>> ");
-                else System.out.print("|waiting for black...] >>> ");
-            }
-
-            case PLAYING_BLACK -> {
-                System.out.print("[" + user.getUsername() + ":BLACK");
-                if (game.getGame() == null) System.out.print("] >>> ");
-                else if (game.getGame().getTeamTurn() == ChessGame.TeamColor.BLACK) System.out.print("|your turn] >>> ");
-                else System.out.print("|waiting for white...] >>> ");
-            }
-            case OBSERVING -> {
-                System.out.print("[" + user.getUsername() + ":OBSERVING");
-                if (game.getGame() == null) System.out.print("] >>> ");
-                else if (game.getGame().getTeamTurn() == ChessGame.TeamColor.WHITE) System.out.print("|white's turn] >>> ");
-                else System.out.print("|black's turn] >>> ");
-            }
+            case PLAYING_WHITE -> System.out.print("[" + user.getUsername() + ":WHITE" + getWhiteStatus() + "] >>> ");
+            case PLAYING_BLACK -> System.out.print("[" + user.getUsername() + ":BLACK" + getBlackStatus() + "] >>> ");
+            case OBSERVING -> System.out.print("[" + user.getUsername() + ":OBSERVING" + getObserverStatus() + "] >>> ");
         }
+    }
+
+    private String getWhiteStatus() {
+        String status = "";
+        if (game.getGame() != null) switch (game.getGame().getGameState()) {
+            case WHITE_TURN, NEW_GAME -> status = "|your move";
+            case BLACK_TURN -> status = "|waiting on black";
+            case WHITE_CHECKED -> status = "|you're in check";
+            case BLACK_CHECKED -> status = "|nice move, maybe";
+            case STALEMATE -> status = "|stalemate";
+            case WHITE_WON -> status = "|victorious";
+            case BLACK_WON -> status = "|rip";
+        }
+        return status;
+    }
+
+    private String getBlackStatus() {
+        String status = "";
+        if (game.getGame() != null) switch (game.getGame().getGameState()) {
+            case WHITE_TURN, NEW_GAME -> status = "|waiting on white";
+            case BLACK_TURN -> status = "|your move";
+            case WHITE_CHECKED -> status = "|nice move, maybe";
+            case BLACK_CHECKED -> status = "|you're in check";
+            case STALEMATE -> status = "|stalemate";
+            case WHITE_WON -> status = "|rip";
+            case BLACK_WON -> status = "|victorious";
+        }
+        return status;
+    }
+
+    private String getObserverStatus() {
+        String status = "";
+        if (game.getGame() != null) switch (game.getGame().getGameState()) {
+            case WHITE_TURN, NEW_GAME -> status = "|waiting on white";
+            case BLACK_TURN -> status = "|waiting on black";
+            case WHITE_CHECKED -> status = "|white in check";
+            case BLACK_CHECKED -> status = "black in check";
+            case STALEMATE -> status = "|stalemate";
+            case WHITE_WON -> status = "|white wins";
+            case BLACK_WON -> status = "|black wins";
+        }
+        return status;
     }
 
     private void resetClientGamesList(ListGamesResult res) {
@@ -373,7 +402,18 @@ public class Repl implements NotificationHandler {
 
     private void printGames() {
         for (int i = 0; i < games.size(); ++ i) {
-            System.out.print(i + ": " + games.get(i).getGameName() + "\n\twhite: " + games.get(i).getWhiteUsername() +
+            String state = "";
+            switch (games.get(i).getGame().getGameState()) {
+                case NEW_GAME -> state = "NEW GAME";
+                case BLACK_TURN -> state = "BLACK TURN";
+                case WHITE_TURN -> state = "WHITE TURN";
+                case WHITE_CHECKED -> state = "WHITE IN CHECK";
+                case BLACK_CHECKED -> state = "BLACK IN CHECK";
+                case STALEMATE -> state = "STALEMATE";
+                case WHITE_WON -> state = "WHITE WON";
+                case BLACK_WON -> state = "BLACK WON";
+            }
+            System.out.print(i + ": " + games.get(i).getGameName() + " [" + state +"]\n\twhite: " + games.get(i).getWhiteUsername() +
                     ", black: " + games.get(i).getBlackUsername() + "\n");
         }
     }
@@ -450,9 +490,7 @@ public class Repl implements NotificationHandler {
     @Override
     public void receiveServerMessage(String message) {
         ServerMessage message1 = new Gson().fromJson(message, ServerMessage.class);
-
         switch (message1.getServerMessageType()) {
-
             case LOAD_GAME -> {
                 LoadGameMessage loadGameMessage = new Gson().fromJson(message, LoadGameMessage.class);
                 this.game.setGame(loadGameMessage.getGame());

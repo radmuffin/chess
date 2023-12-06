@@ -7,6 +7,21 @@ import java.util.Collection;
  */
 public interface ChessGame {
 
+
+    enum GameState {
+        NEW_GAME,
+        WHITE_TURN,
+        BLACK_TURN,
+        STALEMATE,
+        WHITE_CHECKED,
+        BLACK_CHECKED,
+        WHITE_WON,
+        BLACK_WON
+    }
+
+    void setGameState(GameState state);
+
+    GameState getGameState();
     /**
      * @return Which team's turn it is
      */

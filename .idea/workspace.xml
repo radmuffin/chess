@@ -7,22 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="ws ping pong achieved">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/main/adapters/MoveAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/main/adapters/PosAdapter.java" afterDir="false" />
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="moves work!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajedrez.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ajedrez.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/server/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/server/ServerFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/adapters/GameAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/adapters/GameAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/chess/ChessMoveImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chess/ChessMoveImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/chess/ChessPositionImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chess/ChessPositionImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/webSocketMessages/serverMessages/LoadGameMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/serverMessages/LoadGameMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dataAccess/DbGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dataAccess/DbGameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chess/ChessGameImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chess/ChessGameImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/models/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/starter/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/server/WSHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/WSHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/WSSessions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/WSSessions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/passoffTests/TestFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/TestFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +71,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "terminal"
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -99,7 +93,7 @@
       <recent name="dataAccess" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UI">
+  <component name="RunManager" selected="JUnit.WebSocketTests">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="ajedrez" />
@@ -142,22 +136,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTests.goodGameInsertAndFind" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
-      <option name="METHOD_NAME" value="goodGameInsertAndFind" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="FacadeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <option name="PACKAGE_NAME" value="" />
@@ -167,13 +145,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WebSocketTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UI" />
+        <item itemvalue="JUnit.WebSocketTests" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.UI" />
         <item itemvalue="JUnit.FacadeTests" />
         <item itemvalue="JUnit.DatabaseTests.goodGameFindAll" />
-        <item itemvalue="JUnit.DatabaseTests.goodGameInsertAndFind" />
       </list>
     </recent_temporary>
   </component>
@@ -498,7 +491,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701727883097</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="moves work!">
+      <option name="closed" value="true" />
+      <created>1701804842678</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1701804842678</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -513,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="gameplay no extra" />
     <MESSAGE value="en passant" />
     <MESSAGE value="basically perfect" />
     <MESSAGE value="phase 2" />
@@ -538,7 +538,8 @@
     <MESSAGE value="pre ui rewrite" />
     <MESSAGE value="ui refactored" />
     <MESSAGE value="ws ping pong achieved" />
-    <option name="LAST_COMMIT_MESSAGE" value="ws ping pong achieved" />
+    <MESSAGE value="moves work!" />
+    <option name="LAST_COMMIT_MESSAGE" value="moves work!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -560,13 +561,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/server/WSHandler.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="28" />
+          <line>50</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="8" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/client/src/main/ui/Repl.java</url>
+          <line>490</line>
+          <properties class="ui.Repl" method="receiveServerMessage">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

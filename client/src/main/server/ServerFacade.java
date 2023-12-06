@@ -1,6 +1,9 @@
 package server;
 
+import adapters.GameAdapter;
+import chess.ChessGame;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import webSocketMessages.userCommands.UserGameCommand;
 
 import javax.websocket.*;
@@ -80,7 +83,11 @@ public class ServerFacade extends Endpoint {
         T responseBody;
         try (InputStream respBody = http.getInputStream()) {
             InputStreamReader inputStreamReader = new InputStreamReader(respBody);
-            responseBody = new Gson().fromJson(inputStreamReader, clazz);
+
+            var builder = new GsonBuilder();
+            builder.registerTypeAdapter(ChessGame.class, new GameAdapter());
+
+            responseBody =  builder.create().fromJson(inputStreamReader, clazz);
         }
         return responseBody;
     }

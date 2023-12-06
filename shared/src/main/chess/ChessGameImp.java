@@ -8,6 +8,7 @@ public class ChessGameImp implements ChessGame{
 
     private TeamColor turn;
     private ChessBoard board;
+    private GameState state;
 
     private ChessPosition enPassantAble;
 
@@ -15,6 +16,18 @@ public class ChessGameImp implements ChessGame{
         turn = TeamColor.WHITE;
         board = new ChessBoardImp();
         enPassantAble = null;
+        state = GameState.NEW_GAME;
+    }
+
+
+    @Override
+    public void setGameState(GameState state) {
+        this.state = state;
+    }
+
+    @Override
+    public GameState getGameState() {
+        return state;
     }
 
     @Override
@@ -151,8 +164,14 @@ public class ChessGameImp implements ChessGame{
     }
 
     private void yourTurn() {
-        if (turn == TeamColor.WHITE) turn = TeamColor.BLACK;
-        else turn = TeamColor.WHITE;
+        if (turn == TeamColor.WHITE) {
+            turn = TeamColor.BLACK;
+            state = GameState.BLACK_TURN;
+        }
+        else {
+            turn = TeamColor.WHITE;
+            state = GameState.WHITE_TURN;
+        }
     }
 
     @Override

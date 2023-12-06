@@ -51,13 +51,13 @@ public class WSHandler {
             case JOIN_PLAYER -> {
                 JoinPlayerCmd join = new Gson().fromJson(message, JoinPlayerCmd.class);
                 try {
-                    LoadGameMessage loadGameMessage = null;
                     try {
-                        loadGameMessage = new LoadGameMessage(gameDAO.find(join.getGameID()).getGame());
+                        LoadGameMessage loadGameMessage = new LoadGameMessage(gameDAO.find(join.getGameID()).getGame());
+                        session.getRemote().sendString(new Gson().toJson(loadGameMessage));
                     } catch (DataAccessException e) {
-                        throw new RuntimeException(e);
+                        ErrorMess mess = new ErrorMess("error:" + e.getMessage());
+                        session.getRemote().sendString(new Gson().toJson(mess));
                     }
-                    session.getRemote().sendString(new Gson().toJson(loadGameMessage));
 
                     sessions.addSessionToGame(join.getGameID(), user, session);
                     String color = "white";
@@ -94,23 +94,27 @@ public class WSHandler {
                 } catch (DataAccessException e) {
                     throw new RuntimeException(e);
                 }
-                String activeUser = game.getBlackUsername();
-                if (game.getGame().getTeamTurn() == ChessGame.TeamColor.WHITE) activeUser = game.getWhiteUsername();
+                ChessGame chessGame = game.getGame();
+                String activeUser = getActiveUser(game, chessGame);
                 if (!Objects.equals(user, activeUser)) {
                     ErrorMess errorMess = new ErrorMess("error:it's not your turn");
                     session.getRemote().sendString(new Gson().toJson(errorMess));
+                    return;
                 }
                 ChessMove chessMove = makeMoveCmd.getMove();
 
                 try {
-                    game.getGame().makeMove(chessMove);
-                    gameDAO.updateGame(makeMoveCmd.getGameID(), game.getGame());
+                    chessGame.makeMove(chessMove);
 
-                    LoadGameMessage loadGameMessage = new LoadGameMessage(game.getGame());
+                    Notification closingNote = checkTheMates(chessGame, game, user);
+
+                    LoadGameMessage loadGameMessage = new LoadGameMessage(chessGame);
                     sessions.gameWideMessage(game.getGameID(), new Gson().toJson(loadGameMessage));
+                    gameDAO.updateGame(makeMoveCmd.getGameID(), chessGame);
 
                     Notification notification = new Notification(user + " moved " + chessMove);
                     sessions.gameWideMessageExclude(game.getGameID(), new Gson().toJson(notification), session);
+                    if (closingNote != null) sessions.gameWideMessage(game.getGameID(), new Gson().toJson(closingNote));
                 } catch (InvalidMoveException e) {
                     ErrorMess mess = new ErrorMess("error:" + e.getMessage());
                     session.getRemote().sendString(new Gson().toJson(mess));
@@ -122,12 +126,69 @@ public class WSHandler {
             }
             case LEAVE -> {
                 LeaveCmd leaveCmd = new Gson().fromJson(message, LeaveCmd.class);
+                sessions.removeSessionFromGame(leaveCmd.getGameID(), user);
+
+                Notification notification = new Notification(user + " left");
+                sessions.gameWideMessage(leaveCmd.getGameID(), new Gson().toJson(notification));
             }
             case RESIGN -> {
                 ResignCmd resignCmd = new Gson().fromJson(message, ResignCmd.class);
+                try {
+                    Game game = gameDAO.find(resignCmd.getGameID());
+
+                    String otherPlayer = game.getBlackUsername();
+                    ChessGame.GameState winner = ChessGame.GameState.BLACK_WON;
+                    if (Objects.equals(otherPlayer, user)) {
+                        otherPlayer = game.getWhiteUsername();
+                        winner = ChessGame.GameState.WHITE_WON;
+                    }
+                    Notification notification = new Notification(user + " resigned, " + otherPlayer + " wins.");
+                    sessions.gameWideMessage(resignCmd.getGameID(), new Gson().toJson(notification));
+                    game.getGame().setGameState(winner);
+                    gameDAO.updateGame(resignCmd.getGameID(), game.getGame());
+                } catch (DataAccessException e) {
+                    ErrorMess mess = new ErrorMess("error:" + e.getMessage());
+                    session.getRemote().sendString(new Gson().toJson(mess));
+                }
+
             }
         }
 
+    }
+
+    private static Notification checkTheMates(ChessGame chessGame, Game game, String user) {
+        Notification closingNote = null;
+        if (chessGame.isInCheckmate(chessGame.getTeamTurn())) {
+            closingNote = new Notification(getActiveUser(game, chessGame) + " is in checkmate. " + user + " wins, gg y'all");
+            switch (getInactiveUserColor(chessGame)) {
+                case WHITE -> chessGame.setGameState(ChessGame.GameState.WHITE_WON);
+                case BLACK -> chessGame.setGameState(ChessGame.GameState.BLACK_WON);
+            }
+        }
+        else if (chessGame.isInCheck(chessGame.getTeamTurn())) {
+            closingNote = new Notification(getActiveUser(game, chessGame) + " is in check 0_0");
+            switch (getInactiveUserColor(chessGame)) {
+                case WHITE -> chessGame.setGameState(ChessGame.GameState.BLACK_CHECKED);
+                case BLACK -> chessGame.setGameState(ChessGame.GameState.WHITE_CHECKED);
+            }
+        }
+        else if (chessGame.isInStalemate(getInactiveUserColor(chessGame))) {
+            closingNote = new Notification(user + " is in stalemate. nobody wins, this sucks fr");
+            chessGame.setGameState(ChessGame.GameState.STALEMATE);
+        }
+        return closingNote;
+    }
+
+    private static ChessGame.TeamColor getInactiveUserColor(ChessGame chessGame) {
+        ChessGame.TeamColor justWent = ChessGame.TeamColor.BLACK;
+        if (chessGame.getTeamTurn() == ChessGame.TeamColor.BLACK) justWent = ChessGame.TeamColor.WHITE;
+        return justWent;
+    }
+
+    private static String getActiveUser(Game game, ChessGame chessGame) {
+        String activeUser = game.getBlackUsername();
+        if (chessGame.getTeamTurn() == ChessGame.TeamColor.WHITE) activeUser = game.getWhiteUsername();
+        return activeUser;
     }
 
     private void sendError(String errMess, int gameID, String auth) {
