@@ -26,13 +26,13 @@ public class WSSessions {
 
     public void gameWideMessage(int gameID, String message) throws IOException {
         for (Session s : sessions.get(gameID).values()) {
-            s.getRemote().sendString(message);
+            if (s.isOpen()) s.getRemote().sendString(message);
         }
     }
 
     public void gameWideMessageExclude(int gameID, String message, Session session) throws IOException {
         for (Session s : sessions.get(gameID).values()) {
-            if (s != session) s.getRemote().sendString(message);
+            if (s != session && s.isOpen()) s.getRemote().sendString(message);
         }
     }
 

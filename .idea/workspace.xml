@@ -7,15 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="moves work!">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="kinda working, missing some load games randomly, and not up to unitTest spec">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/server/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/server/ServerFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/chess/ChessGameImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chess/ChessGameImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/models/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/starter/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/webSocketMessages/userCommands/JoinObserverCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/webSocketMessages/userCommands/JoinObserverCmd.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/server/WSHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/WSHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/JoinGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/WSSessions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/WSSessions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/passoffTests/TestFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/passoffTests/TestFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +29,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="WebSocketTests.joinObserverGood" />
+    </enabled-run-configurations>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -56,7 +57,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Server.executor": "Debug",
+    "Application.UI.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.WebSocketTests.executor": "Run",
+    "JUnit.WebSocketTests.invalidMoveGameOver.executor": "Run",
+    "JUnit.WebSocketTests.invalidResignGameOver.executor": "Debug",
+    "JUnit.WebSocketTests.joinObserverGood.executor": "Debug",
+    "JUnit.WebSocketTests.joinPlayerGood.executor": "Run",
+    "JUnit.WebSocketTests.joinPlayerSteal.executor": "Run",
     "Repository.Attach.Annotations": "true",
     "Repository.Attach.JavaDocs": "true",
     "Repository.Attach.Sources": "false",
@@ -65,6 +74,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "openjdk-20",
+    "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/spezd/IdeaProjects/chess/shared/src/main/webSocketMessages/userCommands",
     "last_opened_file_path": "C:/Users/spezd/IdeaProjects/chess/shared/src/main",
     "project.structure.last.edited": "Modules",
@@ -93,7 +103,7 @@
       <recent name="dataAccess" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WebSocketTests">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="ajedrez" />
@@ -120,31 +130,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseTests.goodGameFindAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ajedrez" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DatabaseTests" />
-      <option name="METHOD_NAME" value="goodGameFindAll" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FacadeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FacadeTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="WebSocketTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ajedrez" />
       <extension name="coverage">
@@ -160,15 +145,61 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WebSocketTests.invalidMoveGameOver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
+      <option name="METHOD_NAME" value="invalidMoveGameOver" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebSocketTests.invalidResignGameOver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ajedrez" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
+      <option name="METHOD_NAME" value="invalidResignGameOver" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Server" />
+      <item itemvalue="Application.UI" />
+      <item itemvalue="JUnit.WebSocketTests" />
+      <item itemvalue="JUnit.WebSocketTests.invalidMoveGameOver" />
+      <item itemvalue="JUnit.WebSocketTests.invalidResignGameOver" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.WebSocketTests" />
         <item itemvalue="Application.Server" />
         <item itemvalue="Application.UI" />
-        <item itemvalue="JUnit.FacadeTests" />
-        <item itemvalue="JUnit.DatabaseTests.goodGameFindAll" />
+        <item itemvalue="JUnit.WebSocketTests.invalidResignGameOver" />
+        <item itemvalue="JUnit.WebSocketTests.invalidMoveGameOver" />
+        <item itemvalue="JUnit.WebSocketTests" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-20.0.2-azul-20.0.2-8336523bb0d9-ce1e98ff" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -499,7 +530,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701804842678</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="kinda working, missing some load games randomly, and not up to unitTest spec">
+      <option name="closed" value="true" />
+      <created>1701902565804</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1701902565804</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -514,7 +553,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="en passant" />
     <MESSAGE value="basically perfect" />
     <MESSAGE value="phase 2" />
     <MESSAGE value="clear and register" />
@@ -539,7 +577,8 @@
     <MESSAGE value="ui refactored" />
     <MESSAGE value="ws ping pong achieved" />
     <MESSAGE value="moves work!" />
-    <option name="LAST_COMMIT_MESSAGE" value="moves work!" />
+    <MESSAGE value="kinda working, missing some load games randomly, and not up to unitTest spec" />
+    <option name="LAST_COMMIT_MESSAGE" value="kinda working, missing some load games randomly, and not up to unitTest spec" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -560,9 +599,24 @@
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/WebSocketTests.java</url>
+          <line>437</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/WebSocketTests.java</url>
+          <line>1293</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/WebSocketTests.java</url>
+          <line>1661</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/server/WSHandler.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="34" />
+          <line>156</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />

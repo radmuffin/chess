@@ -3,7 +3,6 @@ package server;
 import adapters.MoveAdapter;
 import chess.ChessGame;
 import chess.ChessMove;
-import chess.ChessPosition;
 import chess.InvalidMoveException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -45,19 +44,40 @@ public class WSHandler {
         } catch (DataAccessException e) {
             ErrorMess errorMess = new ErrorMess("authentication error :/");
             session.getRemote().sendString(new Gson().toJson(errorMess));
+            return;
         }
 
         switch (cmd.getCommandType()) {
             case JOIN_PLAYER -> {
                 JoinPlayerCmd join = new Gson().fromJson(message, JoinPlayerCmd.class);
+
+                Game game = null;
                 try {
-                    try {
-                        LoadGameMessage loadGameMessage = new LoadGameMessage(gameDAO.find(join.getGameID()).getGame());
-                        session.getRemote().sendString(new Gson().toJson(loadGameMessage));
-                    } catch (DataAccessException e) {
-                        ErrorMess mess = new ErrorMess("error:" + e.getMessage());
-                        session.getRemote().sendString(new Gson().toJson(mess));
+                    game = gameDAO.find(join.getGameID());
+                } catch (DataAccessException e) {
+                    throw new RuntimeException(e);  //http should've found game
+                }
+
+                switch (join.getPlayerColor()) {
+                    case WHITE -> {
+                        if (!Objects.equals(game.getWhiteUsername(), user)) {
+                            ErrorMess errorMess = new ErrorMess("error: spot taken");
+                            session.getRemote().sendString(new Gson().toJson(errorMess));
+                            return;
+                        }
                     }
+                    case BLACK -> {
+                        if (!Objects.equals(game.getBlackUsername(), user)) {
+                            ErrorMess errorMess = new ErrorMess("error: spot taken");
+                            session.getRemote().sendString(new Gson().toJson(errorMess));
+                            return;
+                        }
+                    }
+                }
+
+                try {
+                    LoadGameMessage loadGameMessage = new LoadGameMessage(game.getGame());
+                    session.getRemote().sendString(new Gson().toJson(loadGameMessage));
 
                     sessions.addSessionToGame(join.getGameID(), user, session);
                     String color = "white";
@@ -74,15 +94,15 @@ public class WSHandler {
 
                 LoadGameMessage loadGameMessage = null;
                 try {
-                    loadGameMessage = new LoadGameMessage(gameDAO.find(join.getGameId()).getGame());
+                    loadGameMessage = new LoadGameMessage(gameDAO.find(join.getGameID()).getGame());
                 } catch (DataAccessException e) {
                     throw new RuntimeException(e);  //http would have already found game
                 }
                 session.getRemote().sendString(new Gson().toJson(loadGameMessage));
 
-                sessions.addSessionToGame(join.getGameId(), user, session);
+                sessions.addSessionToGame(join.getGameID(), user, session);
                 Notification notification = new Notification(user + " joined as observer");
-                sessions.gameWideMessageExclude(join.getGameId(), new Gson().toJson(notification), session);
+                sessions.gameWideMessageExclude(join.getGameID(), new Gson().toJson(notification), session);
             }
             case MAKE_MOVE -> {
                 var builder = new GsonBuilder();
@@ -96,6 +116,8 @@ public class WSHandler {
                 }
                 ChessGame chessGame = game.getGame();
                 String activeUser = getActiveUser(game, chessGame);
+                if (gameOver(session, game)) return;
+
                 if (!Objects.equals(user, activeUser)) {
                     ErrorMess errorMess = new ErrorMess("error:it's not your turn");
                     session.getRemote().sendString(new Gson().toJson(errorMess));
@@ -136,11 +158,18 @@ public class WSHandler {
                 try {
                     Game game = gameDAO.find(resignCmd.getGameID());
 
+                    if (gameOver(session, game)) return;
+
                     String otherPlayer = game.getBlackUsername();
                     ChessGame.GameState winner = ChessGame.GameState.BLACK_WON;
                     if (Objects.equals(otherPlayer, user)) {
                         otherPlayer = game.getWhiteUsername();
                         winner = ChessGame.GameState.WHITE_WON;
+                    }
+                    else if (!Objects.equals(user, game.getWhiteUsername())) {      //silly observer
+                        ErrorMess mess = new ErrorMess("error: you weren't even a player");
+                        session.getRemote().sendString(new Gson().toJson(mess));
+                        return;
                     }
                     Notification notification = new Notification(user + " resigned, " + otherPlayer + " wins.");
                     sessions.gameWideMessage(resignCmd.getGameID(), new Gson().toJson(notification));
@@ -154,6 +183,17 @@ public class WSHandler {
             }
         }
 
+    }
+
+    private static boolean gameOver(Session session, Game game) throws IOException {
+        switch (game.getGame().getGameState()) {
+            case STALEMATE, WHITE_WON, BLACK_WON ->  {
+                ErrorMess mess = new ErrorMess("error: game over bro");
+                session.getRemote().sendString(new Gson().toJson(mess));
+                return true;
+            }
+        }
+        return false;
     }
 
     private static Notification checkTheMates(ChessGame chessGame, Game game, String user) {
@@ -191,14 +231,4 @@ public class WSHandler {
         return activeUser;
     }
 
-    private void sendError(String errMess, int gameID, String auth) {
-        try {
-            String user = authDAO.find(auth);
-            Session session = sessions.getGameMembers(gameID).get(user);
-            ErrorMess mess = new ErrorMess(errMess);
-            session.getRemote().sendString(new Gson().toJson(mess));
-        } catch (DataAccessException | IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
