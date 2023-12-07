@@ -157,6 +157,7 @@ public class WSHandler {
                 ResignCmd resignCmd = new Gson().fromJson(message, ResignCmd.class);
                 try {
                     Game game = gameDAO.find(resignCmd.getGameID());
+                    ChessGame chessGame = game.getGame();
 
                     if (gameOver(session, game)) return;
 
@@ -171,10 +172,12 @@ public class WSHandler {
                         session.getRemote().sendString(new Gson().toJson(mess));
                         return;
                     }
+                    chessGame.setGameState(winner);
+                    gameDAO.updateGame(resignCmd.getGameID(), chessGame);
+
                     Notification notification = new Notification(user + " resigned, " + otherPlayer + " wins.");
                     sessions.gameWideMessage(resignCmd.getGameID(), new Gson().toJson(notification));
-                    game.getGame().setGameState(winner);
-                    gameDAO.updateGame(resignCmd.getGameID(), game.getGame());
+
                 } catch (DataAccessException e) {
                     ErrorMess mess = new ErrorMess("error:" + e.getMessage());
                     session.getRemote().sendString(new Gson().toJson(mess));

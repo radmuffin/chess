@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class ResignCmd extends  UserGameCommand{
     private int gameID;
+
     public ResignCmd(String authToken) {
         super(authToken);
         commandType = CommandType.RESIGN;
