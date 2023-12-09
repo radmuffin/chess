@@ -81,7 +81,7 @@ public class Repl implements NotificationHandler {
     }
 
     private void redrawBoard() {
-        printBoard(game.getGame().getBoard());
+        printBoard(game.getGame().getBoard(), null, null);
     }
 
     private void observingActions(String[] inputs) {
@@ -181,7 +181,7 @@ public class Repl implements NotificationHandler {
         return promo;
     }
 
-    private  void highlight(String[] inputs) { // TODO: 12/6/2023
+    private  void highlight(String[] inputs) {
         if (inputs.length < 2) System.out.print("which piece?\n");
         else {
             ChessPosition start = getChessPosition(inputs, 1);
@@ -190,7 +190,7 @@ public class Repl implements NotificationHandler {
             for (ChessMove m : moves) {
                 ops.add(m.getEndPosition());
             }
-           // printBoard(game.getGame().getBoard(), start, ops);
+           printBoard(game.getGame().getBoard(), start, ops);
         }
     }
 
@@ -418,12 +418,12 @@ public class Repl implements NotificationHandler {
         }
     }
 
-     void printBoard(ChessBoard board) {
+     void printBoard(ChessBoard board, ChessPosition start, Collection<ChessPosition> options) {
         boolean white = state != UI.State.PLAYING_BLACK;
          if (!white) {
             for (int row = 0; row < 10; ++row) {
                 for (int col = 0; col < 10; ++col) {
-                    printRow(board, row, col);
+                    printRow(board, row, col, start, options);
                 }
                 System.out.print(EscapeSequences.RESET_BG_COLOR + "\n");
             }
@@ -431,14 +431,14 @@ public class Repl implements NotificationHandler {
         else {
             for (int row = 9; row >= 0; --row) {
                 for (int col = 0; col < 10; ++col) {
-                    printRow(board, row, col);
+                    printRow(board, row, col, start, options);
                 }
                 System.out.print(EscapeSequences.RESET_BG_COLOR + "\n");
             }
         }
     }
 
-    private void printRow(ChessBoard board, int row, int col) {
+    private void printRow(ChessBoard board, int row, int col, ChessPosition start, Collection<ChessPosition> options) {
         if (row == 0 || row == 9) {
             System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREEN);
 
@@ -449,11 +449,24 @@ public class Repl implements NotificationHandler {
             if (col == 0 || col == 9) System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREEN + EscapeSequences.SET_TEXT_COLOR_DARK_GREY + "\u2003" + row + " " + EscapeSequences.RESET_TEXT_COLOR);
 
             else {
-                if ((row % 2 == 1 && col % 2 == 1) || (row % 2 == 0 && col % 2 == 0)) System.out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
-                else System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREY);
-
                 ChessPosition pos = new ChessPositionImp(row, col);
                 ChessPiece piece = board.getPiece(pos);
+
+
+                boolean whiteSquare = (row % 2 == 1 && col % 2 == 1) || (row % 2 == 0 && col % 2 == 0);
+                if (start != null) {
+                    if (pos.equals(start)) {
+                        System.out.print(EscapeSequences.SET_BG_COLOR_BLUE);
+                    }
+                    else if (options.contains(pos)) {
+                        if (board.getPiece(start) != null && piece != null && board.getPiece(start).getTeamColor() != piece.getTeamColor()) System.out.print(EscapeSequences.SET_BG_COLOR_RED);
+                        else System.out.print(EscapeSequences.SET_BG_COLOR_YELLOW);
+                    }
+                    else if (whiteSquare) System.out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
+                    else System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREY);
+                }
+                else if (whiteSquare) System.out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
+                else System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREY);
 
                 if (piece == null) System.out.print(EscapeSequences.EMPTY);
                 else {
@@ -495,7 +508,7 @@ public class Repl implements NotificationHandler {
                 LoadGameMessage loadGameMessage = new Gson().fromJson(message, LoadGameMessage.class);
                 this.game.setGame(loadGameMessage.getGame());
                 System.out.print("\n");
-                printBoard(game.getGame().getBoard());
+                printBoard(game.getGame().getBoard(), null, null);
                 System.out.print("\n");
                 outputState();
             }
