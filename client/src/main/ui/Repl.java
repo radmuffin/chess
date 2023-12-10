@@ -29,11 +29,12 @@ public class Repl implements NotificationHandler {
 
     private  UI.State state = UI.State.LOGGED_OUT;
     private  AuthToken user = null;
-    private  Game game = new Game("");
+    private final Game game = new Game("localCopy");
 
     public void run() {
 
         while (state != UI.State.QUIT) {
+
             outputState();
 
             Scanner scanner = new Scanner(System.in);
@@ -48,9 +49,7 @@ public class Repl implements NotificationHandler {
             }
 
             System.out.print("\n");
-
         }
-
     }
 
     private void gameplayActions(String[] inputs) {
@@ -71,19 +70,6 @@ public class Repl implements NotificationHandler {
         }
     }
 
-    private void resignGame() {
-        ResignCmd cmd = new ResignCmd(user.getAuthToken(), game.getGameID());
-        try {
-            facade.sendCmd(cmd);
-        } catch (IOException e) {
-            System.out.print(e.getMessage() + "\n");
-        }
-    }
-
-    private void redrawBoard() {
-        printBoard(game.getGame().getBoard(), null, null);
-    }
-
     private void observingActions(String[] inputs) {
         switch (inputs[0]) {
             case "leave" -> leaveGame();
@@ -95,31 +81,6 @@ public class Repl implements NotificationHandler {
                     'leave' game when you want to go\s
                     'help' for this again\s
                     """);
-        }
-    }
-
-    private void leaveGame() {
-        LeaveCmd cmd = new LeaveCmd(user.getAuthToken(), game.getGameID());
-        try {
-            facade.sendCmd(cmd);
-            facade.disconnectWS();
-            state = UI.State.LOGGED_IN;
-        } catch (IOException e) {
-            System.out.print(e.getMessage() + "\n");
-        }
-    }
-
-    private  void loggedOutActions(String[] inputs) {
-        switch (inputs[0]) {
-            case "quit" -> quit();
-            case "register" -> register(inputs);
-            case "login" -> login(inputs);
-            default -> System.out.print("""
-                'register <USERNAME> <PASSWORD> <EMAIL>' to create an account\s
-                'login <USERNAME> <PASSWORD>' to login and play\s
-                'quit' to leave :'(\s
-                'help' for possible commands\s
-                """);
         }
     }
 
@@ -141,9 +102,43 @@ public class Repl implements NotificationHandler {
         }
     }
 
+    private  void loggedOutActions(String[] inputs) {
+        switch (inputs[0]) {
+            case "quit" -> quit();
+            case "register" -> register(inputs);
+            case "login" -> login(inputs);
+            default -> System.out.print("""
+                'register <USERNAME> <PASSWORD> <EMAIL>' to create an account\s
+                'login <USERNAME> <PASSWORD>' to login and play\s
+                'quit' to leave :'(\s
+                'help' for possible commands\s
+                """);
+        }
+    }
+
     private  void quit() {
         state = UI.State.QUIT;
         System.out.print("see ya :/\n");
+    }
+
+    private void leaveGame() {
+        LeaveCmd cmd = new LeaveCmd(user.getAuthToken(), game.getGameID());
+        try {
+            facade.sendWSCmd(cmd);
+            facade.disconnectWS();
+            state = UI.State.LOGGED_IN;
+        } catch (IOException e) {
+            System.out.print(e.getMessage() + "\n");
+        }
+    }
+
+    private void resignGame() {
+        ResignCmd cmd = new ResignCmd(user.getAuthToken(), game.getGameID());
+        try {
+            facade.sendWSCmd(cmd);
+        } catch (IOException e) {
+            System.out.print(e.getMessage() + "\n");
+        }
     }
 
     private  void move(String[] inputs) {
@@ -151,34 +146,15 @@ public class Repl implements NotificationHandler {
         else {
             ChessPosition start = getChessPosition(inputs, 1);
             ChessPosition end = getChessPosition(inputs, 2);
-            ChessPiece.PieceType promo = null;
-            promo = getPromo(inputs, promo);
+            ChessPiece.PieceType promo = getPromo(inputs);
             ChessMove move = new ChessMoveImp(start, end, promo);
             MakeMoveCmd cmd = new MakeMoveCmd(user.getAuthToken(), game.getGameID(), move);
             try {
-                facade.sendCmd(cmd);
+                facade.sendWSCmd(cmd);
             } catch (IOException e) {
                 System.out.print(e.getMessage() + "\n");
             }
         }
-    }
-
-    private static ChessPosition getChessPosition(String[] inputs, int index) {
-        int col = inputs[index].charAt(0) - 'a' + 1;
-        int row = Character.getNumericValue(inputs[index].charAt(1));
-        return new ChessPositionImp(row, col);
-    }
-
-    private static ChessPiece.PieceType getPromo(String[] inputs, ChessPiece.PieceType promo) {
-        if (inputs.length == 4) {
-            switch (inputs[3]) {
-                case "queen" -> promo = ChessPiece.PieceType.QUEEN;
-                case "rook" -> promo = ChessPiece.PieceType.ROOK;
-                case "bishop" -> promo = ChessPiece.PieceType.BISHOP;
-                case "knight" -> promo = ChessPiece.PieceType.KNIGHT;
-            }
-        }
-        return promo;
     }
 
     private  void highlight(String[] inputs) {
@@ -190,17 +166,12 @@ public class Repl implements NotificationHandler {
             for (ChessMove m : moves) {
                 ops.add(m.getEndPosition());
             }
-           printBoard(game.getGame().getBoard(), start, ops);
+            printBoard(game.getGame().getBoard(), start, ops);
         }
     }
 
-    private  void logout() {
-        try {
-            facade.sendAndReceive("/session", "DELETE", "", user.getAuthToken(), ResponseMessage.class);
-            state = UI.State.LOGGED_OUT;
-        } catch (URISyntaxException | IOException e) {
-            System.out.print(e.getMessage() + "\n");
-        }
+    private void redrawBoard() {
+        printBoard(game.getGame().getBoard(), null, null);
     }
 
     private  void observeGame(String[] inputs) {
@@ -213,10 +184,10 @@ public class Repl implements NotificationHandler {
                 JoinGameRequest req = new JoinGameRequest(null, game.getGameID());
 
                 try {
-                    facade.sendAndReceive("/game", "PUT", new Gson().toJson(req), user.getAuthToken(), ResponseMessage.class);
+                    facade.sendHTTP("/game", "PUT", new Gson().toJson(req), user.getAuthToken(), ResponseMessage.class);
                     facade.connectWS();
                     JoinObserverCmd cmd = new JoinObserverCmd(user.getAuthToken(), game.getGameID());
-                    facade.sendCmd(cmd);
+                    facade.sendWSCmd(cmd);
 
                     state = UI.State.OBSERVING;
                 } catch (URISyntaxException | IOException | DeploymentException e) {
@@ -242,13 +213,13 @@ public class Repl implements NotificationHandler {
                 JoinGameRequest req = new JoinGameRequest(inputs[2], game.getGameID());
 
                 try {
-                    facade.sendAndReceive("/game", "PUT", new Gson().toJson(req), user.getAuthToken(), ResponseMessage.class);
+                    facade.sendHTTP("/game", "PUT", new Gson().toJson(req), user.getAuthToken(), ResponseMessage.class);
 
                     facade.connectWS();
                     ChessGame.TeamColor color = ChessGame.TeamColor.WHITE;
                     if (Objects.equals(req.getPlayerColor(), "BLACK")) color = ChessGame.TeamColor.BLACK;
                     JoinPlayerCmd cmd = new JoinPlayerCmd(user.getAuthToken(), game.getGameID(), color);
-                    facade.sendCmd(cmd);
+                    facade.sendWSCmd(cmd);
 
                     switch (req.getPlayerColor()) {
                         case "WHITE" -> state = UI.State.PLAYING_WHITE;
@@ -262,14 +233,12 @@ public class Repl implements NotificationHandler {
             else {
                 System.out.print("invalid game number\n");
             }
-
-
         }
     }
 
     private  void listGames() {
         try {
-            ListGamesResult res = facade.sendAndReceive("/game", "GET", "", user.getAuthToken(), ListGamesResult.class);
+            ListGamesResult res = facade.sendHTTP("/game", "GET", "", user.getAuthToken(), ListGamesResult.class);
             resetClientGamesList(res);
             printGames();
         } catch (URISyntaxException | IOException e) {
@@ -284,11 +253,20 @@ public class Repl implements NotificationHandler {
         else {
             CreateGameRequest req = new CreateGameRequest(inputs[1]);
             try {
-                facade.sendAndReceive("/game", "POST", new Gson().toJson(req), user.getAuthToken(), CreateGameResult.class);
+                facade.sendHTTP("/game", "POST", new Gson().toJson(req), user.getAuthToken(), CreateGameResult.class);
                 System.out.print("creation success!\n");
             } catch (URISyntaxException | IOException e) {
                 System.out.print(e.getMessage() + "\n");
             }
+        }
+    }
+
+    private  void logout() {
+        try {
+            facade.sendHTTP("/session", "DELETE", "", user.getAuthToken(), ResponseMessage.class);
+            state = UI.State.LOGGED_OUT;
+        } catch (URISyntaxException | IOException e) {
+            System.out.print(e.getMessage() + "\n");
         }
     }
 
@@ -301,7 +279,7 @@ public class Repl implements NotificationHandler {
             LoginResult res = new LoginResult();
 
             try {
-                res = facade.sendAndReceive("/session", "POST", new Gson().toJson(req), null, LoginResult.class);
+                res = facade.sendHTTP("/session", "POST", new Gson().toJson(req), null, LoginResult.class);
             } catch (URISyntaxException | IOException e) {
                 System.out.print(e.getMessage() + "\n");
             }
@@ -323,7 +301,7 @@ public class Repl implements NotificationHandler {
             RegisterResult res = new RegisterResult();
 
             try {
-                res = facade.sendAndReceive("/user", "POST", new Gson().toJson(req), null, RegisterResult.class);
+                res = facade.sendHTTP("/user", "POST", new Gson().toJson(req), null, RegisterResult.class);
             } catch (URISyntaxException | IOException e) {
                 System.out.print(e.getMessage() + "\n");
             }
@@ -337,14 +315,23 @@ public class Repl implements NotificationHandler {
         }
     }
 
-    private  void outputState() {
-        switch (state) {
-            case LOGGED_OUT -> System.out.print("[LOGGED_OUT] >>> ");
-            case LOGGED_IN -> System.out.print("[" + user.getUsername() + "] >>> ");
-            case PLAYING_WHITE -> System.out.print("[" + user.getUsername() + ":WHITE" + getWhiteStatus() + "] >>> ");
-            case PLAYING_BLACK -> System.out.print("[" + user.getUsername() + ":BLACK" + getBlackStatus() + "] >>> ");
-            case OBSERVING -> System.out.print("[" + user.getUsername() + ":OBSERVING" + getObserverStatus() + "] >>> ");
+    private static ChessPosition getChessPosition(String[] inputs, int index) {
+        int col = inputs[index].charAt(0) - 'a' + 1;
+        int row = Character.getNumericValue(inputs[index].charAt(1));
+        return new ChessPositionImp(row, col);
+    }
+
+    private static ChessPiece.PieceType getPromo(String[] inputs) {
+        ChessPiece.PieceType promo = null;
+        if (inputs.length == 4) {
+            switch (inputs[3]) {
+                case "queen" -> promo = ChessPiece.PieceType.QUEEN;
+                case "rook" -> promo = ChessPiece.PieceType.ROOK;
+                case "bishop" -> promo = ChessPiece.PieceType.BISHOP;
+                case "knight" -> promo = ChessPiece.PieceType.KNIGHT;
+            }
         }
+        return promo;
     }
 
     private String getWhiteStatus() {
@@ -399,6 +386,15 @@ public class Repl implements NotificationHandler {
             ++i;
         }
     }
+    private  void outputState() {
+        switch (state) {
+            case LOGGED_OUT -> System.out.print("[LOGGED_OUT] >>> ");
+            case LOGGED_IN -> System.out.print("[" + user.getUsername() + "] >>> ");
+            case PLAYING_WHITE -> System.out.print("[" + user.getUsername() + ":WHITE" + getWhiteStatus() + "] >>> ");
+            case PLAYING_BLACK -> System.out.print("[" + user.getUsername() + ":BLACK" + getBlackStatus() + "] >>> ");
+            case OBSERVING -> System.out.print("[" + user.getUsername() + ":OBSERVING" + getObserverStatus() + "] >>> ");
+        }
+    }
 
     private void printGames() {
         for (int i = 0; i < games.size(); ++ i) {
@@ -423,7 +419,7 @@ public class Repl implements NotificationHandler {
          if (!white) {
             for (int row = 0; row < 10; ++row) {
                 for (int col = 0; col < 10; ++col) {
-                    printRow(board, row, col, start, options);
+                    printSquare(board, row, col, start, options);
                 }
                 System.out.print(EscapeSequences.RESET_BG_COLOR + "\n");
             }
@@ -431,14 +427,14 @@ public class Repl implements NotificationHandler {
         else {
             for (int row = 9; row >= 0; --row) {
                 for (int col = 0; col < 10; ++col) {
-                    printRow(board, row, col, start, options);
+                    printSquare(board, row, col, start, options);
                 }
                 System.out.print(EscapeSequences.RESET_BG_COLOR + "\n");
             }
         }
     }
 
-    private void printRow(ChessBoard board, int row, int col, ChessPosition start, Collection<ChessPosition> options) {
+    private void printSquare(ChessBoard board, int row, int col, ChessPosition start, Collection<ChessPosition> options) {
         if (row == 0 || row == 9) {
             System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREEN);
 
@@ -449,54 +445,62 @@ public class Repl implements NotificationHandler {
             if (col == 0 || col == 9) System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREEN + EscapeSequences.SET_TEXT_COLOR_DARK_GREY + "\u2003" + row + " " + EscapeSequences.RESET_TEXT_COLOR);
 
             else {
-                ChessPosition pos = new ChessPositionImp(row, col);
-                ChessPiece piece = board.getPiece(pos);
-
-
-                boolean whiteSquare = (row % 2 == 1 && col % 2 == 1) || (row % 2 == 0 && col % 2 == 0);
-                if (start != null) {
-                    if (pos.equals(start)) {
-                        System.out.print(EscapeSequences.SET_BG_COLOR_BLUE);
-                    }
-                    else if (options.contains(pos)) {
-                        if (board.getPiece(start) != null && piece != null && board.getPiece(start).getTeamColor() != piece.getTeamColor()) System.out.print(EscapeSequences.SET_BG_COLOR_RED);
-                        else System.out.print(EscapeSequences.SET_BG_COLOR_YELLOW);
-                    }
-                    else if (whiteSquare) System.out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
-                    else System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREY);
-                }
-                else if (whiteSquare) System.out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
-                else System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREY);
-
-                if (piece == null) System.out.print(EscapeSequences.EMPTY);
-                else {
-                    switch (piece.getTeamColor()) {
-
-                        case BLACK -> {
-                            switch (piece.getPieceType()) {
-
-                                case KING -> System.out.print(EscapeSequences.WHITE_KING);
-                                case QUEEN -> System.out.print(EscapeSequences.WHITE_QUEEN);
-                                case BISHOP -> System.out.print(EscapeSequences.WHITE_BISHOP);
-                                case KNIGHT -> System.out.print(EscapeSequences.WHITE_KNIGHT);
-                                case ROOK -> System.out.print(EscapeSequences.WHITE_ROOK);
-                                case PAWN -> System.out.print(EscapeSequences.WHITE_PAWN);
-                            }
-                        }
-                        case WHITE -> {          //black pieces are just filled and look more white so I switched them
-                            switch (piece.getPieceType()) {
-
-                                case KING -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_KING + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                                case QUEEN -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_QUEEN + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                                case BISHOP -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_BISHOP + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                                case KNIGHT -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_KNIGHT + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                                case ROOK -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_ROOK + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                                case PAWN -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_PAWN + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-                            }
-                        }
-                    }
-                }
+                mightBeAPieceHere(board, row, col, start, options);
             }
+        }
+    }
+
+    private static void mightBeAPieceHere(ChessBoard board, int row, int col, ChessPosition start, Collection<ChessPosition> options) {
+        ChessPosition pos = new ChessPositionImp(row, col);
+        ChessPiece piece = board.getPiece(pos);
+
+        boolean whiteSquare = (row % 2 == 1 && col % 2 == 1) || (row % 2 == 0 && col % 2 == 0);
+        if (start != null) {
+            highlightSequence(board, start, options, pos, piece, whiteSquare);
+        }
+        else if (whiteSquare) System.out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
+        else System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREY);
+
+        if (piece == null) System.out.print(EscapeSequences.EMPTY);
+        else {
+            switch (piece.getTeamColor()) {
+                case BLACK -> printBlackPiece(piece);
+                case WHITE -> printWhitePiece(piece);
+            }
+        }
+    }
+
+    private static void highlightSequence(ChessBoard board, ChessPosition start, Collection<ChessPosition> options, ChessPosition pos, ChessPiece piece, boolean whiteSquare) {
+        if (pos.equals(start)) {
+            System.out.print(EscapeSequences.SET_BG_COLOR_BLUE);
+        }
+        else if (options.contains(pos)) {
+            if (board.getPiece(start) != null && piece != null) System.out.print(EscapeSequences.SET_BG_COLOR_RED);
+            else System.out.print(EscapeSequences.SET_BG_COLOR_YELLOW);
+        }
+        else if (whiteSquare) System.out.print(EscapeSequences.SET_BG_COLOR_LIGHT_GREY);
+        else System.out.print(EscapeSequences.SET_BG_COLOR_DARK_GREY);
+    }
+
+    private static void printWhitePiece(ChessPiece piece) {
+        switch (piece.getPieceType()) { //black pieces are just filled and look more white, so I used black for white and vice versa
+            case KING -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_KING + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+            case QUEEN -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_QUEEN + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+            case BISHOP -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_BISHOP + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+            case KNIGHT -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_KNIGHT + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+            case ROOK -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_ROOK + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+            case PAWN -> System.out.print(EscapeSequences.SET_TEXT_FAINT + EscapeSequences.BLACK_PAWN + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+        }
+    }
+
+    private static void printBlackPiece(ChessPiece piece) {
+        switch (piece.getPieceType()) {
+            case KING -> System.out.print(EscapeSequences.WHITE_KING);
+            case QUEEN -> System.out.print(EscapeSequences.WHITE_QUEEN);
+            case BISHOP -> System.out.print(EscapeSequences.WHITE_BISHOP);
+            case KNIGHT -> System.out.print(EscapeSequences.WHITE_KNIGHT);
+            case ROOK -> System.out.print(EscapeSequences.WHITE_ROOK);
+            case PAWN -> System.out.print(EscapeSequences.WHITE_PAWN);
         }
     }
 
@@ -504,24 +508,30 @@ public class Repl implements NotificationHandler {
     public void receiveServerMessage(String message) {
         ServerMessage message1 = new Gson().fromJson(message, ServerMessage.class);
         switch (message1.getServerMessageType()) {
-            case LOAD_GAME -> {
-                LoadGameMessage loadGameMessage = new Gson().fromJson(message, LoadGameMessage.class);
-                this.game.setGame(loadGameMessage.getGame());
-                System.out.print("\n");
-                printBoard(game.getGame().getBoard(), null, null);
-                System.out.print("\n");
-                outputState();
-            }
-            case ERROR -> {
-                ErrorMess errorMess = new Gson().fromJson(message, ErrorMess.class);
-                System.out.print(errorMess.getErrorMessage() + "\n");
-                outputState();
-            }
-            case NOTIFICATION -> {
-                Notification notification = new Gson().fromJson(message, Notification.class);
-                System.out.print(notification.getMessage() + "\n");
-                outputState();
-            }
+            case LOAD_GAME -> receiveLoadGame(message);
+            case ERROR -> receiveErr(message);
+            case NOTIFICATION -> receiveNotification(message);
         }
+    }
+
+    private void receiveNotification(String message) {
+        Notification notification = new Gson().fromJson(message, Notification.class);
+        System.out.print(notification.getMessage() + "\n");
+        outputState();
+    }
+
+    private void receiveErr(String message) {
+        ErrorMess errorMess = new Gson().fromJson(message, ErrorMess.class);
+        System.out.print(errorMess.getErrorMessage() + "\n");
+        outputState();
+    }
+
+    private void receiveLoadGame(String message) {
+        LoadGameMessage loadGameMessage = new Gson().fromJson(message, LoadGameMessage.class);
+        this.game.setGame(loadGameMessage.getGame());
+        System.out.print("\n");
+        printBoard(game.getGame().getBoard(), null, null);
+        System.out.print("\n");
+        outputState();
     }
 }

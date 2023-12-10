@@ -1,6 +1,5 @@
 package adapters;
 
-import chess.ChessMove;
 import chess.ChessPosition;
 import chess.ChessPositionImp;
 import com.google.gson.*;

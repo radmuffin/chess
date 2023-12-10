@@ -11,12 +11,12 @@ public class FacadeTests {
 
     @Test
     public void goodExecution() {
-        Assertions.assertDoesNotThrow(() -> fascade.sendAndReceive("/db", "DELETE", "", null, ResponseMessage.class));
+        Assertions.assertDoesNotThrow(() -> fascade.sendHTTP("/db", "DELETE", "", null, ResponseMessage.class));
     }
 
     @Test
     public void badExecution() {
         LoginRequest req = new LoginRequest("totatallyausername", "universalKey");
-        Assertions.assertThrows(Exception.class, () -> fascade.sendAndReceive("/session", "POST", new Gson().toJson(req), null, LoginRequest.class));
+        Assertions.assertThrows(Exception.class, () -> fascade.sendHTTP("/session", "POST", new Gson().toJson(req), null, LoginRequest.class));
     }
 }

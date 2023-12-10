@@ -1,14 +1,5 @@
 package ui;
 
-import chess.*;
-import models.AuthToken;
-import models.Game;
-import server.NotificationHandler;
-import server.ServerFacade;
-import webSocketMessages.serverMessages.ServerMessage;
-
-import java.util.*;
-
 public class UI  {
       public enum State {
         LOGGED_OUT,

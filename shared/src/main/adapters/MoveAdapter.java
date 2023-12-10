@@ -1,6 +1,5 @@
 package adapters;
 
-import chess.ChessGameImp;
 import chess.ChessMove;
 import chess.ChessMoveImp;
 import chess.ChessPosition;

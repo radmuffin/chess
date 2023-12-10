@@ -95,7 +95,7 @@ public class ChessGameImp implements ChessGame{
             }
             if (free) {
                 ChessPosition rookSpot = new ChessPositionImp(start.getRow() + 1, 4);
-                if (!isThreatened(rookSpot, piece.getTeamColor())) {
+                if (isSafe(rookSpot, piece.getTeamColor())) {
                     leftSpot.setPos(start.getRow() + 1, 3);
                     moves.add(new ChessMoveImp(start, leftSpot, null));
                 }
@@ -109,7 +109,7 @@ public class ChessGameImp implements ChessGame{
             }
             if (free) {
                 ChessPosition rookSpot = new ChessPositionImp(start.getRow() + 1, 6);
-                if (!isThreatened(rookSpot, piece.getTeamColor())) {
+                if (isSafe(rookSpot, piece.getTeamColor())) {
                     rightSpot.setPos(start.getRow() + 1, 7);
                     moves.add(new ChessMoveImp(start, rightSpot, null));
                 }
@@ -192,7 +192,7 @@ public class ChessGameImp implements ChessGame{
         return false;
     }
 
-    private boolean isThreatened(ChessPosition victim, TeamColor color) {
+    private boolean isSafe(ChessPosition victim, TeamColor color) {
         ChessPosition spot = new ChessPositionImp(1,1);
         for (int i = 1; i <= 8; ++i) {
             for (int k = 1; k <= 8; ++k) {
@@ -200,12 +200,12 @@ public class ChessGameImp implements ChessGame{
                 ChessPiece kingKiller = board.getPiece(spot);
                 if (kingKiller != null && kingKiller.getTeamColor() != color) {
                     for (ChessMove attack : kingKiller.pieceMoves(board, spot)) {
-                        if (attack.getEndPosition().equals(victim)) return true;
+                        if (attack.getEndPosition().equals(victim)) return false;
                     }
                 }
             }
         }
-        return false;
+        return true;
     }
 
     ChessPosition findKing(TeamColor color) {

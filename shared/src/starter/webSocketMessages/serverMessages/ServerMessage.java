@@ -6,7 +6,7 @@ import java.util.Objects;
  * Represents a Message the server can send through a WebSocket
  */
 public class ServerMessage {
-    ServerMessageType serverMessageType;
+    final ServerMessageType serverMessageType;
 
     public enum ServerMessageType{
         LOAD_GAME,
@@ -23,8 +23,7 @@ public class ServerMessage {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ServerMessage)) return false;
-        ServerMessage that = (ServerMessage) o;
+        if (!(o instanceof ServerMessage that)) return false;
         return getServerMessageType() == that.getServerMessageType();
     }
 

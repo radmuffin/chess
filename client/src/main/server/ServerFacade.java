@@ -32,7 +32,7 @@ public class ServerFacade extends Endpoint {
         this.notificationHandler = notificationHandler;
     }
 
-    public <T> T sendAndReceive(String path, String method, String body, String auth, Class<T> responseClass) throws URISyntaxException, IOException {
+    public <T> T sendHTTP(String path, String method, String body, String auth, Class<T> responseClass) throws URISyntaxException, IOException {
 
         URI uri = new URI(url + path);
         HttpURLConnection http = (HttpURLConnection) uri.toURL().openConnection();
@@ -57,7 +57,7 @@ public class ServerFacade extends Endpoint {
         });
     }
 
-    public void sendCmd(UserGameCommand cmd) throws IOException {
+    public void sendWSCmd(UserGameCommand cmd) throws IOException {
         this.session.getBasicRemote().sendText(new Gson().toJson(cmd));
     }
 

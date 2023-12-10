@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AnalysisUIOptions">
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
     <option name="ANALYZE_INJECTED_CODE" value="false" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="-(highlight)">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="finished (pre-cleanup)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/server/NotificationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/server/NotificationHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/server/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/server/ServerFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/test/FacadeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/FacadeTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/adapters/MoveAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/adapters/MoveAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/adapters/PosAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/adapters/PosAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chess/ChessGameImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chess/ChessGameImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/serverMessages/ServerMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/serverMessages/ServerMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/UserGameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/UserGameCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/WSHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/WSHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,16 +38,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JavaAutoRunManager">
-    <enabled-run-configurations>
-      <run-configuration type="JUnit" name="WebSocketTests.joinObserverGood" />
-    </enabled-run-configurations>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -51,36 +57,36 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.Server.executor": "Run",
-    "Application.UI.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.WebSocketTests.executor": "Run",
-    "JUnit.WebSocketTests.invalidMoveGameOver.executor": "Run",
-    "JUnit.WebSocketTests.invalidResignGameOver.executor": "Debug",
-    "JUnit.WebSocketTests.joinObserverGood.executor": "Debug",
-    "JUnit.WebSocketTests.joinPlayerGood.executor": "Run",
-    "JUnit.WebSocketTests.joinPlayerSteal.executor": "Run",
-    "Repository.Attach.Annotations": "true",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "openjdk-20",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/spezd/IdeaProjects/chess/shared/src/main/webSocketMessages/userCommands",
-    "last_opened_file_path": "C:/Users/spezd/IdeaProjects/chess/shared/src/main",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UI.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.WebSocketTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WebSocketTests.invalidMoveGameOver.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WebSocketTests.invalidResignGameOver.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.WebSocketTests.joinObserverGood.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.WebSocketTests.joinPlayerGood.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WebSocketTests.joinPlayerSteal.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-20&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/spezd/IdeaProjects/chess/shared/src/main/webSocketMessages/userCommands&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/spezd/IdeaProjects/chess/shared/src/main&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\spezd\IdeaProjects\chess\src\starter" />
@@ -100,7 +106,7 @@
       <recent name="dataAccess" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UI">
+  <component name="RunManager" selected="JUnit.WebSocketTests">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="ajedrez" />
@@ -183,9 +189,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UI" />
-        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.WebSocketTests" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.UI" />
         <item itemvalue="JUnit.WebSocketTests.invalidResignGameOver" />
         <item itemvalue="JUnit.WebSocketTests.invalidMoveGameOver" />
       </list>
@@ -551,7 +557,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701989124785</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="finished (pre-cleanup)">
+      <option name="closed" value="true" />
+      <created>1702080276607</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1702080276607</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -566,7 +580,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="clear and register" />
     <MESSAGE value="login/out" />
     <MESSAGE value="api tests pass" />
     <MESSAGE value="server tests" />
@@ -591,7 +604,8 @@
     <MESSAGE value="kinda working, missing some load games randomly, and not up to unitTest spec" />
     <MESSAGE value="-highlight and like one test" />
     <MESSAGE value="-(highlight)" />
-    <option name="LAST_COMMIT_MESSAGE" value="-(highlight)" />
+    <MESSAGE value="finished (pre-cleanup)" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished (pre-cleanup)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -625,11 +639,6 @@
           <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/WebSocketTests.java</url>
           <line>1661</line>
           <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/server/WSHandler.java</url>
-          <line>156</line>
-          <option name="timeStamp" value="46" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
