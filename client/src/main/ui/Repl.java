@@ -94,8 +94,8 @@ public class Repl implements NotificationHandler {
             default -> System.out.print("""
                 'create <NAME>' a game\s
                 'list' games\s
-                'join <ID> [WHITE|BLACK]' a game\s
-                'observe <ID>' a game\s
+                'join <#> [WHITE|BLACK]' a game\s
+                'observe <#>' a game\s
                 'logout' when you're done\s
                 'help' for possible commands\s
                 """);
