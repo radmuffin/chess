@@ -21,8 +21,31 @@ import javax.websocket.DeploymentException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class Repl implements NotificationHandler {
+
+    boolean autoPilot = false;
+    private static final Logger logger = Logger.getLogger(Repl.class.getName());
+
+    static {
+        try {
+            // Remove the default ConsoleHandler
+            logger.setUseParentHandlers(false);
+            // Create a FileHandler that logs to a file named "log.txt"
+            FileHandler fileHandler = new FileHandler("log.txt", true);
+            fileHandler.setFormatter(new SimpleFormatter());
+
+            // Add the FileHandler to the logger
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Failed to create FileHandler.", e);
+        }
+    }
+
     private final ServerFacade facade = new ServerFacade(this);
     private static final ArrayList<Game> games = new ArrayList<>();
     private static final HashMap<Integer, Integer> gameIDs = new HashMap<>();        //<listed, actual>
@@ -57,6 +80,8 @@ public class Repl implements NotificationHandler {
             case "redraw" -> redrawBoard();
             case "highlight" -> highlight(inputs);
             case "move" -> move(inputs);
+            case "auto" -> dumbAI();
+            case "go" -> go();
             case "resign" -> resignGame();
             case "leave" -> leaveGame();
             default -> System.out.print("""
@@ -67,6 +92,58 @@ public class Repl implements NotificationHandler {
                 'resign' and surrender\s
                 'leave' the game\s
                 """);
+        }
+    }
+
+    private synchronized void dumbAI() {
+        autoPilot = true;
+        System.out.print("auto pilot on\n");
+
+        // Create and start a new thread that listens for user input
+        new Thread(() -> {
+            Scanner scanner = new Scanner(System.in);
+            while (autoPilot) {
+                String input = scanner.nextLine();
+                if (!input.isEmpty()) {
+                    autoPilot = false;
+                    System.out.print("auto pilot off\n");
+
+                }
+            }
+        }).start();
+
+        while (autoPilot && game.getGame().getGameState() != ChessGame.GameState.BLACK_WON && game.getGame().getGameState() != ChessGame.GameState.WHITE_WON && game.getGame().getGameState() != ChessGame.GameState.STALEMATE) {
+            go();
+            try {
+                wait(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private void go() {
+        HashSet<ChessMove> moves = new HashSet<>();
+        boolean amWhite = state != UI.State.PLAYING_BLACK;
+        ChessGame.TeamColor color = ChessGame.TeamColor.WHITE;
+        if (!amWhite) color = ChessGame.TeamColor.BLACK;
+
+        for (int row = 1; row < 9; ++row) {
+            for (int col = 1; col < 9; ++col) {
+                ChessPosition start = new ChessPositionImp(row, col);
+                if (game.getGame().getBoard().getPiece(start) != null && game.getGame().getBoard().getPiece(start).getTeamColor() == color) {
+                    moves.addAll(game.getGame().validMoves(start));
+                }
+            }
+        }
+
+        int rand = new Random().nextInt(moves.size());
+        ChessMove move = (ChessMove) moves.toArray()[rand];
+        MakeMoveCmd cmd = new MakeMoveCmd(user.getAuthToken(), game.getGameID(), move);
+        try {
+            facade.sendWSCmd(cmd);
+        } catch (IOException e) {
+            System.out.print(e.getMessage() + "\n");
         }
     }
 
@@ -179,6 +256,13 @@ public class Repl implements NotificationHandler {
             System.out.print("invalid args :/\n");
         }
         else {
+            try {
+                ListGamesResult res = facade.sendHTTP("/game", "GET", "", user.getAuthToken(), ListGamesResult.class);
+                resetClientGamesList(res);
+//                printGames();
+            } catch (URISyntaxException | IOException e) {
+                System.out.print(e.getMessage() + "\n");
+            }
             if (Integer.parseInt(inputs[1]) < games.size()) {
                 game.setGameID(gameIDs.get(Integer.parseInt(inputs[1])));
                 JoinGameRequest req = new JoinGameRequest(null, game.getGameID());
@@ -206,6 +290,15 @@ public class Repl implements NotificationHandler {
             System.out.print("invalid args :/\n");
         }
         else {
+            try {
+                ListGamesResult res = facade.sendHTTP("/game", "GET", "", user.getAuthToken(), ListGamesResult.class);
+                resetClientGamesList(res);
+//                printGames();
+            } catch (URISyntaxException | IOException e) {
+                System.out.print(e.getMessage() + "\n");
+            }
+
+
             if (Integer.parseInt(inputs[1]) < games.size()) {
                 game.setGameID(gameIDs.get(Integer.parseInt(inputs[1])));
                 if (Objects.equals(inputs[2], "black")) inputs[2] = "BLACK";
@@ -415,6 +508,9 @@ public class Repl implements NotificationHandler {
     }
 
      void printBoard(ChessBoard board, ChessPosition start, Collection<ChessPosition> options) {
+         for (int i = 0; i < 50; i++) {
+             System.out.print('\n');
+         }
         boolean white = state != UI.State.PLAYING_BLACK;
          if (!white) {
             for (int row = 0; row < 10; ++row) {
@@ -506,6 +602,8 @@ public class Repl implements NotificationHandler {
 
     @Override
     public void receiveServerMessage(String message) {
+        logger.log(Level.INFO, "Received server message: " + message);
+
         ServerMessage message1 = new Gson().fromJson(message, ServerMessage.class);
         switch (message1.getServerMessageType()) {
             case LOAD_GAME -> receiveLoadGame(message);
@@ -516,22 +614,28 @@ public class Repl implements NotificationHandler {
 
     private void receiveNotification(String message) {
         Notification notification = new Gson().fromJson(message, Notification.class);
-        System.out.print(notification.getMessage() + "\n");
-        outputState();
+        if (!autoPilot) {
+            System.out.print(notification.getMessage() + "\n");
+            outputState();
+        }
     }
 
     private void receiveErr(String message) {
         ErrorMess errorMess = new Gson().fromJson(message, ErrorMess.class);
-        System.out.print(errorMess.getErrorMessage() + "\n");
-        outputState();
+        if (!autoPilot) {
+            System.out.print(errorMess.getErrorMessage() + "\n");
+            outputState();
+        }
     }
 
     private void receiveLoadGame(String message) {
         LoadGameMessage loadGameMessage = new Gson().fromJson(message, LoadGameMessage.class);
         this.game.setGame(loadGameMessage.getGame());
-        System.out.print("\n");
-        printBoard(game.getGame().getBoard(), null, null);
-        System.out.print("\n");
-        outputState();
+        if (!autoPilot) {
+            System.out.print("\n");
+            printBoard(game.getGame().getBoard(), null, null);
+            System.out.print("\n");
+            outputState();
+        }
     }
 }
