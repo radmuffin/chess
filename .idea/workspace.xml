@@ -8,9 +8,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="finished">
+    <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="autopilot introduced">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chess/ChessGameImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chess/ChessGameImp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +213,7 @@
       <workItem from="1706136230096" duration="334000" />
       <workItem from="1706136606567" duration="33000" />
       <workItem from="1706460378542" duration="89000" />
-      <workItem from="1706460716800" duration="7737000" />
+      <workItem from="1706460716800" duration="12174000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <option name="closed" value="true" />
@@ -582,7 +583,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702310283467</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="autopilot introduced">
+      <option name="closed" value="true" />
+      <created>1706479523068</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1706479523068</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +609,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="api tests pass" />
     <MESSAGE value="server tests" />
     <MESSAGE value="auth db stuff" />
     <MESSAGE value="user db stuff" />
@@ -625,7 +633,8 @@
     <MESSAGE value="-(highlight)" />
     <MESSAGE value="finished (pre-cleanup)" />
     <MESSAGE value="finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished" />
+    <MESSAGE value="autopilot introduced" />
+    <option name="LAST_COMMIT_MESSAGE" value="autopilot introduced" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -659,6 +668,11 @@
           <url>file://$PROJECT_DIR$/src/test/passoffTests/serverTests/WebSocketTests.java</url>
           <line>1661</line>
           <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/ui/Repl.java</url>
+          <line>648</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />

@@ -18,7 +18,9 @@ import webSocketMessages.serverMessages.ServerMessage;
 import webSocketMessages.userCommands.*;
 
 import javax.websocket.DeploymentException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.logging.FileHandler;
@@ -34,7 +36,7 @@ public class Repl implements NotificationHandler {
     static {
         try {
             // Remove the default ConsoleHandler
-            logger.setUseParentHandlers(false);
+//            logger.setUseParentHandlers(false);
             // Create a FileHandler that logs to a file named "log.txt"
             FileHandler fileHandler = new FileHandler("log.txt", true);
             fileHandler.setFormatter(new SimpleFormatter());
@@ -128,7 +130,7 @@ public class Repl implements NotificationHandler {
         ChessGame.TeamColor color = ChessGame.TeamColor.WHITE;
         if (!amWhite) color = ChessGame.TeamColor.BLACK;
 
-        for (int row = 1; row < 9; ++row) {
+        for (int row = 1; row < 9; ++row) {//get all legal moves
             for (int col = 1; col < 9; ++col) {
                 ChessPosition start = new ChessPositionImp(row, col);
                 if (game.getGame().getBoard().getPiece(start) != null && game.getGame().getBoard().getPiece(start).getTeamColor() == color) {
@@ -137,6 +139,13 @@ public class Repl implements NotificationHandler {
             }
         }
 
+        HashSet<ChessMove> attacks = new HashSet<>();   //always attack if possible :)
+        for (ChessMove mv : moves) {
+            if (game.getGame().getBoard().getPiece(mv.getEndPosition()) != null) {
+                attacks.add(mv);
+            }
+        }
+        if (!attacks.isEmpty()) moves = attacks;
         int rand = new Random().nextInt(moves.size());
         ChessMove move = (ChessMove) moves.toArray()[rand];
         MakeMoveCmd cmd = new MakeMoveCmd(user.getAuthToken(), game.getGameID(), move);
@@ -479,6 +488,7 @@ public class Repl implements NotificationHandler {
             ++i;
         }
     }
+
     private  void outputState() {
         switch (state) {
             case LOGGED_OUT -> System.out.print("[LOGGED_OUT] >>> ");
@@ -488,6 +498,28 @@ public class Repl implements NotificationHandler {
             case OBSERVING -> System.out.print("[" + user.getUsername() + ":OBSERVING" + getObserverStatus() + "] >>> ");
         }
     }
+
+    private String outputStateStr() {
+    StringBuilder output = new StringBuilder();
+    switch (state) {
+        case LOGGED_OUT:
+            output.append("[LOGGED_OUT] >>> ");
+            break;
+        case LOGGED_IN:
+            output.append("[").append(user.getUsername()).append("] >>> ");
+            break;
+        case PLAYING_WHITE:
+            output.append("[").append(user.getUsername()).append(":WHITE").append(getWhiteStatus()).append("] >>> ");
+            break;
+        case PLAYING_BLACK:
+            output.append("[").append(user.getUsername()).append(":BLACK").append(getBlackStatus()).append("] >>> ");
+            break;
+        case OBSERVING:
+            output.append("[").append(user.getUsername()).append(":OBSERVING").append(getObserverStatus()).append("] >>> ");
+            break;
+    }
+    return output.toString();
+}
 
     private void printGames() {
         for (int i = 0; i < games.size(); ++ i) {
@@ -508,9 +540,9 @@ public class Repl implements NotificationHandler {
     }
 
      void printBoard(ChessBoard board, ChessPosition start, Collection<ChessPosition> options) {
-         for (int i = 0; i < 50; i++) {
-             System.out.print('\n');
-         }
+//         for (int i = 0; i < 50; i++) {
+//             System.out.print('\n');
+//         }//clear screen
         boolean white = state != UI.State.PLAYING_BLACK;
          if (!white) {
             for (int row = 0; row < 10; ++row) {
@@ -527,6 +559,18 @@ public class Repl implements NotificationHandler {
                 }
                 System.out.print(EscapeSequences.RESET_BG_COLOR + "\n");
             }
+        }
+    }
+
+    void fPrintBoard(ChessBoard board) {
+        try {
+            PrintWriter writer = new PrintWriter("board.txt");
+            writer.println(board.toString());
+            writer.print(outputStateStr());
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred while writing to the file.");
+            e.printStackTrace();
         }
     }
 
@@ -631,6 +675,7 @@ public class Repl implements NotificationHandler {
     private void receiveLoadGame(String message) {
         LoadGameMessage loadGameMessage = new Gson().fromJson(message, LoadGameMessage.class);
         this.game.setGame(loadGameMessage.getGame());
+        if (state == UI.State.OBSERVING) fPrintBoard(game.getGame().getBoard());
         if (!autoPilot) {
             System.out.print("\n");
             printBoard(game.getGame().getBoard(), null, null);
