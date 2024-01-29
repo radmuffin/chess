@@ -36,7 +36,7 @@ public class Repl implements NotificationHandler {
     static {
         try {
             // Remove the default ConsoleHandler
-//            logger.setUseParentHandlers(false);
+            logger.setUseParentHandlers(false);
             // Create a FileHandler that logs to a file named "log.txt"
             FileHandler fileHandler = new FileHandler("log.txt", true);
             fileHandler.setFormatter(new SimpleFormatter());
@@ -145,7 +145,13 @@ public class Repl implements NotificationHandler {
                 attacks.add(mv);
             }
         }
-        if (!attacks.isEmpty()) moves = attacks;
+
+//        if (!attacks.isEmpty()) moves = attacks;
+        if (!attacks.isEmpty()) {
+            int attack = new Random().nextInt(4);
+            if (attack == 1) moves = attacks;
+        }
+
         int rand = new Random().nextInt(moves.size());
         ChessMove move = (ChessMove) moves.toArray()[rand];
         MakeMoveCmd cmd = new MakeMoveCmd(user.getAuthToken(), game.getGameID(), move);
