@@ -10,7 +10,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8e6250f9-30dc-4431-bc5c-1a890f62f740" name="Changes" comment="autopilot attacks at every opportunity, stalemate w/ only kings left implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajedrez.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ajedrez.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/chess/ChessGameImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/chess/ChessGameImp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,11 +27,6 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="ca9375aa112d2933680ac727e122163a61b7dfc3" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -108,7 +104,7 @@
       <recent name="dataAccess" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UI">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="ajedrez" />
@@ -123,10 +119,8 @@
       </method>
     </configuration>
     <configuration name="UI" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-20" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="ui.UI" />
-      <module name="ajedrez" />
+      <module name="client" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ui.*" />
